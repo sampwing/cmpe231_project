@@ -2,7 +2,7 @@
 
 #### Members
 
-Joe, Graham, Joseph, Sam
+Joe, Graham, Tommy, Sam
 
 #### Ideas
 
