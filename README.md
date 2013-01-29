@@ -12,5 +12,7 @@ and prepopulating a calendar.
 #### Implemenation
 
 Crawl SOE (Doneish)
+
 Create a hierarchy of classes and their prereqs
+
 Create a plan for every major in SOE, and a mapping to the classes
