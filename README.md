@@ -16,3 +16,8 @@ Crawl SOE (Doneish)
 Create a hierarchy of classes and their prereqs
 
 Create a plan for every major in SOE, and a mapping to the classes
+
+
+#### Google Apps Webpage
+
+ucscplanner.appspot.com
