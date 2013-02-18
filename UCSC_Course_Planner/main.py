@@ -31,6 +31,11 @@ class Login(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/login.html')
         self.response.write(template.render(path, {}))
 
+class Dashboard(webapp2.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'templates/dashboard.html')
+        self.response.write(template.render(path, {}))
+
 class ListCourses(webapp2.RequestHandler):
     def get(self):
         reader = csv.DictReader(open('resources/dump.csv'))
@@ -48,8 +53,9 @@ class ListCourses(webapp2.RequestHandler):
         self.response.write(template.render(path, output))
 
 
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
+    ('/', Dashboard),
     ('/courses', ListCourses),
-                                  ('/login', Login),
+    ('/login', Login),
 ], debug=True)
