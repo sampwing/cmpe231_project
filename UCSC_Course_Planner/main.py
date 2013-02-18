@@ -14,7 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+import csv
+import os
 import re
 from collections import defaultdict
 
@@ -25,10 +26,13 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello World')
 
+class Login(webapp2.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'templates/login.html')
+        self.response.write(template.render(path, {}))
+
 class ListCourses(webapp2.RequestHandler):
     def get(self):
-        import csv
-        import os
         reader = csv.DictReader(open('resources/dump.csv'))
         departments = defaultdict(list)
         for course in reader:
@@ -40,10 +44,12 @@ class ListCourses(webapp2.RequestHandler):
         output = {
             'departments': departments,
         }
-        path = os.path.join(os.path.dirname(__file__), 'templates/test.html')#course_schedule.html')
+        path = os.path.join(os.path.dirname(__file__), 'templates/test.html')
         self.response.write(template.render(path, output))
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/courses', ListCourses),
+                                  ('/login', Login),
 ], debug=True)
