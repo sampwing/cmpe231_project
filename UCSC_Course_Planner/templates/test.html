@@ -6,10 +6,8 @@
 <body>
 
 <table>
-    {% for department in departments %}
-
-    <tr><td>Course Number</td><td>Course Name</td><td>Description</td><td>Fall</td><td>Winter</td><td>Spring</td><td>Summer</td></tr>
-    {% for course in departments.department %}
+    <tr><td>Course Number</td><td>Course Name</td><td>Description</td><td>Prerequisites</td><td>Fall</td><td>Winter</td><td>Spring</td><td>Summer</td></tr>
+    {% for course in courses %}
     <tr>
         <td>
             {{ course.number }}
@@ -19,6 +17,11 @@
         </td>
         <td>
             {{ course.description }}
+        </td>
+        <td>
+            {% if course.prereq %}
+                {{ course.prereq }}
+            {% endif %}
         </td>
         <td>
             {{ course.fall }}
@@ -33,7 +36,6 @@
             {{ course.summer }}
         </td>
     </tr>
-    {% endfor %}
     {% endfor %}
 </table>
 

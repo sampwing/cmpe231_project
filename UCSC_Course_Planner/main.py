@@ -39,15 +39,16 @@ class Dashboard(webapp2.RequestHandler):
 class ListCourses(webapp2.RequestHandler):
     def get(self):
         reader = csv.DictReader(open('resources/dump.csv'))
-        departments = defaultdict(list)
-        for course in reader:
-            result = re.search(r'(?P<dept>[A-Z]+)(?P<number>[0-9]+\w*?)', course['name'])
+        #departments = defaultdict(list)
+        courses = [course for course in reader]
+        regex = re.compile(r'Prerequisite\(s\):(.*)\.')
+        for course in courses:
+            description = course['description']
+            result = regex.findall(description)
             if result:
-                departments[result.group('dept')] += course
-        for dept in departments:
-            departments[dept] = sorted(departments[dept], key=lambda element: element['number'])
+                course['prereq'] = result[0]
         output = {
-            'departments': departments,
+            'courses': courses,
         }
         path = os.path.join(os.path.dirname(__file__), 'templates/test.html')
         self.response.write(template.render(path, output))
