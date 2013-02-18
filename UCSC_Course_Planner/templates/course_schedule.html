@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<table>
+    <tr><td>Course Number</td><td>Course Name</td><td>Description</td><td>Fall</td><td>Winter</td><td>Spring</td><td>Summer</td></tr>
+    {% for course in courses %}
+    <tr>
+        <td>
+            {{ course.number }}
+        </td>
+        <td>
+            {{ course.name }}
+        </td>
+        <td>
+            {{ course.description }}
+        </td>
+        <td>
+            {{ course.fall }}
+        </td>
+        <td>
+            {{ course.winter }}
+        </td>
+        <td>
+            {{ course.spring }}
+        </td>
+        <td>
+            {{ course.summer }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

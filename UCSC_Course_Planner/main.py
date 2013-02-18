@@ -14,12 +14,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+import re
+from collections import defaultdict
+
 import webapp2
+from google.appengine.ext.webapp import template
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        self.response.write('Hello World')
+
+class ListCourses(webapp2.RequestHandler):
+    def get(self):
+        import csv
+        import os
+        reader = csv.DictReader(open('resources/dump.csv'))
+        departments = defaultdict(list)
+        for course in reader:
+            result = re.search(r'(?P<dept>[A-Z]+)(?P<number>[0-9]+\w*?)', course['name'])
+            if result:
+                departments[result.group('dept')] += course
+        for dept in departments:
+            departments[dept] = sorted(departments[dept], key=lambda element: element['number'])
+        output = {
+            'departments': departments,
+        }
+        path = os.path.join(os.path.dirname(__file__), 'templates/test.html')#course_schedule.html')
+        self.response.write(template.render(path, output))
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/courses', ListCourses),
 ], debug=True)
