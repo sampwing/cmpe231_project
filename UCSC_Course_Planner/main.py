@@ -17,6 +17,8 @@
 import csv
 import os
 import re
+from google.appengine.api import users
+
 from collections import defaultdict
 
 import webapp2
@@ -28,8 +30,42 @@ class MainHandler(webapp2.RequestHandler):
 
 class Login(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if user:
+            greeting = (" <a href=\"%s\">Log out</a>" %
+                        ( users.create_logout_url("/login")))
+            logoutURL = users.create_logout_url("/login")
+            is_logged_in = True
+            name = user.nickname()
+        else:
+            greeting = ("<a href=\"%s\">Sign in or register</a>." %
+                        users.create_login_url("/dashboard"))
+            is_logged_in = False
+            logoutURL =  users.create_login_url("/dashboard")
+            name = "no name"
+
+
+        output = {
+            'name': name,
+            'is_logged_in': is_logged_in,
+            'greeting': greeting,
+            'logoutURL': logoutURL,
+            }
         path = os.path.join(os.path.dirname(__file__), 'templates/login.html')
-        self.response.write(template.render(path, {}))
+        self.response.write(template.render(path, output))
+
+class MyHandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            greeting = ("Welcome, %s! (<a href=\"%s\">sign out</a>)" %
+                        (user.nickname(), users.create_logout_url("/test")))
+        else:
+            greeting = ("<a href=\"%s\">Sign in or register</a>." %
+                        users.create_login_url("/"))
+
+        self.response.out.write("<html><body>%s</body></html>" % greeting)
+
 
 class Dashboard(webapp2.RequestHandler):
     def get(self):
@@ -58,6 +94,13 @@ class ListCourses(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/test.html')
         self.response.write(template.render(path, output))
 
+class NotFoundPageHandler(webapp2.RequestHandler):
+    def get(self):
+        self.error(404)
+        #self.response.out.write('Your 404 error html page')
+        path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
+        self.response.write(template.render(path, {}))
+
 
 
 app = webapp2.WSGIApplication([
@@ -65,4 +108,5 @@ app = webapp2.WSGIApplication([
     ('/dashboard', Dashboard),
     ('/courses', ListCourses),
     ('/login', Login),
+    ('/.*', NotFoundPageHandler),
 ], debug=True)

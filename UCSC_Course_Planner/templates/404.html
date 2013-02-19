@@ -82,17 +82,10 @@
 <div class="container">
 
     <form class="form-signin">
-        <h2 class="form-signin-heading">{% if is_logged_in %}Thanks for logging in!{% else %}Please log in.{% endif %}</h2>
+        <h2 class="form-signin-heading">404 Error Occured...</h2>
         <p> {{ name }}</p>
         <p>{{  greeting|safe }}</p>
-
-        {% if is_logged_in %} <button class="btn btn-medium btn-primary" type="button" onclick="self.location='{{  logoutURL|safe }}'"> Logout </button> {% endif %}
-{#        <input type="text" class="input-block-level" placeholder="Email address">#}
-{#        <input type="password" class="input-block-level" placeholder="Password">#}
-{#        <label class="checkbox">#}
-{#            <input type="checkbox" value="remember-me"> Remember me#}
-{#        </label>#}
-{#        <button class="btn btn-large btn-primary" type="submit">Sign in</button>#}
+        <p>Sorry about that. Weird Stuff. We are new to this. Please give us a break. Sorry.</p>
     </form>
 
 </div> <!-- /container -->
