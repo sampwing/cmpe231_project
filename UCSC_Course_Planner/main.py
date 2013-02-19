@@ -17,6 +17,7 @@
 import csv
 import os
 import re
+import random
 from google.appengine.api import users
 
 from collections import defaultdict
@@ -97,9 +98,13 @@ class ListCourses(webapp2.RequestHandler):
 class NotFoundPageHandler(webapp2.RequestHandler):
     def get(self):
         self.error(404)
+        dognum = random.randint(0, 4)
         #self.response.out.write('Your 404 error html page')
+        output = {
+            'dognum': dognum,
+            }
         path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
-        self.response.write(template.render(path, {}))
+        self.response.write(template.render(path, output))
 
 
 

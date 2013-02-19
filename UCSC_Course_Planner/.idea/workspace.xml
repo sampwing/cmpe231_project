@@ -2,21 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/home.html" afterPath="$PROJECT_DIR$/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/404.html" afterPath="$PROJECT_DIR$/templates/404.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="UCSC_Course_Planner.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361267498263" ignored="false" />
+    <file path="/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361269506092" ignored="false" />
     <file path="/Dummy.txt" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361236418542" ignored="false" />
     <file path="/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361237312379" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361238606387" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361237735074" ignored="false" />
-    <file path="/login.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361266252947" ignored="false" />
-    <file path="/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361267582980" ignored="false" />
+    <file path="/login.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361268512664" ignored="false" />
+    <file path="/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361269069110" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +34,7 @@
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="9" selection-start="3450" selection-end="3450" vertical-scroll-proportion="0.0">
+            <state line="83" column="9" selection-start="2830" selection-end="2831" vertical-scroll-proportion="-9.16">
               <folding>
                 <element signature="e#601#611#0" expanded="true" />
               </folding>
@@ -47,8 +45,10 @@
       <file leaf-file-name="404.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/404.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="92" selection-start="3213" selection-end="3213" vertical-scroll-proportion="0.45652175">
-              <folding />
+            <state line="68" column="36" selection-start="2560" selection-end="2560" vertical-scroll-proportion="0.33233082">
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,7 +56,7 @@
       <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="54" selection-start="351" selection-end="351" vertical-scroll-proportion="-2.0">
+            <state line="96" column="0" selection-start="3743" selection-end="3743" vertical-scroll-proportion="-6.0408163">
               <folding />
             </state>
           </provider>
@@ -387,14 +387,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="54" selection-start="351" selection-end="351" vertical-scroll-proportion="-2.0">
+        <state line="96" column="0" selection-start="3743" selection-end="3743" vertical-scroll-proportion="-6.0408163">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="9" selection-start="3450" selection-end="3450" vertical-scroll-proportion="0.0">
+        <state line="83" column="9" selection-start="2830" selection-end="2831" vertical-scroll-proportion="-9.16">
           <folding>
             <element signature="e#601#611#0" expanded="true" />
           </folding>
@@ -403,8 +403,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/404.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="92" selection-start="3213" selection-end="3213" vertical-scroll-proportion="0.45652175">
-          <folding />
+        <state line="68" column="36" selection-start="2560" selection-end="2560" vertical-scroll-proportion="0.33233082">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
