@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/dashboard.html" afterPath="$PROJECT_DIR$/templates/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="UCSC_Course_Planner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -13,7 +14,7 @@
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361237735074" ignored="false" />
     <file path="/login.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361268512664" ignored="false" />
     <file path="/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361297924798" ignored="false" />
-    <file path="/dashboard.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361305843730" ignored="false" />
+    <file path="/dashboard.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361306734675" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +65,7 @@
       <file leaf-file-name="dashboard.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="25" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.6529563">
+            <state line="14" column="7" selection-start="476" selection-end="476" vertical-scroll-proportion="0.6086956">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -481,7 +482,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="25" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.6529563">
+        <state line="14" column="7" selection-start="476" selection-end="476" vertical-scroll-proportion="0.6086956">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
