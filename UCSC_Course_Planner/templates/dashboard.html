@@ -18,27 +18,42 @@
             margin-right: 10px;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             line-height: 20px;
+            font-size: small;
         }
 
-        .connectedSortable li {
+        .ui-state-default {
             margin: 0 5px 5px 5px;
             padding: 5px;
             font-size: 1.2em;
             width: 120px;
-            background-color: whitesmoke;
+            background-color: white;
             border-color: black;
-            border-bottom-color: rgb(black);
+            border-bottom-color: rgb(221, 221, 221);
             border-bottom-style: solid;
             border-bottom-width: 1px;
-            border-left-color: rgb(black);
+            border-left-color: rgb(221, 221, 221);
             border-left-style: solid;
             border-left-width: 1px;
-            border-right-color: rgb(black);
+            border-right-color: rgb(221, 221, 221);
             border-right-style: solid;
             border-right-width: 1px;
-            border-top-color: rgb(black);
+            border-top-color: rgb(221, 221, 221);
             border-top-style: solid;
             border-top-width: 1px;
+            text-align: left;
+            vertical-align: top;
+
+        }
+
+        .ui-state-highlight {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+            background-color: black;
+            text-align: left;
+            vertical-align: top;
+            color: white;
 
         }
 
@@ -79,7 +94,7 @@
 
     <script>
         $(function() {
-            $( "#sortable1, #sortable2, #sortable3" ).sortable({
+            $( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
                 connectWith: ".connectedSortable"
             }).disableSelection();
         });
@@ -159,46 +174,50 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>PHYS 5A/L</td>
-                            <td>CMPS101</td>
-                            <td>DANM</td>
-                            <td>CS109</td>
+                            <td>
+
+                                <ul id="sortable1" class="connectedSortable">
+                                    <li class="ui-state-default">PHYS 5A/L</li>
+                                    <li class="ui-state-default">CMPS 12B/L</li>
+                                    <li class="ui-state-default">CMPE 16</li>
+                                </ul>
+
+
+
+                            </td>
+                            <td>
+                                <ul id="sortable2" class="connectedSortable">
+                                <li class="ui-state-highlight" style>HCI 131</li>
+                                <li class="ui-state-highlight">CMPS101</li>
+                                <li class="ui-state-highlight">Math 21</li>
+                            </ul>
+                            </td>
+                            <td>
+                                <ul id="sortable3" class="connectedSortable">
+                                <li class="ui-state-default">DANM </li>
+                                <li class="ui-state-default">PHYSC 5C/L</li>
+                                <li class="ui-state-default">AMS 20</li>
+                            </ul>
+                            </td>
+                            <td>
+                                <ul id="sortable4" class="connectedSortable">
+                                    <li class="ui-state-default">Summer Session Stuff</li>
+                                    <li class="ui-state-default">PHYSC 5C/L</li>
+                                    <li class="ui-state-default">AMS 20</li>
+                                </ul>
+                            </td>
                         </tr>
 
-                        <tr>
-                            <td>CMPE 16</td>
-                            <td>CMPE131</td>
-                            <td>Physics 5C / N</td>
-                            <td>Physics 6B with petetion</td>
-                        </tr>
 
-                        <tr>
-                            <td>CMPS12B/L</td>
-                            <td>Math21</td>
-                            <td>AMS20 <br>(maybe Math 24)</td>
-                            <td>CS109</td>
-                        </tr>
 
 
                         </tbody>
                     </table>
-                    <ul id="sortable1" class="connectedSortable">
-                        <li class="ui-state-default">PHYS 5A/L</li>
-                        <li class="ui-state-default">CMPS 12B/L</li>
-                        <li class="ui-state-default">CMPE 16</li>
-                    </ul>
 
-                    <ul id="sortable2" class="connectedSortable">
-                        <li class="ui-state-highlight">HCI 131</li>
-                        <li class="ui-state-highlight">CMPS101</li>
-                        <li class="ui-state-highlight">Math 21</li>
-                    </ul>
 
-                    <ul id="sortable3" class="connectedSortable">
-                        <li class="ui-state-default">DANM </li>
-                        <li class="ui-state-default">PHYSC 5C/L</li>
-                        <li class="ui-state-default">AMS 20</li>
-                    </ul>
+
+
+
             </div>
         </div>
     </div>
