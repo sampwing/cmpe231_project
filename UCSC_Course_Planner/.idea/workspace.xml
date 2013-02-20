@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/dashboard.html" afterPath="$PROJECT_DIR$/templates/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="" />
     <ignored path="UCSC_Course_Planner.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361269506092" ignored="false" />
+    <file path="/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361393978839" ignored="false" />
     <file path="/Dummy.txt" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361236418542" ignored="false" />
-    <file path="/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361237312379" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361238606387" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361237735074" ignored="false" />
+    <file path="/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394557273" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361393979673" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392890449" ignored="false" />
     <file path="/login.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361268512664" ignored="false" />
-    <file path="/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361297924798" ignored="false" />
+    <file path="/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392585193" ignored="false" />
     <file path="/dashboard.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361306734675" ignored="false" />
+    <file path="/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392866758" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/index.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361323316819" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394558163" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392585193" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/about.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361393800720" ignored="false" />
+    <file path="/about.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361393739926" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/contact.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394147600" ignored="false" />
+    <file path="/contact.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394143558" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +39,8 @@
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="9" selection-start="2830" selection-end="2831" vertical-scroll-proportion="-9.16">
-              <folding>
-                <element signature="e#601#611#0" expanded="true" />
-              </folding>
+            <state line="16" column="10" selection-start="0" selection-end="3943" vertical-scroll-proportion="-5.56">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,7 +68,7 @@
       <file leaf-file-name="dashboard.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="7" selection-start="476" selection-end="476" vertical-scroll-proportion="0.6086956">
+            <state line="8" column="0" selection-start="262" selection-end="262" vertical-scroll-proportion="-8.695652">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -79,7 +82,7 @@
       <file leaf-file-name="app.yaml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="7" column="0" selection-start="96" selection-end="234" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -427,15 +430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="9" selection-start="2830" selection-end="2831" vertical-scroll-proportion="-9.16">
-          <folding>
-            <element signature="e#601#611#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="9" selection-start="154" selection-end="158" vertical-scroll-proportion="-4.2">
@@ -473,16 +467,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="10" selection-start="0" selection-end="3943" vertical-scroll-proportion="-5.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="7" column="0" selection-start="96" selection-end="234" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="476" selection-end="476" vertical-scroll-proportion="0.6086956">
+        <state line="8" column="0" selection-start="262" selection-end="262" vertical-scroll-proportion="-8.695652">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
