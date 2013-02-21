@@ -19,15 +19,23 @@ import os
 import re
 import random
 from google.appengine.api import users
+import datetime
+from google.appengine.ext import db
 
 from collections import defaultdict
 
 import webapp2
 from google.appengine.ext.webapp import template
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('Hello World')
+class User(db.Model):
+    name = db.StringProperty(required=True)
+    # role = db.StringProperty(required=True,
+    #                          choices=set(["executive", "manager", "producer"]))
+    join_date = db.DateProperty()
+    # new_hire_training_completed = db.BooleanProperty(indexed=False)
+    email = db.StringProperty()
+    uniqueID = db.StringProperty()
+    userObject = db.UserProperty()
 
 class Login(webapp2.RequestHandler):
     def get(self):
@@ -38,13 +46,14 @@ class Login(webapp2.RequestHandler):
             logoutURL = users.create_logout_url("/login")
             is_logged_in = True
             name = user.nickname()
+            e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
+            e.put()
         else:
             greeting = ("<a href=\"%s\">Sign in or register</a>." %
-                        users.create_login_url("/dashboard"))
+                        users.create_login_url("/login"))
             is_logged_in = False
-            logoutURL =  users.create_login_url("/dashboard")
+            logoutURL =  users.create_login_url("/")
             name = "no name"
-
 
         output = {
             'name': name,
@@ -55,18 +64,11 @@ class Login(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/login.html')
         self.response.write(template.render(path, output))
 
-class MyHandler(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-        if user:
-            greeting = ("Welcome, %s! (<a href=\"%s\">sign out</a>)" %
-                        (user.nickname(), users.create_logout_url("/test")))
-        else:
-            greeting = ("<a href=\"%s\">Sign in or register</a>." %
-                        users.create_login_url("/"))
-
-        self.response.out.write("<html><body>%s</body></html>" % greeting)
-
+#         e = User(name="John",
+#                  role="manager",
+#                  email=users.get_current_user().email())
+# e.hire_date = datetime.datetime.now().date()
+# e.put()
 
 class Dashboard(webapp2.RequestHandler):
     def get(self):
@@ -75,8 +77,23 @@ class Dashboard(webapp2.RequestHandler):
 
 class Homepage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        name = "none"
+        if user:
+            logURL = (users.create_logout_url("/"))
+            name = user.nickname()
+            is_logged_in = True
+        else:
+            logURL = (users.create_login_url("/"))
+            is_logged_in = False
+        output = {
+            'logURL': logURL,
+            'is_logged_in': is_logged_in,
+            'name': name
+            }
+
         path = os.path.join(os.path.dirname(__file__), 'templates/home.html')
-        self.response.write(template.render(path, {}))
+        self.response.write(template.render(path, output))
 
 class ListCourses(webapp2.RequestHandler):
     def get(self):
