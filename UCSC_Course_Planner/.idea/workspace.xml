@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/selectmajor.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/home.html" afterPath="$PROJECT_DIR$/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.yaml" afterPath="$PROJECT_DIR$/index.yaml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="UCSC_Course_Planner.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361468493812" ignored="false" />
+    <file path="/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361468988374" ignored="false" />
     <file path="/Dummy.txt" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361236418542" ignored="false" />
-    <file path="/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361468444610" ignored="false" />
+    <file path="/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361468860031" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/main.py" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361393979673" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392890449" ignored="false" />
     <file path="/login.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361467564328" ignored="false" />
@@ -25,6 +25,7 @@
     <file path="/about.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361420147828" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/contact.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394147600" ignored="false" />
     <file path="/contact.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394143558" ignored="false" />
+    <file path="/selectmajor.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361509271483" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +42,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="31" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.3125">
+            <state line="121" column="26" selection-start="4169" selection-end="4169" vertical-scroll-proportion="-9.36">
               <folding>
                 <element signature="e#601#611#0" expanded="true" />
               </folding>
@@ -52,14 +53,49 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="course_schedule.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/course_schedule.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.125">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="34" selection-start="3577" selection-end="3577" vertical-scroll-proportion="-4.9183674">
+            <state line="10" column="23" selection-start="456" selection-end="456" vertical-scroll-proportion="-3.0612245">
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#script#13;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="162" column="10" selection-start="5577" selection-end="5577" vertical-scroll-proportion="-39.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectmajor.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="214" column="106" selection-start="8196" selection-end="8196" vertical-scroll-proportion="0.37172773">
+              <folding>
+                <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#form#0;n#div#2;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,6 +153,7 @@
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/templates/selectmajor.html" />
       </list>
     </option>
   </component>
@@ -181,6 +218,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UCSC_Course_Planner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UCSC_Course_Planner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -442,18 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="10" selection-start="5577" selection-end="5577" vertical-scroll-proportion="0.3768116">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/404.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="105" column="92" selection-start="3362" selection-end="3446" vertical-scroll-proportion="-3.4933333">
@@ -472,7 +515,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="34" selection-start="3577" selection-end="3577" vertical-scroll-proportion="-4.9183674">
+        <state line="10" column="23" selection-start="456" selection-end="456" vertical-scroll-proportion="-3.0612245">
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -483,9 +526,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="31" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.3125">
+        <state line="121" column="26" selection-start="4169" selection-end="4169" vertical-scroll-proportion="-9.36">
           <folding>
             <element signature="e#601#611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/course_schedule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="3.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="10" selection-start="5577" selection-end="5577" vertical-scroll-proportion="-39.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/common.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="22" selection-start="3137" selection-end="3137" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="214" column="106" selection-start="8196" selection-end="8196" vertical-scroll-proportion="0.37172773">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#2;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

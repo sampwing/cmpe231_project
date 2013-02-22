@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://twitter.github.com/bootstrap/examples/hero.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>UCSC Course Planner - Select Major</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        #major2, #major3 {
+            display: block
+        }
+    </style>
+
+    <script src="/static/js/jquery.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            
+        });
+
+    </script>
+
+
+
+</head>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/">UCSC Course Planner</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="nav-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form pull-right">
+{#                    <input class="span2" type="text" placeholder="Email">#}
+{#                    <input class="span2" type="password" placeholder="Password">#}
+                    <button class="btn" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
+                        Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
+
+                </form>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+{#    <div class="hero-unit">#}
+{#        <h3>Select your Major, Minor, etc.</h3>#}
+{#        <p>Start planning the rest of your college career today!</p>#}
+{##}
+{#    </div>#}
+
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="span2"></div>
+        <div class="span8">
+            <h2>Select a Major</h2>
+
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                magna mollis euismod. Donec sed odio dui.
+                <br>
+            </p>
+            <div class="row">
+                <div id="major1">
+                <div class="span2">Select a Major:</div>
+                <div class="span6">
+                    <form>
+
+                        <select id="myList" onchange="favBrowser()">
+                            <option></option>
+                            <option>Bio Engineering BS</option>
+                            <option>Computer Science BS</option>
+                            <option>Computer Science BA</option>
+                            <option>Computer Engineering BS</option>
+                            <option>Eletrical Engineering BS</option>
+                        </select>
+                        <button id="cloneButton1" class="btn"><i class="icon-plus-sign icon-blacks"></i> Add Major </button>
+                    </form>
+                </div>
+                </div>
+                <div id="maj"> <p>test</p></div>
+{#                <div id="major2">#}
+{#                    <div class="span2">Select a second Major:</div>#}
+{#                    <div class="span6">#}
+{#                        <form>#}
+{##}
+{#                            <select id="myList1" onchange="favBrowser()">#}
+{#                                <option></option>#}
+{#                                <option>Bio Engineering BS</option>#}
+{#                                <option>Computer Science BS</option>#}
+{#                                <option>Computer Science BA</option>#}
+{#                                <option>Computer Engineering BS</option>#}
+{#                                <option>Eletrical Engineering BS</option>#}
+{#                            </select>#}
+{#                            <button id="cloneButton2" class="btn"><i class="icon-plus-sign icon-blacks"></i> Add Major </button>#}
+{#                            <button id="removeButton2" class="btn"><i class="icon-minus-sign icon-blacks"></i> Remove Major </button>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div id="major3">#}
+{#                    <div class="span2">Select a third Major:<br> Triple Majoring, really?</div>#}
+{#                    <div class="span6">#}
+{#                        <form>#}
+{##}
+{#                            <select id="myList3" onchange="favBrowser()">#}
+{#                                <option></option>#}
+{#                                <option>Bio Engineering BS</option>#}
+{#                                <option>Computer Science BS</option>#}
+{#                                <option>Computer Science BA</option>#}
+{#                                <option>Computer Engineering BS</option>#}
+{#                                <option>Eletrical Engineering BS</option>#}
+{#                            </select>#}
+{#                            <button id="removeButton3" class="btn"><i class="icon-minus-sign icon-blacks"></i> Remove Major </button>#}
+{#                        </form>#}
+{#                    </div>#}
+
+
+                </div>
+
+
+            <p><a class="btn" href="#">View details »</a></p>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>© Company 2013</p>
+    </footer>
+
+</div> <!-- /container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{#<script src="./home_files/jquery.js"></script>#}
+{#<script src="./home_files/bootstrap-transition.js"></script>#}
+{#<script src="./home_files/bootstrap-alert.js"></script>#}
+{#<script src="./home_files/bootstrap-modal.js"></script>#}
+{#<script src="./home_files/bootstrap-dropdown.js"></script>#}
+{#<script src="./home_files/bootstrap-scrollspy.js"></script>#}
+{#<script src="./home_files/bootstrap-tab.js"></script>#}
+{#<script src="./home_files/bootstrap-tooltip.js"></script>#}
+{#<script src="./home_files/bootstrap-popover.js"></script>#}
+{#<script src="./home_files/bootstrap-button.js"></script>#}
+{#<script src="./home_files/bootstrap-collapse.js"></script>#}
+{#<script src="./home_files/bootstrap-carousel.js"></script>#}
+{#<script src="./home_files/bootstrap-typeahead.js"></script>#}
+{##}
+
