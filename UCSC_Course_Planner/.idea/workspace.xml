@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/img/django5.JPG" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/cruzid_blue60.png" afterPath="$PROJECT_DIR$/static/img/cruzid_blue60.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/django0.JPG" afterPath="$PROJECT_DIR$/static/img/django0.JPG" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/django1.JPG" afterPath="$PROJECT_DIR$/static/img/django1.JPG" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/django2.jpg" afterPath="$PROJECT_DIR$/static/img/django2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/django3.JPG" afterPath="$PROJECT_DIR$/static/img/django3.JPG" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/django4.JPG" afterPath="$PROJECT_DIR$/static/img/django4.JPG" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/glyphicons-halflings-white.png" afterPath="$PROJECT_DIR$/static/img/glyphicons-halflings-white.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/glyphicons-halflings.png" afterPath="$PROJECT_DIR$/static/img/glyphicons-halflings.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/404.html" afterPath="$PROJECT_DIR$/templates/404.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/selectmajor.html" afterPath="$PROJECT_DIR$/templates/selectmajor.html" />
     </list>
     <ignored path="UCSC_Course_Planner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +22,7 @@
     <file path="/about.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361420147828" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/contact.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394147600" ignored="false" />
     <file path="/contact.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394143558" ignored="false" />
-    <file path="/selectmajor.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361509271483" ignored="false" />
+    <file path="/selectmajor.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361510815394" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,10 +81,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selectmajor.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="selectmajor.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="4" selection-start="716" selection-end="812" vertical-scroll-proportion="-1.8933333">
+            <state line="366" column="62" selection-start="15431" selection-end="15431" vertical-scroll-proportion="0.7460733">
               <folding>
                 <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
@@ -102,15 +93,16 @@
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#2;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="404.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="404.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/404.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="70" selection-start="3703" selection-end="3703" vertical-scroll-proportion="0.5104712">
+            <state line="111" column="70" selection-start="3703" selection-end="3703" vertical-scroll-proportion="-20.0">
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -156,10 +148,10 @@
       <list>
         <option value="$PROJECT_DIR$/templates/dashboard.html" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/templates/selectmajor.html" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/404.html" />
+        <option value="$PROJECT_DIR$/templates/selectmajor.html" />
       </list>
     </option>
   </component>
@@ -544,21 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="4" selection-start="716" selection-end="812" vertical-scroll-proportion="-1.8933333">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#form#0;n#div#2;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="51" selection-start="458" selection-end="458" vertical-scroll-proportion="-3.6734693">
@@ -568,9 +545,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/404.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="70" selection-start="3703" selection-end="3703" vertical-scroll-proportion="0.5104712">
+        <state line="111" column="70" selection-start="3703" selection-end="3703" vertical-scroll-proportion="-20.0">
           <folding>
             <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="366" column="62" selection-start="15431" selection-end="15431" vertical-scroll-proportion="0.7460733">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#form#0;n#div#2;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
