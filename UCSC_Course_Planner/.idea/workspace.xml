@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3673cd3a-3154-4213-9cca-03d1e5103dfc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/selectmajor.html" afterPath="$PROJECT_DIR$/templates/selectmajor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/dashboard.html" afterPath="$PROJECT_DIR$/templates/dashboard.html" />
     </list>
     <ignored path="UCSC_Course_Planner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -13,7 +13,7 @@
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392890449" ignored="false" />
     <file path="/login.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361467564328" ignored="false" />
     <file path="/404.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361510427663" ignored="false" />
-    <file path="/dashboard.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361306734675" ignored="false" />
+    <file path="/dashboard.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361511938551" ignored="false" />
     <file path="/app.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361392866758" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/index.yaml" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361323316819" ignored="false" />
     <file path="$PROJECT_DIR$/../../../GoogleAppEngine/GameOfLifeAppEngine/joerowley111/templates/home.html" changelist="3673cd3a-3154-4213-9cca-03d1e5103dfc" time="1361394558163" ignored="false" />
@@ -72,19 +72,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="dashboard.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="10" selection-start="5577" selection-end="5577" vertical-scroll-proportion="-39.375">
-              <folding />
+            <state line="138" column="11" selection-start="4747" selection-end="4747" vertical-scroll-proportion="0.69284064">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selectmajor.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="selectmajor.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="366" column="62" selection-start="15431" selection-end="15431" vertical-scroll-proportion="0.7460733">
+            <state line="333" column="117" selection-start="14040" selection-end="14082" vertical-scroll-proportion="-2.2933333">
               <folding>
                 <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
@@ -146,12 +151,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/dashboard.html" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/404.html" />
         <option value="$PROJECT_DIR$/templates/selectmajor.html" />
+        <option value="$PROJECT_DIR$/templates/dashboard.html" />
       </list>
     </option>
   </component>
@@ -529,10 +534,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/templates/404.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="10" selection-start="5577" selection-end="5577" vertical-scroll-proportion="-39.375">
-          <folding />
+        <state line="111" column="70" selection-start="3703" selection-end="3703" vertical-scroll-proportion="-20.0">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -543,18 +550,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="70" selection-start="3703" selection-end="3703" vertical-scroll-proportion="-20.0">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/selectmajor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="366" column="62" selection-start="15431" selection-end="15431" vertical-scroll-proportion="0.7460733">
+        <state line="333" column="117" selection-start="14040" selection-end="14082" vertical-scroll-proportion="-2.2933333">
           <folding>
             <element signature="n#style#0;n#img#0;n#button#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
@@ -564,6 +562,18 @@
             <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#1;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="11" selection-start="4747" selection-end="4747" vertical-scroll-proportion="0.69284064">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
