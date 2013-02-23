@@ -14,6 +14,16 @@
     <link href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet">
 -->
     <style type="text/css">
+        .classHeader{
+            font-size: 13pt;
+
+
+        }
+        .classUnits, .classInstructor, .classTime{
+            font-size:  small;
+            display: none;
+        }
+
         .connectedSortable {
             list-style-type: none;
             margin: 0;
@@ -77,16 +87,6 @@
         }
 
     </style>
-    <!-- styling for portlets -->
-    <style>
-        .column { width: 170px; float: left; padding-bottom: 100px; }
-        .portlet { margin: 0 1em 1em 0; }
-        .portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
-        .portlet-header .ui-icon { float: right; }
-        .portlet-content { padding: 0.4em; }
-        .ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
-        .ui-sortable-placeholder * { visibility: hidden; }
-    </style>
 
 
 {#    <script src="/static/js/jquery.js"></script>#}
@@ -115,29 +115,39 @@
             }).disableSelection();
         });
     </script>
-
-    <!-- for bottom dragable portlets -->
+{#    Code For Hiding Elements#}
     <script>
-        $(function() {
-            $( ".column" ).sortable({
-                connectWith: ".column"
+        $(document).ready(function() {
+            $("#ViewInstructor").click(function () {
+                $(".classInstructor").toggle();
+                if ( $("span", this).text() == "View Instructor"){
+                    $("#ViewInstructor span").text("Hide Instructor");
+                }
+                else $("span", this).text("View Instructor");
+                return false;
             });
 
-            $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-                    .find( ".portlet-header" )
-                    .addClass( "ui-widget-header ui-corner-all" )
-                    .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
-                    .end()
-                    .find( ".portlet-content" );
-
-            $( ".portlet-header .ui-icon" ).click(function() {
-                $( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
-                $( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+            $("#ViewTime").click(function () {
+                $(".classTime").toggle();
+                if ( $("span", this).text() == "View Time"){
+                    $("#ViewTime span").text("Hide Time");
+                }
+                else $("span", this).text("View Time");
+                return false;
             });
 
-            $( ".column" ).disableSelection();
+            $("#ViewUnits").click(function () {
+                $(".classUnits").toggle();
+                if ( $("span", this).text() == "View Units"){
+                    $("#ViewUnits span").text("Hide Units");
+                }
+                else $("span", this).text("View Units");
+                return false;
+            });
+
         });
     </script>
+
 
 </head>
 
@@ -188,6 +198,13 @@
                     <a href="#" class="btn  btn-small">Print &raquo;</a>
                     <a href="#" class="btn  btn-small">Edit &raquo;</a>
                 </p>
+                <div class="btn-group" data-toggle="buttons-checkbox">
+                    <button type="button" id="ViewInstructor" class="btn"><span class="ui-button-text">View Instructor</span> </button>
+                    <button type="button" id="ViewTime" class="btn"><span class="ui-button-text">View Time</span> </button>
+                    <button type="button" id="ViewUnits" class="btn"><span class="ui-button-text">View Units</span> </button>
+
+                </div>
+                <button  class="btn"></button>
             </div>
 
             <h1>Hello, world!</h1>
@@ -215,9 +232,24 @@
                             <td>
 
                                 <ul id="sortable1" class="connectedSortable">
-                                    <li class="ui-state-default">PHYS 5A/L</li>
-                                    <li class="ui-state-default">CMPS 12B/L</li>
-                                    <li class="ui-state-default">CMPE 16</li>
+                                    <li class="ui-state-default">
+                                        <div class="classHeader">PHYS 5A/L<br></div>
+                                        <div class="classInstructor">Instructor Name<br></div>
+                                        <div class="classTime">MWF 12-2pm<br></div>
+                                        <div class="classUnits">5.0</div>
+                                    </li>
+                                    <li class="ui-state-default">
+                                        <div class="classHeader">CMPS 12B/L<br></div>
+                                        <div class="classInstructor">W. Mackey<br></div>
+                                        <div class="classTime">T/TH 5-6:45pm<br></div>
+                                        <div class="classUnits">5.0</div>
+                                    </li>
+                                    <li class="ui-state-default">
+                                        <div class="classHeader">CMPE 16<br></div>
+                                        <div class="classInstructor">T. Larabee<br></div>
+                                        <div class="classTime">MWF 9:30-10:40am<br></div>
+                                        <div class="classUnits">5.0</div>
+                                    </li>
                                 </ul>
 
 
