@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://twitter.github.com/bootstrap/examples/hero.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>UCSC Course Planner - Major Selector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
+    <style type="text/css"></style>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // put all your jQuery goodness in here.
+
+{#            $("#cloneButton1").click(function () {#}
+{##}
+{#                $("#major2").show();#}
+{#                $("#cloneButton1").hide();#}
+{#            });#}
+
+{# ?           $("#cloneButton1").click(function () {#}
+
+{#                $("#major1").clone(true).appendTo("#major3");#}
+{#               // $("#cloneButton1").hide();#}
+{##}
+{#            });#}
+{#            $("#popOva").popover({ trigger: "hover" });#}
+            $('#cloneButton1').popover({ trigger: "hover" });
+            $("#cloneButton1").click(function () {
+
+                $("#major2").show();
+{#                $("#removeButton1").show();#}
+                $("#cloneButton1").hide();
+                return false;
+            });
+
+            $("#cloneButton2").click(function () {
+                $("#major3").show();
+                return false;
+{#                $("#cloneButton2").hide();#}
+{#                $("#removeButton2").hide();#}
+                //$("#major3".css('overflow','visible')
+            });
+
+            $("#removeButton1").click(function () {
+                $("#major1").hide();
+                $("#cloneButton1").show();
+                return false;
+                //also change the select to null
+            });
+            $("#removeButton2").click(function () {
+                $("#major2").hide();
+                $("#cloneButton1").show();
+                return false;
+                //also change the select to null
+            });
+
+            $("#removeButton3").click(function () {
+                $("#major3").hide();
+                $("#cloneButton2").show();
+                $("#removeButton2").show();
+                return false;
+                //also change the select to null
+            });
+
+            $('#cloneMinorButton1').popover({ trigger: "hover" });
+            $("#cloneMinorButton1").click(function () {
+
+                $("#minor2").show();
+                {#                $("#removeButton1").show();#}
+                $("#cloneMinorButton1").hide();
+                return false;
+            });
+
+            $("#cloneMinorButton2").click(function () {
+                $("#minor3").show();
+                return false;
+                {#                $("#cloneButton2").hide();#}
+                {#                $("#removeButton2").hide();#}
+                //$("#major3".css('overflow','visible')
+            });
+
+            $("#removeMinorButton1").click(function () {
+                $("#minor1").hide();
+                $("#cloneMinorButton1").show();
+                return false;
+                //also change the select to null
+            });
+            $("#removeMinorButton2").click(function () {
+                $("#minor2").hide();
+                $("#cloneMinorButton1").show();
+                return false;
+                //also change the select to null
+            });
+
+            $("#removeMinorButton3").click(function () {
+                $("#minor3").hide();
+                $("#cloneMinorButton2").show();
+                $("#removeMinorButton2").show();
+                return false;
+                //also change the select to null
+            });
+
+        });
+
+    </script>
+
+
+    <style type="text/css">
+        #major2, #major3, #minor2, #minor3 {
+            display: none
+        }
+
+        .major1{
+            padding:8px;
+            border:1px solid blue;
+            margin:8px;
+        }
+        .minors{
+            padding:8px;
+            border:1px solid green;
+            margin:8px;
+        }
+        .smallInnerBox2{
+            padding:8px;
+            border:1px solid green;
+            margin:8px;
+        }
+    </style>
+
+
+</head>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/">UCSC Course Planner</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="nav-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form pull-right">
+{#                    <input class="span2" type="text" placeholder="Email">#}
+{#                    <input class="span2" type="password" placeholder="Password">#}
+                    <button class="btn" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
+                        Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
+
+                </form>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+{#    <div class="hero-unit">#}
+{#        <h3>Select your Major, Minor, etc.</h3>#}
+{#        <p>Start planning the rest of your college career today!</p>#}
+{##}
+{#    </div>#}
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="span2"></div>
+        <div class="span8">
+            <h2>Check off the classes you've taken already</h2>
+
+            <p>Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah
+                <br><br>
+            </p>
+
+                        <div class="btn-group" data-toggle="buttons-radio">
+                            <button type="button" class="btn ">I've Taken this.</button>
+                            <button type="button" class="btn ">I want to take this.</button>
+                        </div>
+
+
+
+                </div>
+                
+
+            </div>
+            <hr>
+{#            <a class="btn btn-primary" style=" float: right;" href="#">Next Step »</a>#}
+
+
+    </div> <!-- /container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{#<script src="./home_files/jquery.js"></script>#}
+{#<script src="./home_files/bootstrap-transition.js"></script>#}
+{#<script src="./home_files/bootstrap-alert.js"></script>#}
+{#<script src="./home_files/bootstrap-modal.js"></script>#}
+{#<script src="./home_files/bootstrap-dropdown.js"></script>#}
+{#<script src="./home_files/bootstrap-scrollspy.js"></script>#}
+{#<script src="./home_files/bootstrap-tab.js"></script>#}
+{#<script src="./home_files/bootstrap-tooltip.js"></script>#}
+{#<script src="./home_files/bootstrap-popover.js"></script>#}
+{#<script src="./home_files/bootstrap-button.js"></script>#}
+{#<script src="./home_files/bootstrap-collapse.js"></script>#}
+{#<script src="./home_files/bootstrap-carousel.js"></script>#}
+{#<script src="./home_files/bootstrap-typeahead.js"></script>#}
+{##}
+

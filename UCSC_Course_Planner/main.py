@@ -116,6 +116,27 @@ class SelectMajor(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/selectmajor.html')
         self.response.write(template.render(path, output))
 
+class MajorProgress(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        name = "none"
+        if user:
+            logURL = (users.create_logout_url("/"))
+            name = user.nickname()
+            is_logged_in = True
+        else:
+            logURL = (users.create_login_url("/"))
+            is_logged_in = False
+        output = {
+            'logURL': logURL,
+            'is_logged_in': is_logged_in,
+            'name': name
+        }
+
+        path = os.path.join(os.path.dirname(__file__), 'templates/majorprogress.html')
+        self.response.write(template.render(path, output))
+
+
 class ListCourses(webapp2.RequestHandler):
     def get(self):
         reader = csv.DictReader(open('resources/dump.csv'))
@@ -183,5 +204,8 @@ app = webapp2.WSGIApplication([
     ('/courses', ListCourses),
     ('/login', Login),
     ('/selectMajor', SelectMajor),
+    ('/selectmajor', SelectMajor),
+    ('/majorprogress', MajorProgress),
+    ('/progress', MajorProgress),
     ('/.*', NotFoundPageHandler),
 ], debug=True)
