@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import csv
+import cgi
 import os
 import re
 import random
@@ -201,6 +202,15 @@ class TestModels(webapp2.RequestHandler):
         courses = Course.all().order('department').fetch(limit=200)
         self.response.write('<br><br>'.join(map(repr, courses)))
 
+class Guestbook(webapp2.RequestHandler):
+    def post(self):
+        self.response.out.write('<html><body>You wrote:<pre>')
+        self.response.out.write(cgi.escape(self.request.get('content')))
+        self.response.out.write(cgi.escape(self.request.get('name')))
+
+        self.response.out.write('</pre></body></html>')
+
+
 app = webapp2.WSGIApplication([
                                   ('/test', TestModels),
     ('/', Homepage),
@@ -211,5 +221,7 @@ app = webapp2.WSGIApplication([
     ('/selectmajor', SelectMajor),
     ('/majorprogress', MajorProgress),
     ('/progress', MajorProgress),
-    ('/.*', NotFoundPageHandler),
+    ('/sign', Guestbook),
+    ('/.*', NotFoundPageHandler)
+
 ], debug=True)

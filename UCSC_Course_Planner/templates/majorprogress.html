@@ -107,6 +107,7 @@
             <p>Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah
                 <br><br>
             </p>
+
             <div class="course" id="{{coursename}}">
                 <div class="btn-group" data-toggle="buttons-radio" >
                     <button type="button" class="btn ">I've Taken this.</button>
@@ -114,6 +115,13 @@
                 </div>
                 <span class="{{coursename}}" >{{coursename}}</span>
             </div>
+
+
+            <form action="/sign" method="post">
+                <div><textarea name="name" rows="3" cols="60"></textarea></div>
+                <div><textarea name="content" rows="3" cols="60"></textarea></div>
+                <div><input type="submit" value="Sign Guestbook"></div>
+            </form>
 
         </div>
                 
