@@ -27,6 +27,7 @@ from collections import defaultdict
 import webapp2
 from google.appengine.ext.webapp import template
 
+
 class User(db.Model):
     name = db.StringProperty(required=True)
     # role = db.StringProperty(required=True,
@@ -144,8 +145,39 @@ class NotFoundPageHandler(webapp2.RequestHandler):
         self.response.write(template.render(path, output))
 
 
+class TestModels(webapp2.RequestHandler):
+    def get(self):
+        from models import *
+
+        from google.appengine.ext import db
+        db.delete(Course.all())
+
+        import re
+        rx_department = re.compile(r'[A-Z]+')
+        import csv
+        reader = csv.DictReader(open('resources/dump.csv'))
+        try:
+            for course in reader:
+                name = course['name']
+                number = course['number']
+                description = course['description'][:500]
+                match = rx_department.match(number)
+                department = number
+                if match:
+                    department = match.group(0)
+                entry = Course(name=name, number=number, description=description, department=department)
+                entry.put()
+
+                for item in ['winter', 'spring', 'fall', 'summer']:
+                    if 0 == len(course[item]):
+                        offering = Offerings(course=entry, offered=item)
+        except KeyError, e:
+            pass
+        courses = Course.all().order('department').fetch(limit=200)
+        self.response.write('<br><br>'.join(map(repr, courses)))
 
 app = webapp2.WSGIApplication([
+                                  ('/test', TestModels),
     ('/', Homepage),
     ('/dashboard', Dashboard),
     ('/courses', ListCourses),
