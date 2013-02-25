@@ -10,6 +10,8 @@ class Course(db.Model):
     name = db.StringProperty(required=True)
     number = db.StringProperty(required=True)
     description = db.StringProperty(multiline=True, required=True)
+    units = db.IntegerProperty(required=False)
+    instructor = db.StringProperty(required=False)
 
     def __repr__(self):
         return '{} {} {}'.format(self.department, self.name, self.number)
