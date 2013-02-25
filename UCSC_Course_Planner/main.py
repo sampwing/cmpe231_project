@@ -202,8 +202,9 @@ class TestModels(webapp2.RequestHandler):
         courses = Course.all().order('department').fetch(limit=200)
         self.response.write('<br><br>'.join(map(repr, courses)))
 
-class Guestbook(webapp2.RequestHandler):
+class MajorSelected(webapp2.RequestHandler):
     def post(self):
+
         major1 = cgi.escape(self.request.get('m1'));
         major2 = cgi.escape(self.request.get('m2'));
         major3 = cgi.escape(self.request.get('m3'));
@@ -232,7 +233,7 @@ app = webapp2.WSGIApplication([
     ('/selectmajor', SelectMajor),
     ('/majorprogress', MajorProgress),
     ('/progress', MajorProgress),
-    ('/sign', Guestbook),
+    ('/MajorSelected', MajorSelected),
     ('/.*', NotFoundPageHandler)
 
 ], debug=True)

@@ -49,10 +49,11 @@
                 mi3 = document.getElementById("minorList3").options[minorList3.selectedIndex].text;
 
 
-                $.post("/sign", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
+                $.post("/MajorSelected", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
                         .done(function(data) {
                             alert("Data Loaded: " + data);
                         });
+{#                window.location.href = "/majorprogress";#}
             });
 
 
@@ -372,19 +373,6 @@
 
 
             </div>
-            <form action="/sign" method="post">
-                <div><textarea name="name" rows="3" cols="60"></textarea></div>
-                <div><textarea name="content" rows="3" cols="60"></textarea></div>
-                <div><select id="minorList4" name="minorList4">
-                    <option></option>
-                    <option>Bio Engineering BS</option>
-                    <option>Computer Science BS</option>
-                    <option>Computer Science BA</option>
-                    <option>Computer Engineering BS</option>
-                    <option>Eletrical Engineering BS</option>
-                </select></div>
-                <div><input type="submit" value="Sign Guestbook"></div>
-            </form>
             <hr>
             <a class="btn btn-primary" id="finalSubmit" style=" float: right;" href="#">Next Step »</a>
         </div>
