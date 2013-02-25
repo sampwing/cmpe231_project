@@ -35,124 +35,17 @@
     <style type="text/css"></style>
 
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // put all your jQuery goodness in here.
 
-{#            $("#cloneButton1").click(function () {#}
-{##}
-{#                $("#major2").show();#}
-{#                $("#cloneButton1").hide();#}
-{#            });#}
-
-{# ?           $("#cloneButton1").click(function () {#}
-
-{#                $("#major1").clone(true).appendTo("#major3");#}
-{#               // $("#cloneButton1").hide();#}
-{##}
-{#            });#}
-{#            $("#popOva").popover({ trigger: "hover" });#}
-            $('#cloneButton1').popover({ trigger: "hover" });
-            $("#cloneButton1").click(function () {
-
-                $("#major2").show();
-{#                $("#removeButton1").show();#}
-                $("#cloneButton1").hide();
-                return false;
-            });
-
-            $("#cloneButton2").click(function () {
-                $("#major3").show();
-                return false;
-{#                $("#cloneButton2").hide();#}
-{#                $("#removeButton2").hide();#}
-                //$("#major3".css('overflow','visible')
-            });
-
-            $("#removeButton1").click(function () {
-                $("#major1").hide();
-                $("#cloneButton1").show();
-                return false;
-                //also change the select to null
-            });
-            $("#removeButton2").click(function () {
-                $("#major2").hide();
-                $("#cloneButton1").show();
-                return false;
-                //also change the select to null
-            });
-
-            $("#removeButton3").click(function () {
-                $("#major3").hide();
-                $("#cloneButton2").show();
-                $("#removeButton2").show();
-                return false;
-                //also change the select to null
-            });
-
-            $('#cloneMinorButton1').popover({ trigger: "hover" });
-            $("#cloneMinorButton1").click(function () {
-
-                $("#minor2").show();
-                {#                $("#removeButton1").show();#}
-                $("#cloneMinorButton1").hide();
-                return false;
-            });
-
-            $("#cloneMinorButton2").click(function () {
-                $("#minor3").show();
-                return false;
-                {#                $("#cloneButton2").hide();#}
-                {#                $("#removeButton2").hide();#}
-                //$("#major3".css('overflow','visible')
-            });
-
-            $("#removeMinorButton1").click(function () {
-                $("#minor1").hide();
-                $("#cloneMinorButton1").show();
-                return false;
-                //also change the select to null
-            });
-            $("#removeMinorButton2").click(function () {
-                $("#minor2").hide();
-                $("#cloneMinorButton1").show();
-                return false;
-                //also change the select to null
-            });
-
-            $("#removeMinorButton3").click(function () {
-                $("#minor3").hide();
-                $("#cloneMinorButton2").show();
-                $("#removeMinorButton2").show();
-                return false;
-                //also change the select to null
-            });
-
-        });
-
-    </script>
 
 
     <style type="text/css">
-        #major2, #major3, #minor2, #minor3 {
-            display: none
+
+        .coursename{
+            padding: 8px;
+            font-size: 18px;
+
         }
 
-        .major1{
-            padding:8px;
-            border:1px solid blue;
-            margin:8px;
-        }
-        .minors{
-            padding:8px;
-            border:1px solid green;
-            margin:8px;
-        }
-        .smallInnerBox2{
-            padding:8px;
-            border:1px solid green;
-            margin:8px;
-        }
     </style>
 
 
@@ -214,15 +107,15 @@
             <p>Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah
                 <br><br>
             </p>
-
-                        <div class="btn-group" data-toggle="buttons-radio">
-                            <button type="button" class="btn ">I've Taken this.</button>
-                            <button type="button" class="btn ">I want to take this.</button>
-                        </div>
-
-
-
+            <div class="course" id="{{coursename}}">
+                <div class="btn-group" data-toggle="buttons-radio" >
+                    <button type="button" class="btn ">I've Taken this.</button>
+                    <button type="button" class="btn ">I want to take this.</button>
                 </div>
+                <span class="{{coursename}}" >{{coursename}}</span>
+            </div>
+
+        </div>
                 
 
             </div>

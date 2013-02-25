@@ -127,10 +127,14 @@ class MajorProgress(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
+
+        coursename="AMS20";
+
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
-            'name': name
+            'name': name,
+            'coursename': coursename
         }
 
         path = os.path.join(os.path.dirname(__file__), 'templates/majorprogress.html')
