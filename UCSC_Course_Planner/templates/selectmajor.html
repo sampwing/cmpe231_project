@@ -39,19 +39,23 @@
         $(document).ready(function() {
             // put all your jQuery goodness in here.
 
-{#            $("#cloneButton1").click(function () {#}
-{##}
-{#                $("#major2").show();#}
-{#                $("#cloneButton1").hide();#}
-{#            });#}
+            $('#finalSubmit').click(function(){
 
-{# ?           $("#cloneButton1").click(function () {#}
+                m1 = document.getElementById("majorList1").options[majorList1.selectedIndex].text;
+                m2 = document.getElementById("majorList2").options[majorList2.selectedIndex].text;
+                m3 = document.getElementById("majorList3").options[majorList3.selectedIndex].text;
+                mi1 = document.getElementById("minorList1").options[minorList1.selectedIndex].text;
+                mi2 = document.getElementById("minorList2").options[minorList2.selectedIndex].text;
+                mi3 = document.getElementById("minorList3").options[minorList3.selectedIndex].text;
 
-{#                $("#major1").clone(true).appendTo("#major3");#}
-{#               // $("#cloneButton1").hide();#}
-{##}
-{#            });#}
-{#            $("#popOva").popover({ trigger: "hover" });#}
+
+                $.post("/sign", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
+                        .done(function(data) {
+                            alert("Data Loaded: " + data);
+                        });
+            });
+
+
             $('#cloneButton1').popover({ trigger: "hover" });
             $("#cloneButton1").click(function () {
 
@@ -78,6 +82,7 @@
             $("#removeButton2").click(function () {
                 $("#major2").hide();
                 $("#cloneButton1").show();
+                $("#majorList2").val("");
                 return false;
                 //also change the select to null
             });
@@ -86,6 +91,7 @@
                 $("#major3").hide();
                 $("#cloneButton2").show();
                 $("#removeButton2").show();
+                $("#majorList3").val("");
                 return false;
                 //also change the select to null
             });
@@ -110,12 +116,14 @@
             $("#removeMinorButton1").click(function () {
                 $("#minor1").hide();
                 $("#cloneMinorButton1").show();
+                $("#minorList1").val("");
                 return false;
                 //also change the select to null
             });
             $("#removeMinorButton2").click(function () {
                 $("#minor2").hide();
                 $("#cloneMinorButton1").show();
+                $("#minorList2").val("");
                 return false;
                 //also change the select to null
             });
@@ -124,6 +132,7 @@
                 $("#minor3").hide();
                 $("#cloneMinorButton2").show();
                 $("#removeMinorButton2").show();
+                $("#minorList3").val("");
                 return false;
                 //also change the select to null
             });
@@ -222,7 +231,7 @@
                     <div class="span6">
                         <form>
 
-                            <select id="myList" onchange="favBrowser()">
+                            <select id="majorList1" onchange="favBrowser()">
                                 <option></option>
                                 <option>Bio Engineering BS</option>
                                 <option>Computer Science BS</option>
@@ -247,7 +256,7 @@
                     <div class="span6">
                         <form>
 
-                            <select id="myList1" onchange="favBrowser()">
+                            <select id="majorList2" onchange="favBrowser()">
                                 <option></option>
                                 <option>Bio Engineering BS</option>
                                 <option>Computer Science BS</option>
@@ -271,7 +280,7 @@
                     <div class="span6">
                         <form>
 
-                            <select id="myList3" onchange="favBrowser()">
+                            <select id="majorList3" onchange="favBrowser()">
                                 <option></option>
                                 <option>Bio Engineering BS</option>
                                 <option>Computer Science BS</option>
@@ -297,7 +306,7 @@
                     <div class="span6">
                         <form>
 
-                            <select id="minorList" onchange="favBrowser()">
+                            <select id="minorList1" onchange="favBrowser()">
                                 <option></option>
                                 <option>Bio Engineering BS</option>
                                 <option>Computer Science BS</option>
@@ -322,7 +331,7 @@
                     <div class="span6">
                         <form>
 
-                            <select id="minorList1" onchange="favBrowser()">
+                            <select id="minorList2" onchange="favBrowser()">
                                 <option></option>
                                 <option>Bio Engineering BS</option>
                                 <option>Computer Science BS</option>
@@ -363,8 +372,21 @@
 
 
             </div>
+            <form action="/sign" method="post">
+                <div><textarea name="name" rows="3" cols="60"></textarea></div>
+                <div><textarea name="content" rows="3" cols="60"></textarea></div>
+                <div><select id="minorList4" name="minorList4">
+                    <option></option>
+                    <option>Bio Engineering BS</option>
+                    <option>Computer Science BS</option>
+                    <option>Computer Science BA</option>
+                    <option>Computer Engineering BS</option>
+                    <option>Eletrical Engineering BS</option>
+                </select></div>
+                <div><input type="submit" value="Sign Guestbook"></div>
+            </form>
             <hr>
-            <a class="btn btn-primary" style=" float: right;" href="#">Next Step »</a>
+            <a class="btn btn-primary" id="finalSubmit" style=" float: right;" href="#">Next Step »</a>
         </div>
 
         <hr>

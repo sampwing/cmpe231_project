@@ -204,11 +204,22 @@ class TestModels(webapp2.RequestHandler):
 
 class Guestbook(webapp2.RequestHandler):
     def post(self):
-        self.response.out.write('<html><body>You wrote:<pre>')
-        self.response.out.write(cgi.escape(self.request.get('content')))
-        self.response.out.write(cgi.escape(self.request.get('name')))
+        major1 = cgi.escape(self.request.get('m1'));
+        major2 = cgi.escape(self.request.get('m2'));
+        major3 = cgi.escape(self.request.get('m3'));
+        minor1 = cgi.escape(self.request.get('mi1'));
+        minor2 = cgi.escape(self.request.get('mi2'));
+        minor3 = cgi.escape(self.request.get('mi3'));
 
-        self.response.out.write('</pre></body></html>')
+        #
+        # self.response.out.write('<html><body>You wrote:<pre>')
+        # self.response.out.write()
+        # self.response.out.write('<br><br>')
+        # self.response.out.write(cgi.escape(self.request.get('name')))
+        # self.response.out.write('<br><br>')
+        # self.response.out.write(cgi.escape(self.request.get('minorList4')))
+
+        self.response.out.write(major1 + "  " + major2 + "  "+ major3 + "  " + minor1 + "  " + minor2 + "  " + minor3);
 
 
 app = webapp2.WSGIApplication([
