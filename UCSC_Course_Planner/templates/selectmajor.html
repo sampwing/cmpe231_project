@@ -36,8 +36,10 @@
 
 
     <script type="text/javascript">
+
         $(document).ready(function() {
             // put all your jQuery goodness in here.
+
 
             $('#finalSubmit').click(function(){
 
@@ -52,10 +54,18 @@
                 $.post("/MajorSelected", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
                         .done(function(data) {
                             alert("Data Loaded: " + data);
+                            window.location.href = "/majorprogress";
                         });
 {#                window.location.href = "/majorprogress";#}
             });
 
+{#            subpar redirect method. this should happen before page load, from the calling button#}
+            $('#finalSubmit').ready(function(){
+                loggedon = "{{ is_logged_in }}"
+                if ( loggedon = "False" ) {
+{#                    #window.location.href ="{{   logURL|safe}}'"#}
+                }
+            });
 
             $('#cloneButton1').popover({ trigger: "hover" });
             $("#cloneButton1").click(function () {
