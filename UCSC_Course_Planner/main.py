@@ -19,6 +19,7 @@ import cgi
 import os
 import re
 import random
+from webapp2 import redirect
 from google.appengine.api import users
 import datetime
 from google.appengine.ext import db
@@ -39,17 +40,27 @@ class User(db.Model):
     uniqueID = db.StringProperty()
     userObject = db.UserProperty()
 
+
+
 class Login(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+
+
             greeting = (" <a href=\"%s\">Log out</a>" %
                         ( users.create_logout_url("/login")))
             logoutURL = users.create_logout_url("/login")
             is_logged_in = True
             name = user.nickname()
-            e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
-            e.put()
+
+            userQuery = User.gql("WHERE name='{}'".format(name)).get()
+            # self.response.write(userQuery)
+            if (userQuery == None):
+                e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
+                e.put()
+
+            return redirect('/')
         else:
             greeting = ("<a href=\"%s\">Sign in or register</a>." %
                         users.create_login_url("/login"))
@@ -86,8 +97,10 @@ class Homepage(webapp2.RequestHandler):
             name = user.nickname()
             is_logged_in = True
         else:
-            logURL = (users.create_login_url("/"))
+
+            logURL = ("/login")
             is_logged_in = False
+
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
@@ -108,6 +121,7 @@ class SelectMajor(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
+            return redirect('/login')
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
@@ -128,6 +142,7 @@ class MajorProgress(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
+            return redirect('/login')
 
         reader = csv.DictReader(open('resources/dump.csv'))
         #departments = defaultdict(list)
@@ -194,6 +209,7 @@ class Contact(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
+            return redirect('/login')
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
@@ -214,6 +230,7 @@ class About(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
+            return redirect('/login')
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
@@ -291,12 +308,20 @@ class MajorSelected(webapp2.RequestHandler):
         minor1 = cgi.escape(self.request.get('mi1'));
         minor2 = cgi.escape(self.request.get('mi2'));
         minor3 = cgi.escape(self.request.get('mi3'));
+        #
+        # usa = User.gql("WHERE name='name'".format(self.request.get('join_date'))).get()
+        #
 
+        # from models import Prerequisites, Course
+        # course = Course.gql("WHERE number='{}'".format(self.request.get('course'))).get()
+        # prereq = Course.gql("WHERE number='{}'".format(self.request.get('prerequisite'))).get()
+        # p = Prerequisites(course=course, prereq=prereq)
+        # p.put()
         #
         # self.response.out.write('<html><body>You wrote:<pre>')
         # self.response.out.write()
         # self.response.out.write('<br><br>')
-        # self.response.out.write(cgi.escape(self.request.get('name')))
+        # self.response.out.write(cgi.escape(self.request.get('join_date')))
         # self.response.out.write('<br><br>')
         # self.response.out.write(cgi.escape(self.request.get('minorList4')))
 
@@ -305,7 +330,7 @@ class MajorSelected(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-                                  ('/test', TestModels),
+    ('/test', TestModels),
     ('/', Homepage),
     ('/dashboard', Dashboard),
     ('/courses', ListCourses),
