@@ -34,7 +34,23 @@
     <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
     <style type="text/css"></style>
 
+    <script type="text/javascript">
 
+        $(document).ready(function() {
+
+            $('.cbutton').click(function() {
+                if ($(this).hasClass('active') ){
+                    $("i", this ).css({ opacity: 0.0 })
+
+                }
+                else {
+                    $("i", this).css({ opacity: 1 })
+                }
+            });
+        });
+
+
+    </script>
 
 
 
@@ -108,15 +124,31 @@
                 <br><br>
             </p>
 
-            <div class="course" id="{{coursename}}">
-                <div class="btn-group" data-toggle="buttons-radio" >
-                    <button type="button" class="btn ">I've Taken this.</button>
-                    <button type="button" class="btn ">I want to take this.</button>
-                </div>
-                <span class="{{coursename}}" >{{coursename}}</span>
+{#            <div class="course" id="{{coursename}}">#}
+{#                <div class="btn-group" data-toggle="buttons-radio" >#}
+{#                    <button type="button" class="btn ">I've Taken this.</button>#}
+{#                    <button type="button" class="btn ">I want to take this.</button>#}
+{#                </div>#}
+{#                <span class="{{coursename}}" >{{coursename}}</span>#}
+{#            </div>#}
+{#            #}
+            {% for course in courses %}
+
+            <div class="course" id="c{{coursename}}">
+                <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>
+
+                   {{coursename}}
+
+{#                <span class="{{coursename}}" ><input type="checkbox" checked /> {{coursename}}</span>#}
             </div>
 
-
+            {% endfor %}
+            <br>
+            <div class="course" id="c2{{coursename}}">
+                <button type="button" id="b{{coursename}}2" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>
+                <span class=> {{coursename}}</span>
+                {#                <span class="{{coursename}}" ><input type="checkbox" checked /> {{coursename}}</span>#}
+            </div>
 
 
         </div>
