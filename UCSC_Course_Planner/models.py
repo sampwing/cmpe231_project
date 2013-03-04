@@ -27,6 +27,9 @@ class Prerequisites(db.Model):
     course = db.ReferenceProperty(Course, required=True, collection_name='prerequisites_course')
     prereq = db.ReferenceProperty(Course, required=True, collection_name='prerequisites_prereq')
 
+    def __repr__(self):
+        return '{}\n***{}**\n'.format(self.course, self.prereq)
+
 class MajorRequirements(db.Model):
     major = db.StringProperty(required=True)
     course = db.ReferenceProperty(Course, required=True)

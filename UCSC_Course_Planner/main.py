@@ -210,6 +210,33 @@ class About(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/about.html')
         self.response.write(template.render(path, output))
 
+class Prerequisites(webapp2.RequestHandler):
+    def get(self):
+        from models import Course, Prerequisites
+        courses = Course.all().order('department').fetch(limit=1000)
+        print courses
+        output = {
+            'courses': courses,
+        }
+        path = os.path.join(os.path.dirname(__file__), 'templates/prereqs.html')
+        self.response.write(template.render(path, output))
+
+
+import cgi
+import logging
+class RecordPrereq(webapp2.RequestHandler):
+    def get(self):
+        from models import Prerequisites
+        Prereqs = Prerequisites.all().fetch(limit=200)
+        self.response.out.write('<br><br>'.join(map(repr, Prereqs)))
+
+    def post(self):
+        from models import Prerequisites, Course
+        course = Course.gql("WHERE number='{}'".format(self.request.get('course'))).get()
+        prereq = Course.gql("WHERE number='{}'".format(self.request.get('prerequisite'))).get()
+        p = Prerequisites(course=course, prereq=prereq)
+        p.put()
+
 
 class TestModels(webapp2.RequestHandler):
     def get(self):
@@ -285,6 +312,8 @@ app = webapp2.WSGIApplication([
     ('/MajorSelected', MajorSelected),
     ('/Contact', Contact),
     ('/About', About),
+    ('/prereqs', Prerequisites),
+    ('/recordprereq', RecordPrereq),
     ('/.*', NotFoundPageHandler)
 
 ], debug=True)
