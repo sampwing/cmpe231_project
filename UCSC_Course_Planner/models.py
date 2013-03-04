@@ -10,8 +10,8 @@ class Course(db.Model):
     name = db.StringProperty(required=True)
     number = db.StringProperty(required=True)
     description = db.StringProperty(multiline=True, required=True)
-    units = db.IntegerProperty(required=False)
-    instructor = db.StringProperty(required=False)
+    #units = db.IntegerProperty(required=False)
+    #instructor = db.StringProperty(required=False)
 
     def __repr__(self):
         return '{} {} {}'.format(self.department, self.name, self.number)
@@ -32,12 +32,15 @@ class Prerequisites(db.Model):
 
 class MajorRequirements(db.Model):
     major = db.StringProperty(required=True)
-    course = db.ReferenceProperty(Course, required=True)
+    course = db.ReferenceProperty(Course, required=True, collection_name='requirements')
+
+    def __repr__(self):
+        return '{} - {}'.format(self.major, self.course)
 
 #User Information
 class Progress(db.Model):
     user = db.ReferenceProperty(User, required=True)
-    #major = db.StringProperty(required=True) #cmps/ee/cmpe
+    major = db.StringProperty(required=True) #cmps/ee/cmpe
     course = db.ReferenceProperty(Course, required=True)
     year = int()
     quarter = db.StringProperty()

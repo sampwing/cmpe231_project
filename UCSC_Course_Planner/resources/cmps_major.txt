@@ -43,13 +43,13 @@ CMPS112
 
 CMPS130
 
-PHYS6A/6L
-PHYS6B/6M -or- PHYS6C/6N
+PHYS6A
+PHYS6B
 -or-
-CHEM1B/1M -or- CHEM1C/1N
+CHEM1B
 
-4 electives from the following:
-CMPE100/L
+#4 electives from the following:
+CMPE100
 CMPE110
 CMPE112
 CMPE113

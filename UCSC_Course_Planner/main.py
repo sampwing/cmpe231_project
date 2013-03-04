@@ -244,6 +244,7 @@ class TestModels(webapp2.RequestHandler):
 
         from google.appengine.ext import db
         db.delete(Course.all())
+        db.delete(Offerings.all())
 
         import re
         rx_department = re.compile(r'[A-Z]+')
@@ -262,12 +263,35 @@ class TestModels(webapp2.RequestHandler):
                 entry.put()
 
                 for item in ['winter', 'spring', 'fall', 'summer']:
-                    if 0 == len(course[item]):
+                    if 1 < len(course[item]):
                         offering = Offerings(course=entry, offered=item)
+                        offering.put()
         except KeyError, e:
             pass
         courses = Course.all().order('department').fetch(limit=200)
         self.response.write('<br><br>'.join(map(repr, courses)))
+
+class PopulateCourses(webapp2.RequestHandler):
+    def get(self):
+        from models import MajorRequirements, Course
+        filename = 'resources/cmps_major.txt'
+        file = open(filename)
+        major = 'CMPS'
+        db.delete(MajorRequirements.all())
+        skip_flag = False
+        for line in file.readlines():
+            if line[0] == '\n': continue
+            if line[0] == '#': continue
+            if line[0] == '-': skip_flag = True;
+            if skip_flag == True:
+                skip_flag = False
+                continue
+            course = Course.gql("WHERE number='{}'".format(line.strip())).get()
+            if course == None: continue
+            requirement = MajorRequirements(major=major, course=course)
+            requirement.put()
+        requirements = MajorRequirements.all().fetch(limit=100)
+        self.response.write('<br><br>'.join(map(repr, requirements)))
 
 class MajorSelected(webapp2.RequestHandler):
     def post(self):
@@ -314,6 +338,7 @@ app = webapp2.WSGIApplication([
     ('/About', About),
     ('/prereqs', Prerequisites),
     ('/recordprereq', RecordPrereq),
+    ('/populate', PopulateCourses),
     ('/.*', NotFoundPageHandler)
 
 ], debug=True)
