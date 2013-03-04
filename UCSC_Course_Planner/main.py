@@ -170,6 +170,46 @@ class NotFoundPageHandler(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
         self.response.write(template.render(path, output))
 
+class Contact(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        name = "none"
+        if user:
+            logURL = (users.create_logout_url("/"))
+            name = user.nickname()
+            is_logged_in = True
+        else:
+            logURL = (users.create_login_url("/"))
+            is_logged_in = False
+        output = {
+            'logURL': logURL,
+            'is_logged_in': is_logged_in,
+            'name': name
+        }
+
+        path = os.path.join(os.path.dirname(__file__), 'templates/contact.html')
+        self.response.write(template.render(path, output))
+        
+class About(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        name = "none"
+        if user:
+            logURL = (users.create_logout_url("/"))
+            name = user.nickname()
+            is_logged_in = True
+        else:
+            logURL = (users.create_login_url("/"))
+            is_logged_in = False
+        output = {
+            'logURL': logURL,
+            'is_logged_in': is_logged_in,
+            'name': name
+        }
+
+        path = os.path.join(os.path.dirname(__file__), 'templates/about.html')
+        self.response.write(template.render(path, output))
+
 
 class TestModels(webapp2.RequestHandler):
     def get(self):
@@ -243,6 +283,8 @@ app = webapp2.WSGIApplication([
     ('/majorprogress', MajorProgress),
     ('/progress', MajorProgress),
     ('/MajorSelected', MajorSelected),
+    ('/Contact', Contact),
+    ('/About', About),
     ('/.*', NotFoundPageHandler)
 
 ], debug=True)
