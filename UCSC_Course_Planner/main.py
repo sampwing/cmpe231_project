@@ -245,8 +245,17 @@ class MajorSelected(webapp2.RequestHandler):
         # self.response.out.write(cgi.escape(self.request.get('name')))
         # self.response.out.write('<br><br>')
         # self.response.out.write(cgi.escape(self.request.get('minorList4')))
+        user = users.get_current_user()
+        if user:
+            greeting = (" <a href=\"%s\">Log out</a>" %
+                        ( users.create_logout_url("/login")))
+            logoutURL = users.create_logout_url("/login")
+            is_logged_in = True
+            name = user.nickname()
+            e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
 
-        self.response.out.write(major1 + "  " + major2 + "  "+ major3 + "  " + minor1 + "  " + minor2 + "  " + minor3);
+
+        self.response.out.write(name + " " + major1 + "  " + major2 + "  "+ major3 + "  " + minor1 + "  " + minor2 + "  " + minor3);
 
 
 app = webapp2.WSGIApplication([
