@@ -129,14 +129,27 @@ class MajorProgress(webapp2.RequestHandler):
             logURL = (users.create_login_url("/"))
             is_logged_in = False
 
-        coursename="AMS20";
+        reader = csv.DictReader(open('resources/dump.csv'))
+        #departments = defaultdict(list)
+        courses = [course for course in reader]
+        regex = re.compile(r'Prerequisite\(s\):(.*)\.')
+        for course in courses:
+            description = course['description']
+            result = regex.findall(description)
+            if result:
+                course['prereq'] = result[0]
+
+
 
         output = {
+            'coursename': courses,
             'logURL': logURL,
             'is_logged_in': is_logged_in,
             'name': name,
-            'coursename': coursename
+
         }
+
+
 
         path = os.path.join(os.path.dirname(__file__), 'templates/majorprogress.html')
         self.response.write(template.render(path, output))
@@ -271,7 +284,7 @@ class TestModels(webapp2.RequestHandler):
 
 class MajorSelected(webapp2.RequestHandler):
     def post(self):
-
+        name = cgi.escape(self.request.get('name'));
         major1 = cgi.escape(self.request.get('m1'));
         major2 = cgi.escape(self.request.get('m2'));
         major3 = cgi.escape(self.request.get('m3'));
@@ -286,14 +299,6 @@ class MajorSelected(webapp2.RequestHandler):
         # self.response.out.write(cgi.escape(self.request.get('name')))
         # self.response.out.write('<br><br>')
         # self.response.out.write(cgi.escape(self.request.get('minorList4')))
-        user = users.get_current_user()
-        if user:
-            greeting = (" <a href=\"%s\">Log out</a>" %
-                        ( users.create_logout_url("/login")))
-            logoutURL = users.create_logout_url("/login")
-            is_logged_in = True
-            name = user.nickname()
-            e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
 
 
         self.response.out.write(name + " " + major1 + "  " + major2 + "  "+ major3 + "  " + minor1 + "  " + minor2 + "  " + minor3);

@@ -49,9 +49,9 @@
                 mi1 = document.getElementById("minorList1").options[minorList1.selectedIndex].text;
                 mi2 = document.getElementById("minorList2").options[minorList2.selectedIndex].text;
                 mi3 = document.getElementById("minorList3").options[minorList3.selectedIndex].text;
+                name = "{{name}}"
 
-
-                $.post("/MajorSelected", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
+                $.post("/MajorSelected", { name: name, m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
                         .done(function(data) {
                             alert("Data Loaded: " + data);
                             window.location.href = "/majorprogress";
