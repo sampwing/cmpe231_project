@@ -180,8 +180,9 @@ class MajorProgress(webapp2.RequestHandler):
         user = users.get_current_user()
         userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
 
-        courses = cgi.escape(self.request.get('courses'))
-        self.response.write("Courses!: " + courses)
+        courses = (self.request.get('courses',  allow_multiple=True))
+        self.response.write("Courses!: " + str(courses))
+        return redirect('/dashboard')
         # userQuery.major2 = cgi.escape(self.request.get('m2'))
         # userQuery.major3 = cgi.escape(self.request.get('m3'))
         # userQuery.minor1 = cgi.escape(self.request.get('mi1'))
