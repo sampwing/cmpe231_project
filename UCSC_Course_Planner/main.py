@@ -61,8 +61,9 @@ class Login(webapp2.RequestHandler):
             if (userQuery == None):
                 e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
                 e.put()
-
-            return redirect('/')
+                return redirect('/selectmajor')
+            else:
+                return redirect('/dashboard')
         else:
             greeting = ("<a href=\"%s\">Sign in or register</a>." %
                         users.create_login_url("/login"))
@@ -87,8 +88,26 @@ class Login(webapp2.RequestHandler):
 
 class Dashboard(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        name = "none"
+        if user:
+            logURL = (users.create_logout_url("/"))
+            name = user.nickname()
+            is_logged_in = True
+        else:
+
+            logURL = ("/login")
+            is_logged_in = False
+            return redirect ('/login')
+
+        output = {
+            'logURL': logURL,
+            'is_logged_in': is_logged_in,
+            'name': name
+            }
+            
         path = os.path.join(os.path.dirname(__file__), 'templates/dashboard.html')
-        self.response.write(template.render(path, {}))
+        self.response.write(template.render(path, output))
 
 class Homepage(webapp2.RequestHandler):
     def get(self):
@@ -154,10 +173,13 @@ class MajorProgress(webapp2.RequestHandler):
         minor1 = userQuery.minor1
         minor2 = userQuery.minor2
         minor3 = userQuery.minor3
-        coursename = ['AMS20', 'Math19A', 'Math19B']
+        from models import MajorRequirements
+        courses = MajorRequirements.gql("WHERE major='{}' ORDER by course DESC".format("CMPS")).fetch(limit=200)
+        # courses.order("-department")
+
 
         output = {
-                'coursename': 'coursename',
+                'courses': courses,
                 'major1': major1,
                 'major2': major2,
                 'major3': major3,
@@ -170,10 +192,26 @@ class MajorProgress(webapp2.RequestHandler):
 
             }
 
-
-
         path = os.path.join(os.path.dirname(__file__), 'templates/majorprogress.html')
         self.response.write(template.render(path, output))
+
+    def post(self):
+        user = users.get_current_user()
+        userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
+
+        courses = (self.request.get('courses',  allow_multiple=True))
+        self.response.write("Courses!: " + str(courses))
+
+        #Add course to db for the user
+        #
+
+        return redirect('/dashboard')
+        # userQuery.major2 = cgi.escape(self.request.get('m2'))
+        # userQuery.major3 = cgi.escape(self.request.get('m3'))
+        # userQuery.minor1 = cgi.escape(self.request.get('mi1'))
+        # userQuery.minor2 = cgi.escape(self.request.get('mi2'))
+        # userQuery.minor3 = cgi.escape(self.request.get('mi3'))
+        # userQuery.put()
 
 
 class ListCourses(webapp2.RequestHandler):

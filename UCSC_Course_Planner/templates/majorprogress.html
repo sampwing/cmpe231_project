@@ -97,7 +97,7 @@
                 <form class="navbar-form pull-right">
 {#                    <input class="span2" type="text" placeholder="Email">#}
 {#                    <input class="span2" type="password" placeholder="Password">#}
-                    <button class="btn" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
+                    <button class="btn btn-primary" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
                         Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
 
                 </form>
@@ -134,14 +134,24 @@
 {#            #}
             <hr>
             <h3>{{ major1 }}</h3>
-            {% for course in courses %}
-            <div class="course" id="c{{coursename}}">
-                <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>
-                {{coursename}}
-
-            </div>
+            <form name="input" action="/majorprogress" method="post">
+            {% for coursename in courses %}
+                <label class="checkbox">
+                    <input type="checkbox" style="font-size:150%;" name="courses" value="class{{forloop.counter}}">  {{coursename}}
+                </label>
+{#            <div class="course" id="c{{coursename}}">#}
+{#                <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>#}
+{#                {{coursename}}#}
+{##}
+{#            </div>#}
             {% endfor %}
 
+            <button type="submit" class="btn btn-primary ">
+                <i class="icon-user icon-white"></i> Add Classes to Profile
+            </button>
+            </form>
+
+            <hr>
             <br>
 
 

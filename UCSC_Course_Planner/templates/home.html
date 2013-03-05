@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
     <style type="text/css"></style></head>
 
-<body style="zoom: 1;" class=" hasGoogleVoiceExt">
+
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -44,7 +44,11 @@
             <a class="brand" href="/">UCSC Planner</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
+                    {% if is_logged_in %}
+                    <li class="active"><a href="/dashboard">Home</a></li>
+                    {% else %}
                     <li class="active"><a href="/">Home</a></li>
+                    {% endif %}
                     <li><a href="/About">About</a></li>
                     <li><a href="/Contact">Contact</a></li>
                     <li class="dropdown">
@@ -63,7 +67,7 @@
                 <form class="navbar-form pull-right">
 {#                    <input class="span2" type="text" placeholder="Email">#}
 {#                    <input class="span2" type="password" placeholder="Password">#}
-                    <button class="btn" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
+                    <button class="btn btn-primary" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
                         Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
 
                 </form>
@@ -78,33 +82,31 @@
     <div class="hero-unit">
         <h1>Welcome to UCSC Course Planner!</h1>
         <p>Start planning the rest of your college career today!</p>
-        <p><a href="#" class="btn btn-primary btn-large">Login Now/Learn More, etc... »</a></p>
+        <p>
+        {% if is_logged_in %}
+        <a href="/dashboard" class="btn btn-primary btn-large">Go to your dashboard » </a>
+        {% else %}
+        <a href="/login" class="btn btn-primary btn-large">Login or Register Now! » </a>
+        {% endif %}
+        </p>
     </div>
 
     <!-- Example row of columns -->
     <div class="row">
-        <div class="span4">
-            <h2>Heading</h2>
 
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details »</a></p>
+        <div class="span4 offset4">
+            <h2>Getting Started:</h2>
+            <p>To get started we are going to ask you to login at the top right corner using your cruz id. This will allow
+                us to store any changes you make to the course planner, which you can refer to or modify at some other time.
+            </p>
         </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details »</a></p>
-        </div>
-        <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn" href="#">View details »</a></p>
-        </div>
+
     </div>
 
     <hr>
 
     <footer>
-        <p>© Company 2013</p>
+        <p>© HCI 2013</p>
     </footer>
 
 </div> <!-- /container -->

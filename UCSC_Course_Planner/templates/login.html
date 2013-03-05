@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>UCSC Planner</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -68,12 +68,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">Project name</a>
+            <a class="brand" href="/">UCSC Planner</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact</a></li>
+                    {% if is_logged_in %}
+                    <li class="active"><a href="/dashboard">Home</a></li>
+                    {% else %}
+                    <li class="active"><a href="/">Home</a></li>
+                    {% endif %}
+                    <li><a href="/About">About</a></li>
+                    <li><a href="/Contact">Contact</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
