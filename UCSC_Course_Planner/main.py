@@ -97,6 +97,7 @@ class Dashboard(webapp2.RequestHandler):
 
             logURL = ("/login")
             is_logged_in = False
+            return redirect ('/login')
 
         output = {
             'logURL': logURL,

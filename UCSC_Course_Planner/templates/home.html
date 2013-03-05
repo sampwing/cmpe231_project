@@ -82,7 +82,13 @@
     <div class="hero-unit">
         <h1>Welcome to UCSC Course Planner!</h1>
         <p>Start planning the rest of your college career today!</p>
-        <p><a href="#" class="btn btn-primary btn-large">Login Now/Learn More, etc... »</a></p>
+        <p>
+        {% if is_logged_in %}
+        <a href="/dashboard" class="btn btn-primary btn-large">Go to your dashboard » </a>
+        {% else %}
+        <a href="/login" class="btn btn-primary btn-large">Login or Register Now! » </a>
+        {% endif %}
+        </p>
     </div>
 
     <!-- Example row of columns -->
