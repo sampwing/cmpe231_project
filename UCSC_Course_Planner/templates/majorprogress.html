@@ -134,13 +134,20 @@
 {#            #}
             <hr>
             <h3>{{ major1 }}</h3>
-            {% for course in courses %}
-            <div class="course" id="c{{coursename}}">
-                <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>
-                {{coursename}}
-
-            </div>
+            <form name="input" action="/majorprogress" method="post">
+            {% for coursename in courses %}
+                <label class="checkbox">
+                    <input type="checkbox" style="font-size:150%;" name="courses" value="class{{forloop.counter}}">  {{coursename}}
+                </label>
+{#            <div class="course" id="c{{coursename}}">#}
+{#                <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>#}
+{#                {{coursename}}#}
+{##}
+{#            </div>#}
             {% endfor %}
+            <br><br>
+            <input type="submit" value="Submit">
+            </form>
 
             <br>
 

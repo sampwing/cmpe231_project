@@ -154,10 +154,13 @@ class MajorProgress(webapp2.RequestHandler):
         minor1 = userQuery.minor1
         minor2 = userQuery.minor2
         minor3 = userQuery.minor3
-        coursename = ['AMS20', 'Math19A', 'Math19B']
+        from models import MajorRequirements
+        courses = MajorRequirements.gql("WHERE major='{}' ORDER by course DESC".format("CMPS")).fetch(limit=200)
+        # courses.order("-department")
+
 
         output = {
-                'coursename': 'coursename',
+                'courses': courses,
                 'major1': major1,
                 'major2': major2,
                 'major3': major3,
@@ -170,10 +173,21 @@ class MajorProgress(webapp2.RequestHandler):
 
             }
 
-
-
         path = os.path.join(os.path.dirname(__file__), 'templates/majorprogress.html')
         self.response.write(template.render(path, output))
+
+    def post(self):
+        user = users.get_current_user()
+        userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
+
+        courses = cgi.escape(self.request.get('courses'))
+        self.response.write("Courses!: " + courses)
+        # userQuery.major2 = cgi.escape(self.request.get('m2'))
+        # userQuery.major3 = cgi.escape(self.request.get('m3'))
+        # userQuery.minor1 = cgi.escape(self.request.get('mi1'))
+        # userQuery.minor2 = cgi.escape(self.request.get('mi2'))
+        # userQuery.minor3 = cgi.escape(self.request.get('mi3'))
+        # userQuery.put()
 
 
 class ListCourses(webapp2.RequestHandler):

@@ -9,3 +9,24 @@ indexes:
 # manually, move them above the marker line.  The index.yaml file is
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
+
+- kind: MajorRequirements
+  properties:
+  - name: major
+  - name: course
+
+- kind: MajorRequirements
+  properties:
+  - name: major
+  - name: course
+    direction: desc
+
+- kind: MajorRequirements
+  properties:
+  - name: major
+  - name: course.department
+
+- kind: MajorRequirements
+  properties:
+  - name: major
+  - name: department
