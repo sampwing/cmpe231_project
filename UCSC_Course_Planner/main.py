@@ -100,7 +100,21 @@ class Dashboard(webapp2.RequestHandler):
             is_logged_in = False
             return redirect ('/login')
 
+        userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
+        major1 = userQuery.major1
+        major2 = userQuery.major2
+        major3 = userQuery.major3
+        minor1 = userQuery.minor1
+        minor2 = userQuery.minor2
+        minor3 = userQuery.minor3
+
         output = {
+            'major1': major1,
+            'major2': major2,
+            'major3': major3,
+            'minor1': minor1,
+            'minor2': minor2,
+            'minor3': minor3,
             'logURL': logURL,
             'is_logged_in': is_logged_in,
             'name': name

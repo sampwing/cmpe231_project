@@ -265,11 +265,69 @@
 {#            <div style="background-color: beige">#}
                 <h2>News + Info</h2>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus a cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <h2>Major Progress</h2>
-                <div class="progress progress-striped">
+                <hr>
+                {% if major2 %}
+                    <h3> Majors :</h3>
+                {% else %}
+                    <h3> Major :</h3>
+                {%  endif %}
+
+                <h4>{{ major1 }} </h4>
+                <div class="progress progress-striped" style="width:95%">
                     <div class="bar" style="width: 20%;"></div>
                 </div>
-                <h2>Additional Notes:</h2>
+                {% if major2 %}
+                    <h4>{{ major2 }} </h4>
+                    <div class="progress progress-striped" style="width:95%" >
+                        <div class="bar" style="width: 20%;"></div>
+                    </div>
+                {%  endif %}
+                {% if major3 %}
+                    <h4>{{ major3 }} </h4>
+                    <div class="progress progress-striped" style="width:95%" >
+                        <div class="bar" style="width: 20%;"></div>
+                    </div>
+                {%  endif %}
+            <hr>
+                {% if minor2 %}
+              <h3> Minors :</h3>
+                {% else %}
+                    {% if minor1 %}
+                    <h3> Minor :</h3>
+                        {% endif %}
+                {%  endif %}
+{#                {% if minor %}#}
+{#                    <h3> Minor(s) :</h3>#}
+{#                {%  endif %}#}
+
+                {#                {% if minor2 %}#}
+{#                    <h3> Minors</h3>#}
+{#                {% elif minor1 %}#}
+{#                    <h3> Minor</h3>#}
+{##}
+{#                {% endif %}#}
+
+
+                {% if minor1 %}
+                    <h4>{{ minor1 }} </h4>
+                    <div class="progress progress-striped" style="width:95%" >
+                        <div class="bar" style="width: 20%;"></div>
+                    </div>
+                {%  endif %}
+                {% if minor2 %}
+                    <h4>{{ minor2 }} </h4>
+                    <div class="progress progress-striped" style="width:95%" >
+                        <div class="bar" style="width: 20%;"></div>
+                    </div>
+                {%  endif %}
+                {% if minor3 %}
+                    <h4>{{ minor3 }} </h4>
+                    <div class="progress progress-striped" style="width:95%" >
+                        <div class="bar" style="width: 20%;"></div>
+                    </div>
+                {%  endif %}
+                <hr>
+                <h3>Additional Notes:</h3>
                 <p>"But I must explain to you ..."Launch demo modal</a></p>
             </div>
         </div>
