@@ -61,8 +61,9 @@ class Login(webapp2.RequestHandler):
             if (userQuery == None):
                 e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
                 e.put()
-
-            return redirect('/dashboard')
+                return redirect('/selectmajor')
+            else:
+                return redirect('/dashboard')
         else:
             greeting = ("<a href=\"%s\">Sign in or register</a>." %
                         users.create_login_url("/login"))
@@ -200,6 +201,10 @@ class MajorProgress(webapp2.RequestHandler):
 
         courses = (self.request.get('courses',  allow_multiple=True))
         self.response.write("Courses!: " + str(courses))
+
+        #Add course to db for the user
+        #
+
         return redirect('/dashboard')
         # userQuery.major2 = cgi.escape(self.request.get('m2'))
         # userQuery.major3 = cgi.escape(self.request.get('m3'))

@@ -165,13 +165,42 @@
                 });
 
             })
+
+            firstToggle = true;
+
+            function viewAll(){
+                if (firstToggle){
+
+                $('.accordion-body').each(function(){
+                    if ($(this).hasClass('in')) {
+
+                    }
+                    else $(this).collapse('toggle');
+                });
+                    firstToggle = false;
+
+                }
+            }
+
+            $("#overView").click(function (){
+                viewAll();
+
+                $('.accordion-body').each(function(){
+                    if ($(this).hasClass('in')) {
+                    }
+                    else $(this).collapse('toggle');
+                });
+
+            })
+            var subjects = ['PHP', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];
+            $('#search').typeahead({source: subjects})
         });
     </script>
 
 
 </head>
 
-<body style="zoom: 1;" class=" hasGoogleVoiceExt">
+
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -207,8 +236,10 @@
 </div>
 
 
+
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel">Add a Class</h3>
@@ -216,11 +247,14 @@
     <div class="modal-body">
         <p>Class Selection Tool here: </p>
         <input type="text" data-provide="typeahead">
+
+        <input type="text" id="search" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" >
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <button class="btn btn-primary">Save changes</button>
     </div>
+
 </div>
 
 <div class="container">
@@ -246,7 +280,8 @@
                 <div class="row offset1">
 
                     <div class="btn-group">
-                        <button href="#" class="btn  btn-small"><span class="ui-button-text">Overview &raquo;</span></button>
+                        <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview &raquo;</span></button>
+
                         <button href="#" class="btn  btn-small"><span class="ui-button-text">Print &raquo;</span></button>
                         <button href="#" class="btn  btn-small"><span class="ui-button-text">Edit &raquo;</span></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experiemental Extras &raquo;</span></button>
@@ -259,12 +294,13 @@
                     </div>
 
                 </div>
+                </div>
                 <div class="accordion" id="accordion2">
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
                                 <div class="row">
-                                    <h3 style="text-align:center;" >2013 - 2014</h3>
+                                    <h3 style="text-align:center;" >2012 - 2013</h3>
                                 </div>
 
                             </a>
@@ -326,7 +362,7 @@
                                                 {#                                <li class="ui-state-highlight">CMPS101</li>#}
                                                 {#                                <li class="ui-state-highlight">Math 21</li>#}
                                                 <ul id="sortable2" class="connectedSortable">
-                                                    <li class="ui-state-highlight">
+                                                    <li class="ui-state-default">
                                                         <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
@@ -351,7 +387,7 @@
                                                         <div class="classInstructor">Namme<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
                                                     </li>
-                                                    <li class="ui-state-highlight">
+                                                    <li class="ui-state-default">
                                                         <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><br></div>
                                                         <div class="classInstructor">J. Parker<br></div>
                                                         <div class="classTime">TBA<br></div>
@@ -370,9 +406,17 @@
                                             </td>
                                             <td>
                                                 <ul id="sortable4" class="connectedSortable">
-                                                    <li class="ui-state-default">Summer Session Stuff</li>
-                                                    <li class="ui-state-default">PHYSC 5C/L</li>
-                                                    <li class="ui-state-default">AMS 20</li>
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader">CMPS109 <span class="classUnits badge badge-success">5</span><br></div>
+                                                        <div class="classInstructor">W. Mackey<br></div>
+                                                        <div class="classTime">T/TH 5-6:45pm<br></div>
+                                                    </li>
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader">Math 24<span class="classUnits badge badge-success">5</span><br></div>
+                                                        <div class="classInstructor">Tamanoi<br></div>
+                                                        <div class="classTime">TBA<br></div>
+                                                    </li>
+
                                                 </ul>
                                             </td>
                                         </tr>
@@ -540,10 +584,11 @@
         </div>
     </div>
     <hr>
-    <footer>
-        <p>&copy; Company 2013</p>
+<footer>
+    <p>&copy; Company 2013</p>
 
-    </footer>
+</footer>
+
 </div> <!-- /container -->
 
 
