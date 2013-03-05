@@ -100,6 +100,26 @@
 
         }
 
+        @media screen {
+            #printSection {
+                display: none;
+            }
+        }
+
+        @media print {
+            body * {
+                visibility:hidden;
+            }
+            #printSection, #printSection * {
+                visibility:visible;
+            }
+            #printSection {
+                position:absolute;
+                left:0;
+                top:0;
+            }
+        }
+
     </style>
 
     <!-- Fav and touch icons -->
@@ -194,7 +214,56 @@
             })
             var subjects = ['PHP', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];
             $('#search').typeahead({source: subjects})
+
+           $("#btnPrint").click( function() {
+{#                $('#accordion2').clone(true).appendTo('#printHere');#}
+                printElement(document.getElementById("accordion2"));
+                {#                printElement(document.getElementById("printThisToo"), true, "<hr />");#}
+                window.print();
+            });
+
+            $("#addUIElement").click( function() {
+                $("#sortable1 ul").append('<li class="ui-state-default"><div class="classHeader">Test</div> </li>');
+{#                <li class="ui-state-default">#}
+{#                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>#}
+{#                <div class="classInstructor">Instructor Name<br></div>#}
+{#                <div class="classTime">MWF 12-2pm<br></div>#}
+{##}
+{#                </li>#}
+            });
+
+
         });
+{#       #}
+
+
+        function printElement(elem, append, delimiter) {
+            var domClone = elem.cloneNode(true);
+
+            var $printSection = document.getElementById("printSection");
+
+            if (!$printSection) {
+                var $printSection = document.createElement("div");
+                $printSection.id = "printSection";
+                document.body.appendChild($printSection);
+            }
+
+            if (append !== true) {
+                $printSection.innerHTML = "";
+            }
+
+            else if (append === true) {
+                if (typeof (delimiter) === "string") {
+                    $printSection.innerHTML += delimiter;
+                }
+                else if (typeof (delimiter) === "object") {
+                    $printSection.appendChlid(delimiter);
+                }
+            }
+
+            $printSection.appendChild(domClone);
+        }
+
     </script>
 
 
@@ -256,6 +325,29 @@
     </div>
 
 </div>
+
+
+{#<div id="printModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+{##}
+{#    <div class="modal-header">#}
+{#        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>#}
+{#        <h3 id="printModalLabel">Print View</h3>#}
+{#    </div>#}
+{#    <div class="modal-body">#}
+{#        <div id="printThis">#}
+{#            This should BE printed!#}
+{#            <div id="printhere">#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="modal-footer">#}
+{#        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>#}
+{#        <button class="btn btn-primary" id="btnPrint">Print</button>#}
+{#    </div>#}
+{##}
+{#</div>#}
 
 <div class="container">
 
@@ -340,7 +432,7 @@
                     <div class="btn-group">
                         <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview &raquo;</span></button>
 
-                        <button href="#" class="btn  btn-small"><span class="ui-button-text">Print &raquo;</span></button>
+                        <button href="#" class="btn  btn-small" id="btnPrint" ><span class="ui-button-text">Print </span><i class="icon-print"></i> </button>
                         <button href="#" class="btn  btn-small"><span class="ui-button-text">Edit &raquo;</span></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experiemental Extras &raquo;</span></button>
                     </div>
@@ -368,7 +460,7 @@
                             <div class="accordion-inner">
 
 
-                                <div class="">
+                                <div class="year1">
                                     <table class="table table-bordeed">
                                         <thead>
                                         <tr>
@@ -481,7 +573,9 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <button href="#" class="btn  btn-small" id="addUIElement"><span class="ui-button-text">Add Element &raquo;</span></button>
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal" data-toggle="modal">Add Course</a></th>
+
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal" data-toggle="modal">Add Course</a></th>
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal"  data-toggle="modal">Add Course</a></th>
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal" data-toggle="modal">Add Course</a></th>
