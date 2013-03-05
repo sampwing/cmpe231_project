@@ -44,7 +44,11 @@
             <a class="brand" href="/">UCSC Planner</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
+                    {% if is_logged_in %}
+                    <li class="active"><a href="/dashboard">Home</a></li>
+                    {% else %}
                     <li class="active"><a href="/">Home</a></li>
+                    {% endif %}
                     <li><a href="/About">About</a></li>
                     <li><a href="/Contact">Contact</a></li>
                     <li class="dropdown">

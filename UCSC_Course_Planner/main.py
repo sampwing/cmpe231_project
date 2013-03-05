@@ -62,7 +62,7 @@ class Login(webapp2.RequestHandler):
                 e = User(name=user.nickname(),join_date=datetime.datetime.now().date(), email=users.get_current_user().email(),userObject=users.get_current_user())
                 e.put()
 
-            return redirect('/')
+            return redirect('/dashboard')
         else:
             greeting = ("<a href=\"%s\">Sign in or register</a>." %
                         users.create_login_url("/login"))
