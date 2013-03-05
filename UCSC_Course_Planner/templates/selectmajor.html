@@ -51,9 +51,9 @@
                 mi3 = document.getElementById("minorList3").options[minorList3.selectedIndex].text;
                 name = "{{name}}"
 
-                $.post("/MajorSelected", { name: name, m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
-                        .done(function(data) {
-                            alert("Data Loaded: " + data);
+                $.post("/MajorSelected", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
+                        .done(function() {
+{#                            alert("Data Loaded: " + data);#}
                             window.location.href = "/majorprogress";
                         });
 {#                window.location.href = "/majorprogress";#}
@@ -314,22 +314,21 @@
                 <div id="minor1">
                     <div class="span8"><p><hr></p> </div>
                     <div class="span2">Select a Minor:</div>
-                    <div class="span6">
+                    <div class="span6" >
                         <form>
 
-                            <select id="minorList1" onchange="favBrowser()">
+                            <select id="minorList1" onchange="favBrowser()" disabled>
                                 <option></option>
-                                <option>Bio Engineering BS</option>
-                                <option>Computer Science BS</option>
-                                <option>Computer Science BA</option>
-                                <option>Computer Engineering BS</option>
-                                <option>Eletrical Engineering BS</option>
+                                <option>Bio Engineering</option>
+                                <option>Computer Science</option>
+                                <option>Computer Engineering</option>
+                                <option>Eletrical Engineering</option>
                             </select>
 
                             <button id="removeMinorButton1" class="btn" style="display: none"><i class="icon-minus-sign icon-blacks"></i> Remove Minor </button>
                             <a id="cloneMinorButton1" id="popme" class="btn" data-toggle="popover" data-placement="right" data-content=
-                                    "Did you know that for every additional minor you are required to take an additional 25 units of upper divs?"
-                               title="" data-original-title="FYI..."><i class="icon-plus-sign icon-blacks"></i> Add Minor</a>
+                                    "Did you know that for every additional minor you are required to take an additional 25 units of upper divs? Also, this is menu is disabled right now because we are still implementing this function."
+                               title="" data-original-title="FYI..." disabled><i class="icon-plus-sign icon-blacks"></i> Add Minor</a>
 
                         </form>
 
@@ -344,11 +343,10 @@
 
                             <select id="minorList2" onchange="favBrowser()">
                                 <option></option>
-                                <option>Bio Engineering BS</option>
-                                <option>Computer Science BS</option>
-                                <option>Computer Science BA</option>
-                                <option>Computer Engineering BS</option>
-                                <option>Eletrical Engineering BS</option>
+                                <option>Bio Engineering</option>
+                                <option>Computer Science</option>
+                                <option>Computer Engineering</option>
+                                <option>Eletrical Engineering</option>
                             </select>
                             <div class="btn-group">
                                 <button id="cloneMinorButton2" class="btn"><i class="icon-plus-sign icon-blacks"></i> Add Minor </button>
@@ -368,11 +366,10 @@
 
                             <select id="minorList3" onchange="favBrowser()">
                                 <option></option>
-                                <option>Bio Engineering BS</option>
-                                <option>Computer Science BS</option>
-                                <option>Computer Science BA</option>
-                                <option>Computer Engineering BS</option>
-                                <option>Eletrical Engineering BS</option>
+                                <option>Bio Engineering</option>
+                                <option>Computer Science</option>
+                                <option>Computer Engineering</option>
+                                <option>Eletrical Engineering</option>
                             </select>
                             <button id="removeMinorButton3" class="btn"><i class="icon-minus-sign icon-blacks"></i> Remove Minor</button>
                         </form>

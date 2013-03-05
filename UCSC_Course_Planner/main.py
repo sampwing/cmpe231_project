@@ -32,13 +32,15 @@ from google.appengine.ext.webapp import template
 
 class User(db.Model):
     name = db.StringProperty(required=True)
-    # role = db.StringProperty(required=True,
-    #                          choices=set(["executive", "manager", "producer"]))
     join_date = db.DateProperty()
-    # new_hire_training_completed = db.BooleanProperty(indexed=False)
     email = db.StringProperty()
-    uniqueID = db.StringProperty()
     userObject = db.UserProperty()
+    major1 = db.StringProperty(required=False) #cmps/ee/cmpe
+    major2 = db.StringProperty(required=False) #cmps/ee/cmpe
+    major3 = db.StringProperty(required=False) #cmps/ee/cmpe
+    minor1 = db.StringProperty(required=False) #cmps/ee/cmpe
+    minor2 = db.StringProperty(required=False) #cmps/ee/cmpe
+    minor3 = db.StringProperty(required=False) #cmps/ee/cmpe
 
 
 
@@ -144,25 +146,29 @@ class MajorProgress(webapp2.RequestHandler):
             is_logged_in = False
             return redirect('/login')
 
-        reader = csv.DictReader(open('resources/dump.csv'))
-        #departments = defaultdict(list)
-        courses = [course for course in reader]
-        regex = re.compile(r'Prerequisite\(s\):(.*)\.')
-        for course in courses:
-            description = course['description']
-            result = regex.findall(description)
-            if result:
-                course['prereq'] = result[0]
 
-
+        userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
+        major1 = userQuery.major1
+        major2 = userQuery.major2
+        major3 = userQuery.major3
+        minor1 = userQuery.minor1
+        minor2 = userQuery.minor2
+        minor3 = userQuery.minor3
+        coursename = ['AMS20', 'Math19A', 'Math19B']
 
         output = {
-            'coursename': courses,
-            'logURL': logURL,
-            'is_logged_in': is_logged_in,
-            'name': name,
+                'coursename': 'coursename',
+                'major1': major1,
+                'major2': major2,
+                'major3': major3,
+                'minor1': minor1,
+                'minor2': minor2,
+                'minor3': minor3,
+                'logURL': logURL,
+                'is_logged_in': is_logged_in,
+                'name': name,
 
-        }
+            }
 
 
 
@@ -325,32 +331,19 @@ class PopulateCourses(webapp2.RequestHandler):
 
 class MajorSelected(webapp2.RequestHandler):
     def post(self):
-        name = cgi.escape(self.request.get('name'));
-        major1 = cgi.escape(self.request.get('m1'));
-        major2 = cgi.escape(self.request.get('m2'));
-        major3 = cgi.escape(self.request.get('m3'));
-        minor1 = cgi.escape(self.request.get('mi1'));
-        minor2 = cgi.escape(self.request.get('mi2'));
-        minor3 = cgi.escape(self.request.get('mi3'));
-        #
-        # usa = User.gql("WHERE name='name'".format(self.request.get('join_date'))).get()
-        #
+        user = users.get_current_user()
 
-        # from models import Prerequisites, Course
-        # course = Course.gql("WHERE number='{}'".format(self.request.get('course'))).get()
-        # prereq = Course.gql("WHERE number='{}'".format(self.request.get('prerequisite'))).get()
-        # p = Prerequisites(course=course, prereq=prereq)
-        # p.put()
-        #
-        # self.response.out.write('<html><body>You wrote:<pre>')
-        # self.response.out.write()
-        # self.response.out.write('<br><br>')
-        # self.response.out.write(cgi.escape(self.request.get('join_date')))
-        # self.response.out.write('<br><br>')
-        # self.response.out.write(cgi.escape(self.request.get('minorList4')))
+        userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
 
+        userQuery.major1 = cgi.escape(self.request.get('m1'))
+        userQuery.major2 = cgi.escape(self.request.get('m2'))
+        userQuery.major3 = cgi.escape(self.request.get('m3'))
+        userQuery.minor1 = cgi.escape(self.request.get('mi1'))
+        userQuery.minor2 = cgi.escape(self.request.get('mi2'))
+        userQuery.minor3 = cgi.escape(self.request.get('mi3'))
+        userQuery.put()
 
-        self.response.out.write(name + " " + major1 + "  " + major2 + "  "+ major3 + "  " + minor1 + "  " + minor2 + "  " + minor3);
+        # self.response.out.write("Very nice, Great Success!");
 
 
 app = webapp2.WSGIApplication([

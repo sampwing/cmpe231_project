@@ -118,9 +118,9 @@
     <div class="row">
         <div class="span2"></div>
         <div class="span8">
-            <h2>Check off the classes you've taken already</h2>
+            <h2>Select Classes you've taken already</h2>
 
-            <p>Blah blah blah Blah blah blah Blah blah blah Blah blah blah Blah blah blah
+            <p>Check the check box if you've already taken the class.
                 <br><br>
             </p>
 
@@ -132,23 +132,18 @@
 {#                <span class="{{coursename}}" >{{coursename}}</span>#}
 {#            </div>#}
 {#            #}
+            <hr>
+            <h3>{{ major1 }}</h3>
             {% for course in courses %}
-
             <div class="course" id="c{{coursename}}">
                 <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>
+                {{coursename}}
 
-                   {{coursename}}
-
-{#                <span class="{{coursename}}" ><input type="checkbox" checked /> {{coursename}}</span>#}
             </div>
-
             {% endfor %}
+
             <br>
-            <div class="course" id="c2{{coursename}}">
-                <button type="button" id="b{{coursename}}2" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>
-                <span class=> {{coursename}}</span>
-                {#                <span class="{{coursename}}" ><input type="checkbox" checked /> {{coursename}}</span>#}
-            </div>
+
 
 
         </div>
