@@ -35,7 +35,7 @@ class MajorRequirements(db.Model):
     course = db.ReferenceProperty(Course, required=True, collection_name='requirements')
 
     def __repr__(self):
-        return '{} - {}'.format(self.major, self.course)
+        return '{}'.format(self.major, self.course)
 
 #User Information
 class Progress(db.Model):
