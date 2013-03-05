@@ -184,16 +184,21 @@
             <a class="brand" href="/">UCSC Planner</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
+                    {% if is_logged_in %}
                     <li class="active"><a href="/dashboard">Home</a></li>
+                    {% else %}
+                    <li class="active"><a href="/">Home</a></li>
+                    {% endif %}
                     <li><a href="/About">About</a></li>
                     <li><a href="/Contact">Contact</a></li>
                 </ul>
-                
                 <form class="navbar-form pull-right">
 {#                    <input class="span2" type="text" placeholder="Email">#}
 {#                    <input class="span2" type="password" placeholder="Password">#}
                     <button class="btn" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
                         Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
+
+                </form>
 
                 </form>
             </div> <!--/.nav-collapse -->
