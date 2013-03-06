@@ -222,14 +222,15 @@
                 window.print();
             });
 
-            $("#addUIElement").click( function() {
-                $("#sortable1 ul").append('<li class="ui-state-default"><div class="classHeader">Test</div> </li>');
-{#                <li class="ui-state-default">#}
-{#                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>#}
-{#                <div class="classInstructor">Instructor Name<br></div>#}
-{#                <div class="classTime">MWF 12-2pm<br></div>#}
-{##}
-{#                </li>#}
+            $(".addClass").click( function() {
+{#                currentId = $(this).attr('id');#}
+                alert($(this).attr('id'));
+{#                alert(currentID);#}
+                $(this).append('<li class="ui-state-default">' +
+                        '<div class="classHeader">ClassNumber <span class="classUnits badge badge-success">1</span><br>' +
+                        '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +
+                               ' <div class="classTime">MWF 12-2pm<br></div>' +
+                        '</li>');
             });
 
 
@@ -474,7 +475,7 @@
                                         <tr>
                                             <td>
 
-                                                <ul id="sortable1" class="connectedSortable">
+                                                <ul id="Fall12" class="connectedSortable">
                                                     <li class="ui-state-default">
                                                         <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
@@ -573,9 +574,9 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <button href="#" class="btn  btn-small" id="addUIElement"><span class="ui-button-text">Add Element &raquo;</span></button>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal" data-toggle="modal">Add Course</a></th>
+{#                                            <button href="#" class="btn  btn-small" id="addUIElement"><span class="ui-button-text">Add Element &raquo;</span></button>#}
 
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall12B" href="#" >Add Course</a></th>
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal" data-toggle="modal">Add Course</a></th>
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal"  data-toggle="modal">Add Course</a></th>
                                             <th><i class="icon-plus-sign"></i>&nbsp;<a href="#myModal" data-toggle="modal">Add Course</a></th>
