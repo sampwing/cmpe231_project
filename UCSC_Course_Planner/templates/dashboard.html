@@ -23,8 +23,6 @@
     <style type="text/css">
         .classHeader{
             font-size: 13pt;
-
-
         }
         .classUnits, .classInstructor, .classTime{
             font-size:  small;
@@ -128,6 +126,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="/static/ico/favicon.png">
+
 
 
     <!-- for top dragable ui lists -->
@@ -294,17 +293,16 @@
                 <form class="navbar-form pull-right">
 {#                    <input class="span2" type="text" placeholder="Email">#}
 {#                    <input class="span2" type="password" placeholder="Password">#}
-                    <button class="btn" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
+                    <button class="btn btn-primary" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
                         Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
 
                 </form>
 
                 </form>
-            </div> <!--/.nav-collapse -->
+            </div> <!--/.nav-collapse-->
         </div>
     </div>
 </div>
-
 
 
 <!-- Modal -->
@@ -435,7 +433,7 @@
 
                         <button href="#" class="btn  btn-small" id="btnPrint" ><span class="ui-button-text">Print </span><i class="icon-print"></i> </button>
                         <button href="#" class="btn  btn-small"><span class="ui-button-text">Edit &raquo;</span></button>
-                        <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experiemental Extras &raquo;</span></button>
+                        <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
                     </div>
                     <div class="btn-group" id="extras" data-toggle="buttons-checkbox" style="display: none">
                         <button type="button" id="ViewInstructor" class="btn  btn-small"><span class="ui-button-text">View Instructor</span> </button>
