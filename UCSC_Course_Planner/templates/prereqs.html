@@ -169,5 +169,8 @@
     </div>
     <input type="submit" value="Save Prerequisite">
 </form>
+{% for course in courses %}
+    '{{ course.number }}',
+{% endfor %}
 </body>
 </html>
