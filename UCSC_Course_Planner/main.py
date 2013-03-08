@@ -267,7 +267,6 @@ class Contact(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
-            return redirect('/login')
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
@@ -288,7 +287,6 @@ class About(webapp2.RequestHandler):
         else:
             logURL = (users.create_login_url("/"))
             is_logged_in = False
-            return redirect('/login')
         output = {
             'logURL': logURL,
             'is_logged_in': is_logged_in,
