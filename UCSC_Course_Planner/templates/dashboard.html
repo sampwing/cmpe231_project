@@ -24,11 +24,13 @@
         .classHeader{
             font-size: 13pt;
         }
-        .classUnits, .classInstructor, .classTime{
+{#        Sets these elements to be hidden initially...#}
+        .courseRemove, .classUnits, .classInstructor, .classTime{
             font-size:  small;
 
             display: none;
         }
+
         .classUnits{
 
             float: right;
@@ -140,6 +142,15 @@
     {#    Code For Hiding Elements#}
     <script>
         $(document).ready(function() {
+
+            $("#extrabutton").click(function () {
+
+                $("#extras").toggle('show');
+
+
+                return false;
+            });
+
             $("#ViewInstructor").click(function () {
                 $(".classInstructor").toggle();
                 if ( $("span", this).text() == "View Instructor"){
@@ -167,14 +178,48 @@
                 return false;
             });
 
-            $("#extrabutton").click(function () {
-
-                $("#extras").toggle('show');
-
-
+{#            when you click the specific edit button...#}
+            $("#edit").click(function () {
+                $(".courseRemove").toggle();     // this actually changes the display
+                // the rest updates the text on the button
+                if ( $("span", this).text() == "Edit"){
+                    $("#edit span").text("Exit Editing");
+                }
+                else $("span", this).text("Edit");
                 return false;
             });
+  
+{#            when you click anything with the class courseRemove #}
+{#            this means well then have to parse out it's ID to figure out which element in our li to remove'#}
+{#            well also should have a remove class confirmation dialog box or something nifty and boostrap.jsyyy#}
+{#            either use bootstraps alert: http://twitter.github.com/bootstrap/javascript.html#alerts#}
+{#            but probably a modal with colored buttons would be better : http://twitter.github.com/bootstrap/javascript.html#modals #}
+{#            are you sure you want to delete AMS20 from your schedule? #}
 
+{#            Need to figure out how to name the list... and how to pass what list and course a given remove button resides in so we #}
+{#            can remove the correct course. #}
+            $(".courseRemove").click( function() {
+
+                {#                currentId = $(this).attr('id');#}
+                var currentID = ($(this).attr('id'));
+                {#                alert(currentID);#}
+                alert(currentID);
+                var listnum = currentID.charAt(currentID.length-1);
+                var currentQuarter = currentID.substring(0, currentID.length - 6); // this isn't safe if a user has more than 10 classes
+                alert(listnum);
+                alert(currentQuarter);
+                $("#" + currentQuarter + "li").eq(listnum).remove();
+{#                $('#myModal').removeAttr('coursenum');#}
+{#                $('#myModal').attr('coursenum', currentID);#}
+{#                $('#myModal').modal('show');#}
+
+                {#                alert(currentID);#}
+
+            });
+
+
+
+{#            do we still use toggleView? #}
             $("#toggleView").click(function (){
                 $('.accordion-body').each(function(){
                     if ($(this).hasClass('in')) {
@@ -185,8 +230,9 @@
 
             })
 
-            firstToggle = true;
 
+            
+            firstToggle = true;
             function viewAll(){
                 if (firstToggle){
 
@@ -231,9 +277,7 @@
                 $('#myModal').attr('coursenum', currentID);
                 $('#myModal').modal('show');
 
-
 {#                alert(currentID);#}
-
 
             });
 
@@ -478,14 +522,14 @@
                         <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview &raquo;</span></button>
 
                         <button href="#" class="btn  btn-small" id="btnPrint" ><span class="ui-button-text">Print </span><i class="icon-print"></i> </button>
-                        <button href="#" class="btn  btn-small"><span class="ui-button-text">Edit &raquo;</span></button>
+                        <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
                     </div>
                     <div class="btn-group" id="extras" data-toggle="buttons-checkbox" style="display: none">
                         <button type="button" id="ViewInstructor" class="btn  btn-small"><span class="ui-button-text">View Instructor</span> </button>
                         <button type="button" id="ViewTime" class="btn  btn-small"><span class="ui-button-text">View Time</span> </button>
                         <button type="button" id="ViewUnits" class="btn  btn-small"><span class="ui-button-text">View Units</span> </button>
-                        <button type="button" id="ViewMinus" class="btn  btn-small"><span class="ui-button-text">View Minus</span> </button>
+{#                        <button type="button" id="ViewMinus" class="btn  btn-small"><span class="ui-button-text">View Remove Buttons</span> </button>#}
                         <button type="button" id="toggleView" class="btn  btn-small"><span class="ui-button-text">Toggle View</span> </button>
                     </div>
 
@@ -521,8 +565,8 @@
                                             <td>
 
                                                 <ul id="Fall12" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
+                                                    <li class="ui-state-default" id="Fall12Class0">
+                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" id="Fall12Class0"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
 
