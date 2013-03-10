@@ -86,6 +86,7 @@
         }
 
 
+
         body {
             padding-top: 60px;
             padding-bottom: 40px;
@@ -188,65 +189,27 @@
                 else $("span", this).text("Edit");
                 return false;
             });
-  
-{#            when you click anything with the class courseRemove #}
-{#            this means well then have to parse out it's ID to figure out which element in our li to remove'#}
-{#            well also should have a remove class confirmation dialog box or something nifty and boostrap.jsyyy#}
-{#            either use bootstraps alert: http://twitter.github.com/bootstrap/javascript.html#alerts#}
-{#            but probably a modal with colored buttons would be better : http://twitter.github.com/bootstrap/javascript.html#modals #}
-{#            are you sure you want to delete AMS20 from your schedule? #}
 
-{#            Need to figure out how to name the list... and how to pass what list and course a given remove button resides in so we #}
-{#            can remove the correct course. #}
             $(".courseRemove").click( function() {
-
-                var currentID = ($(this).attr('id'));
-{#                                alert(currentID);#}
-{#                alert(currentID);#}
-{#                var listnum = currentID.charAt(currentID.length-1);#}
-{#                var currentQuarter = currentID.substring(0, currentID.length - 6); // this isn't safe if a user has more than 10 classes#}
-{#                alert(listnum);#}
-{#                alert(currentQuarter);#}
                 objA = $(this).parent();
+                currentId = $(objA).parent().attr('id');
+{#                alert(currentId);#}
                 coursename = objA.text();
-                coursename = coursename.substring(0, currentID.length - 3);
-                alert(coursename);
+                coursename = coursename.substring(0, coursename.length - 3);
+{#                alert(coursename);#}
                 $('#classToRemove').empty();
                 $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
-                $('#confirmRemoveModal').removeAttr('coursenum');
-                $('#confirmRemoveModal').attr('coursenum', coursename);
+                $('#confirmRemoveModal').removeAttr('courseID');
+                $('#confirmRemoveModal').attr('courseID', currentId);
                 $('#confirmRemoveModal').modal('show');
-
-{#                removeIt = confirmRemove(coursename);#}
-                if (removeIt){
-                    objA.parent().remove();
-                };
-
-
-                {#                alert(currentID);#}
-
             });
 
-            function confirmRemove(coursename){
 
-{#                return true;#}
-{#                $('#'+ id).append('<li class="ui-state-default">' +#}
-{#                        '<div class="classHeader">'#}
-{#                        + course +#}
-{#                        '<span class="classUnits badge badge-success">1</span><br>' +#}
-{#                        '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +#}
-{#                        ' <div class="classTime">MWF 12-2pm<br></div>' +#}
-{#                        '</li>');#}
-
-            };
 
             $("#removeClassSerious").click(function (){
-                $('.accordion-body').each(function(){
-                    if ($(this).hasClass('in')) {
-                        $(this).collapse('toggle');
-                    }
-                    else $(this).collapse('toggle');
-                });
+                courseID = $('#confirmRemoveModal').attr('courseID');
+                $('#'+courseID).remove();
+                $('#confirmRemoveModal').modal('hide');
 
             })
 
@@ -464,7 +427,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-danger" id="">Remove Class</button>
+        <button class="btn btn-danger" id="removeClassSerious">Remove Class</button>
     </div>
 
 </div>
@@ -624,14 +587,14 @@
                                             <td>
 
                                                 <ul id="Fall12" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader"> PHYS 5A <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" id="Fall12Class0"><i class="icon-minus-sign"></i></span><br></div>
+                                                    <li class="ui-state-default" id="Fall12Class0">
+                                                        <div class="classHeader"> PHYS 5A <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
 
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYS 5L <span class="classUnits badge badge-success">1</span><br></div>
+                                                    <li class="ui-state-default" id="Fall12Class1">
+                                                        <div class="classHeader">PHYS 5L <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> <br></div>
                                                         <div class="classInstructor">Lab Instructor Name<br></div>
                                                         <div class="classTime">TH 8:30am-10am<br></div>
 
