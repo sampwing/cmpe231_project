@@ -200,23 +200,55 @@
 {#            can remove the correct course. #}
             $(".courseRemove").click( function() {
 
-                {#                currentId = $(this).attr('id');#}
                 var currentID = ($(this).attr('id'));
-                {#                alert(currentID);#}
-                alert(currentID);
-                var listnum = currentID.charAt(currentID.length-1);
-                var currentQuarter = currentID.substring(0, currentID.length - 6); // this isn't safe if a user has more than 10 classes
-                alert(listnum);
-                alert(currentQuarter);
-                $("#" + currentQuarter + "li").eq(listnum).remove();
-{#                $('#myModal').removeAttr('coursenum');#}
-{#                $('#myModal').attr('coursenum', currentID);#}
-{#                $('#myModal').modal('show');#}
+{#                                alert(currentID);#}
+{#                alert(currentID);#}
+{#                var listnum = currentID.charAt(currentID.length-1);#}
+{#                var currentQuarter = currentID.substring(0, currentID.length - 6); // this isn't safe if a user has more than 10 classes#}
+{#                alert(listnum);#}
+{#                alert(currentQuarter);#}
+                objA = $(this).parent();
+                coursename = objA.text();
+                coursename = coursename.substring(0, currentID.length - 3);
+                alert(coursename);
+                $('#classToRemove').empty();
+                $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
+                $('#confirmRemoveModal').removeAttr('coursenum');
+                $('#confirmRemoveModal').attr('coursenum', coursename);
+                $('#confirmRemoveModal').modal('show');
+
+{#                removeIt = confirmRemove(coursename);#}
+                if (removeIt){
+                    objA.parent().remove();
+                };
+
 
                 {#                alert(currentID);#}
 
             });
 
+            function confirmRemove(coursename){
+
+{#                return true;#}
+{#                $('#'+ id).append('<li class="ui-state-default">' +#}
+{#                        '<div class="classHeader">'#}
+{#                        + course +#}
+{#                        '<span class="classUnits badge badge-success">1</span><br>' +#}
+{#                        '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +#}
+{#                        ' <div class="classTime">MWF 12-2pm<br></div>' +#}
+{#                        '</li>');#}
+
+            };
+
+            $("#removeClassSerious").click(function (){
+                $('.accordion-body').each(function(){
+                    if ($(this).hasClass('in')) {
+                        $(this).collapse('toggle');
+                    }
+                    else $(this).collapse('toggle');
+                });
+
+            })
 
 
 {#            do we still use toggleView? #}
@@ -411,6 +443,32 @@
 
 </div>
 
+<div id="confirmRemoveModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveModalLabel" aria-hidden="true">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="confirmRemoveModalLabel">Remove Class?</h3>
+    </div>
+    <div class="modal-body">
+
+        <div id="classToRemove">AMS2000</div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-danger" id="">Remove Class</button>
+    </div>
+
+</div>
+
 
 {#<div id="printModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
 {##}
@@ -441,6 +499,7 @@
             <div>
 {#            <div style="background-color: beige">#}
                 <h2>News + Info</h2>
+
                 <p>Last Day to drop a class: April 5th
                 <br>
                    Spring Enrollement Opens: March 1st
@@ -565,8 +624,8 @@
                                             <td>
 
                                                 <ul id="Fall12" class="connectedSortable">
-                                                    <li class="ui-state-default" id="Fall12Class0">
-                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" id="Fall12Class0"><i class="icon-minus-sign"></i></span><br></div>
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader"> PHYS 5A <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" id="Fall12Class0"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
 
