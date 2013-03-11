@@ -294,10 +294,21 @@
             });
 
             function classAdder(id, course){
-                $('#'+ id).append('<li class="ui-state-default">' +
+                if ( $("span", $('#edit')).text() == "Edit"){
+                }
+                else {
+                    $("#edit").click();
+                }
+                alert(id);
+                alert(course);
+                classID = Fall12Class0        ;
+                //need to figure out the size of the list so we can add it
+                numEle = $('#'+ id ).parent().size()
+                alert(numEle)
+                $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
                         + course +
-                        '<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> <br>' +
+                        '<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span> <br>' +
                         '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +
                         ' <div class="classTime">MWF 12-2pm<br></div>' +
                         '</li>');
