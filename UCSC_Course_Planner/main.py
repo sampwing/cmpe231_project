@@ -189,6 +189,7 @@ class MajorProgress(webapp2.RequestHandler):
         minor3 = userQuery.minor3
         from models import MajorRequirements
         courses = MajorRequirements.gql("WHERE major='{}' ORDER by course DESC".format("CMPS")).fetch(limit=200)
+        courses = [course.course for course in courses]
         # courses.order("-department")
 
 
