@@ -142,6 +142,21 @@
     </script>
     {#    Code For Hiding Elements#}
     <script>
+        $(document).on('click', ".courseRemove", function(){
+                objA = $(this).parent();
+                currentId = $(objA).parent().attr('id');
+                {#                alert(currentId);#}
+                coursename = objA.text();
+                coursename = coursename.substring(0, coursename.length - 2);
+                {#                alert(coursename);#}
+                $('#classToRemove').empty();
+                $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
+                $('#confirmRemoveModal').removeAttr('courseID');
+                $('#confirmRemoveModal').attr('courseID', currentId);
+                $('#confirmRemoveModal').modal('show');
+            });
+
+
         $(document).ready(function() {
 
             $("#extrabutton").click(function () {
@@ -191,7 +206,7 @@
                 return false;
             });
 
-            $(".courseRemove").click( function() {
+                    $(".courseRemove").click( function() {
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
 {#                alert(currentId);#}
@@ -298,12 +313,13 @@
                 else {
                     $("#edit").click();
                 }
-                alert(id);
-                alert(course);
+                //alert(id);
+                //alert(course);
                 classID = Fall12Class0        ;
                 //need to figure out the size of the list so we can add it
-                numEle = $('#'+ id ).parent().size()
-                alert(numEle)
+                //alert('#'+ id);
+                numEle = $('#'+ id + " li").size();
+                //alert(numEle)
                 $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
                         + course +
@@ -481,27 +497,26 @@
                 <br>
                 </p>
                 <hr>
-                <h3> Major :</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection</a>
                 {% if major2 %}
-                    <h3> Majors :</h3>
+                    <h3> Majors:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection</a>
                 {% else %}
-
+                    <h3> Major:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection</a>
                 {%  endif %}
 
                 <h4>{{ major1 }} </h4>
                 <div class="progress progress-striped" style="width:95%">
-                    <div class="bar" style="width: 20%;"></div>
+                    <div class="bar" style="width: {{m1prog}}%;"></div>
                 </div>
                 {% if major2 %}
                     <h4>{{ major2 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{m2prog}}%;"></div>
                     </div>
                 {%  endif %}
                 {% if major3 %}
                     <h4>{{ major3 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{m3prog}}%;"></div>
                     </div>
                 {%  endif %}
             <hr>
@@ -527,19 +542,19 @@
                 {% if minor1 %}
                     <h4>{{ minor1 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{mi1prog}}%;"></div>
                     </div>
                 {%  endif %}
                 {% if minor2 %}
                     <h4>{{ minor2 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{mi2prog}}%;"></div>
                     </div>
                 {%  endif %}
                 {% if minor3 %}
                     <h4>{{ minor3 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{mi3prog}}%;"></div>
                     </div>
                 {%  endif %}
                 <hr>
@@ -613,19 +628,19 @@
 
                                                     </li>
                                                     <li class="ui-state-default" id="Fall12Class2">
-                                                        <div class="classHeader">CMPS 12B <span class="classUnits badge badge-success">5</span><br></div>
+                                                        <div class="classHeader">CMPS 12B <span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
 
                                                     </li>
                                                     <li class="ui-state-default" id="Fall12Class3">
-                                                        <div class="classHeader">CMPS 12L <span class="classUnits badge badge-success">2</span> </div>
+                                                        <div class="classHeader">CMPS 12L <span class="classUnits badge badge-success">2</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">TBA<br></div>
 
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">CMPE 16 <span class="classUnits badge badge-success">5</span><br></div>
+                                                    <li class="ui-state-default" id="Fall12Class4">
+                                                        <div class="classHeader">CMPE 16 <span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span></div>
                                                         <div class="classInstructor">T. Larabee<br></div>
                                                         <div class="classTime">MWF 9:30-10:40am<br></div>
                                                     </li>
@@ -637,43 +652,42 @@
                                                 {#                                <li class="ui-state-highlight">CMPS101</li>#}
                                                 {#                                <li class="ui-state-highlight">Math 21</li>#}
                                                 <ul id="Winter13" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><br></div>
+                                                    <li class="ui-state-default" id="Winter13Class1">
+                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
                                                     </li>
                                                     <li class="ui-state-default">
-                                                        <div class="classHeader">CMPS 101 <span class="classUnits badge badge-success">5</span><br></div>
+                                                        <div class="classHeader" id="Winter13Class2">CMPS 101 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">M. Warmuth<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span> </div>
+                                                    <li class="ui-state-default" id="Winter13Class3">
+                                                        <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>
                                                         <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">TBA<br></div>
                                                     </li>
-                                                    {#                                    </ul>#}
                                                 </ul>
                                             </td>
                                             <td>
                                                 <ul id="Spring13" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYSC 5C <span class="classUnits badge badge-success">5</span><br></div>
+                                                    <li class="ui-state-default" id="Spring13Class1">
+                                                        <div class="classHeader">PHYSC 5C <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Namme<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><br></div>
+                                                    <li class="ui-state-default" id="Spring13Class2">
+                                                        <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">J. Parker<br></div>
                                                         <div class="classTime">TBA<br></div>
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYSC 5L <span class="classUnits badge badge-success">1</span><br></div>
+                                                    <li class="ui-state-default" id="Spring13Class3">
+                                                        <div class="classHeader">PHYSC 5L <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Lab Instructor Namme<br></div>
                                                         <div class="classTime">TH 8:00am-6:45pm<br></div>
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">AMS <span class="classUnits badge badge-success">5</span> </div>
+                                                    <li class="ui-state-default" id="Spring13Class4">
+                                                        <div class="classHeader">AMS <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>
                                                         <div class="classInstructor">MeowNelson<br></div>
                                                         <div class="classTime">MWF 12:00-1:40pm<br></div>
                                                     </li>
@@ -681,13 +695,13 @@
                                             </td>
                                             <td>
                                                 <ul id="Summer13" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">CMPS109 <span class="classUnits badge badge-success">5</span><br></div>
+                                                    <li class="ui-state-default" id="Summer13Class1">
+                                                        <div class="classHeader">CMPS109 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
                                                     </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">Math 24<span class="classUnits badge badge-success">5</span><br></div>
+                                                    <li class="ui-state-default" id="Summer13Class2">
+                                                        <div class="classHeader">Math 24<span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Tamanoi<br></div>
                                                         <div class="classTime">TBA<br></div>
                                                     </li>
@@ -698,12 +712,10 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-{#                                            <button href="#" class="btn  btn-small" id="addUIElement"><span class="ui-button-text">Add Element &raquo;</span></button>#}
-
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall12B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter13B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring13B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer13B" href="#" >Add Course</a></th>
+                                            <th><a class="addClass" id="Fall12B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>
+                                            <th><a class="addClass" id="Winter13B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>
+                                            <th><a class="addClass" id="Spring13B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>
+                                            <th><a class="addClass" id="Summer13B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>
                                             </th>
                                         </tr>
                                         </tfoot>
