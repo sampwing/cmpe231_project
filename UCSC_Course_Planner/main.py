@@ -88,6 +88,7 @@ class Login(webapp2.RequestHandler):
 
 class Dashboard(webapp2.RequestHandler):
     def get(self):
+        from models import MajorRequirements, Progress, Course
         user = users.get_current_user()
         name = "none"
         if user:
@@ -108,6 +109,11 @@ class Dashboard(webapp2.RequestHandler):
         minor2 = userQuery.minor2
         minor3 = userQuery.minor3
 
+        requirements = MajorRequirements.all().filter('major =', 'CMPS').fetch(limit=100)
+        requirements = [course.course for course in requirements]
+        completed = Progress.all().filter('user =', userQuery).fetch(limit=100)
+        completed = [course.course for course in completed]
+        available = [course for course in requirements if course not in completed]
         output = {
             'major1': major1,
             'major2': major2,
@@ -117,7 +123,8 @@ class Dashboard(webapp2.RequestHandler):
             'minor3': minor3,
             'logURL': logURL,
             'is_logged_in': is_logged_in,
-            'name': name
+            'name': name,
+            'available': available,
             }
             
         path = os.path.join(os.path.dirname(__file__), 'templates/dashboard.html')
