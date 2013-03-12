@@ -159,6 +159,7 @@
 
         $(document).ready(function() {
 
+
             $("#extrabutton").click(function () {
 
                 $("#extras").toggle('show');
@@ -307,6 +308,8 @@
 
             });
 
+
+
             function classAdder(id, course){
                 if ( $("span", $('#edit')).text() == "Edit"){
                 }
@@ -315,7 +318,7 @@
                 }
                 //alert(id);
                 //alert(course);
-                classID = Fall12Class0        ;
+{#                classID = Fall12Class0        ;#}
                 //need to figure out the size of the list so we can add it
                 //alert('#'+ id);
                 numEle = $('#'+ id + " li").size();
@@ -328,36 +331,81 @@
                         ' <div class="classTime">MWF 12-2pm<br></div>' +
                         '</li>');
             };
+
+
+            function printElement(elem, append, delimiter) {
+                var domClone = elem.cloneNode(true);
+
+                var $printSection = document.getElementById("printSection");
+
+                if (!$printSection) {
+                    var $printSection = document.createElement("div");
+                    $printSection.id = "printSection";
+                    document.body.appendChild($printSection);
+                }
+
+                if (append !== true) {
+                    $printSection.innerHTML = "";
+                }
+
+                else if (append === true) {
+                    if (typeof (delimiter) === "string") {
+                        $printSection.innerHTML += delimiter;
+                    }
+                    else if (typeof (delimiter) === "object") {
+                        $printSection.appendChlid(delimiter);
+                    }
+                }
+
+                $printSection.appendChild(domClone);
+            }
+
+            $("#saveChanges").click( function() {
+                {#                $('.connectedSortable').#}
+
+
+                var phrases = [];
+
+                $('.connectedSortable').each(function(){
+                    // inner scope
+                    var phrase = '';
+                    $(this).find('li').each(function(){
+                        // cache jquery object
+                        var current = $(this);
+                        var currentQuarter = current.parent().attr('id');
+                        //alert(currentID);
+                        var currentHeader = $(this).children('.classHeader');
+                        currentHeader = currentHeader.text();
+                        currentHeader = currentHeader.substring(0, currentHeader.length - 2);
+                        //alert(currentHeader.text());
+                        //alert(current);
+                        //.substring(0, currentHeader.length - 1);
+
+                        // check for sub levels
+{#                        if(current.children().size() > 0) {#}
+{#                            // check is sublevel is just empty UL#}
+{#                            var emptyULtest = current.children().eq(0);#}
+{#                            if(emptyULtest.is('ul') && $.trim(emptyULtest.text())==""){#}
+{#                                phrase += ' -BLANK- '; //custom blank text#}
+{#                                return true;#}
+{#                            } else {#}
+{#                                // else it is an actual sublevel with li's#}
+{#                                return true;#}
+{#                            }#}
+{#                        }#}
+{#                        // if it gets to here it is actual li#}
+                        phrase += currentQuarter+','+currentHeader +',';
+                    });
+                    phrases.push(phrase);
+                });
+// note the comma to separate multiple phrases
+                alert(phrases);
+
+
+            });
         });
 {#       #}
 
-
-        function printElement(elem, append, delimiter) {
-            var domClone = elem.cloneNode(true);
-
-            var $printSection = document.getElementById("printSection");
-
-            if (!$printSection) {
-                var $printSection = document.createElement("div");
-                $printSection.id = "printSection";
-                document.body.appendChild($printSection);
-            }
-
-            if (append !== true) {
-                $printSection.innerHTML = "";
-            }
-
-            else if (append === true) {
-                if (typeof (delimiter) === "string") {
-                    $printSection.innerHTML += delimiter;
-                }
-                else if (typeof (delimiter) === "object") {
-                    $printSection.appendChlid(delimiter);
-                }
-            }
-
-            $printSection.appendChild(domClone);
-        }
 
     </script>
 
@@ -498,9 +546,9 @@
                 </p>
                 <hr>
                 {% if major2 %}
-                    <h3> Majors:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection</a>
+                    <h3> Majors:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection <i class="icon-edit"></i></a>
                 {% else %}
-                    <h3> Major:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection</a>
+                    <h3> Major:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection <i class="icon-file"></i></a>
                 {%  endif %}
 
                 <h4>{{ major1 }} </h4>
@@ -559,7 +607,7 @@
                 {%  endif %}
                 <hr>
                 <h3>Additional Notes:</h3>
-                <p>Other relevant infromation to students...</p>
+                <p>Other relevant information to students...</p>
             </div>
         </div>
         <!-- Main hero unit for a primary marketing message or call to action -->
@@ -572,9 +620,10 @@
                         <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview &raquo;</span></button>
 
                         <button href="#" class="btn  btn-small" id="btnPrint" ><span class="ui-button-text">Print </span><i class="icon-print"></i> </button>
-                        <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span></button>
+                        <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span> <i class="icon-pencil"></i></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
                     </div>
+                    <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" ><span class="ui-button-text">Save Changes </span><i class="icon-file"></i> </button>
                     <div class="btn-group" id="extras" data-toggle="buttons-checkbox" style="display: none">
                         <button type="button" id="ViewInstructor" class="btn  btn-small"><span class="ui-button-text">View Instructor</span> </button>
                         <button type="button" id="ViewTime" class="btn  btn-small"><span class="ui-button-text">View Time</span> </button>
@@ -728,138 +777,138 @@
                         </div>
 
                     </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse"  href="#collapseTwo">
-                            <div class="row">
-                            <h3 style="text-align:center;" >2013 - 2014</h3>
-                            </div>
-                            </a>
-                        </div>
-
-                        <div id="collapseTwo" class="accordion-body collapse">
-                            <div class="accordion-inner">
-
-                                <div class="">
-                                    <table class="table table-bordeed">
-                                        <thead>
-                                        <tr>
-                                            <th>Fall</th>
-                                            <th>Winter</th>
-                                            <th>Spring</th>
-                                            <th>Summer</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-
-                                                <ul id="Fall13" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
-                                                        <div class="classInstructor">Instructor Name<br></div>
-                                                        <div class="classTime">MWF 12-2pm<br></div>
-
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYS 5L <span class="classUnits badge badge-success">1</span><br></div>
-                                                        <div class="classInstructor">Lab Instructor Name<br></div>
-                                                        <div class="classTime">TH 8:30am-10am<br></div>
-
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">CMPS 12B <span class="classUnits badge badge-success">5</span><br></div>
-                                                        <div class="classInstructor">W. Mackey<br></div>
-                                                        <div class="classTime">T/TH 5-6:45pm<br></div>
-
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">CMPS 12L <span class="classUnits badge badge-success">2</span> </div>
-                                                        <div class="classInstructor">W. Mackey<br></div>
-                                                        <div class="classTime">TBA<br></div>
-
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">CMPE 16 <span class="classUnits badge badge-success">5</span><br></div>
-                                                        <div class="classInstructor">T. Larabee<br></div>
-                                                        <div class="classTime">MWF 9:30-10:40am<br></div>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                            <td>
+{#                    <div class="accordion-group">#}
+{#                        <div class="accordion-heading">#}
+{#                            <a class="accordion-toggle" data-toggle="collapse"  href="#collapseTwo">#}
+{#                            <div class="row">#}
+{#                            <h3 style="text-align:center;" >2013 - 2014</h3>#}
+{#                            </div>#}
+{#                            </a>#}
+{#                        </div>#}
+{##}
+{#                        <div id="collapseTwo" class="accordion-body collapse">#}
+{#                            <div class="accordion-inner">#}
+{##}
+{#                                <div class="">#}
+{#                                    <table class="table table-bordeed">#}
+{#                                        <thead>#}
+{#                                        <tr>#}
+{#                                            <th>Fall</th>#}
+{#                                            <th>Winter</th>#}
+{#                                            <th>Spring</th>#}
+{#                                            <th>Summer</th>#}
+{#                                        </tr>#}
+{#                                        </thead>#}
+{#                                        <tbody>#}
+{#                                        <tr>#}
+{#                                            <td>#}
+{##}
+{#                                                <ul id="Fall13" class="connectedSortable">#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>#}
+{#                                                        <div class="classInstructor">Instructor Name<br></div>#}
+{#                                                        <div class="classTime">MWF 12-2pm<br></div>#}
+{##}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">PHYS 5L <span class="classUnits badge badge-success">1</span><br></div>#}
+{#                                                        <div class="classInstructor">Lab Instructor Name<br></div>#}
+{#                                                        <div class="classTime">TH 8:30am-10am<br></div>#}
+{##}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">CMPS 12B <span class="classUnits badge badge-success">5</span><br></div>#}
+{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
+{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
+{##}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">CMPS 12L <span class="classUnits badge badge-success">2</span> </div>#}
+{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
+{#                                                        <div class="classTime">TBA<br></div>#}
+{##}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">CMPE 16 <span class="classUnits badge badge-success">5</span><br></div>#}
+{#                                                        <div class="classInstructor">T. Larabee<br></div>#}
+{#                                                        <div class="classTime">MWF 9:30-10:40am<br></div>#}
+{#                                                    </li>#}
+{#                                                </ul>#}
+{#                                            </td>#}
+{#                                            <td>#}
                                                 {#                                <ul id="sortable2" class="connectedSortable">#}
                                                 {#                                <li class="ui-state-highlight" style>HCI 131</li>#}
                                                 {#                                <li class="ui-state-highlight">CMPS101</li>#}
                                                 {#                                <li class="ui-state-highlight">Math 21</li>#}
-                                                <ul id="Winter14" class="connectedSortable">
-                                                    <li class="ui-state-highlight">
-                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><br></div>
-                                                        <div class="classInstructor">Instructor Name<br></div>
-                                                        <div class="classTime">MWF 12-2pm<br></div>
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">CMPS 101 <span class="classUnits badge badge-success">5</span><br></div>
-                                                        <div class="classInstructor">M. Warmuth<br></div>
-                                                        <div class="classTime">T/TH 5-6:45pm<br></div>
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span> </div>
-                                                        <div class="classInstructor">W. Mackey<br></div>
-                                                        <div class="classTime">TBA<br></div>
-                                                    </li>
+{#                                                <ul id="Winter14" class="connectedSortable">#}
+{#                                                    <li class="ui-state-highlight">#}
+{#                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><br></div>#}
+{#                                                        <div class="classInstructor">Instructor Name<br></div>#}
+{#                                                        <div class="classTime">MWF 12-2pm<br></div>#}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">CMPS 101 <span class="classUnits badge badge-success">5</span><br></div>#}
+{#                                                        <div class="classInstructor">M. Warmuth<br></div>#}
+{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span> </div>#}
+{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
+{#                                                        <div class="classTime">TBA<br></div>#}
+{#                                                    </li>#}
                                                     {#                                    </ul>#}
-                                                </ul>
-                                            </td>
-                                            <td>
-                                                <ul id="Spring14" class="connectedSortable">
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYSC 5C <span class="classUnits badge badge-success">5</span><br></div>
-                                                        <div class="classInstructor">Namme<br></div>
-                                                        <div class="classTime">T/TH 5-6:45pm<br></div>
-                                                    </li>
-                                                    <li class="ui-state-highlight">
-                                                        <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><br></div>
-                                                        <div class="classInstructor">J. Parker<br></div>
-                                                        <div class="classTime">TBA<br></div>
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">PHYSC 5L <span class="classUnits badge badge-success">1</span><br></div>
-                                                        <div class="classInstructor">Lab Instructor Namme<br></div>
-                                                        <div class="classTime">TH 8:00am-6:45pm<br></div>
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader">AMS <span class="classUnits badge badge-success">5</span> </div>
-                                                        <div class="classInstructor">MeowNelson<br></div>
-                                                        <div class="classTime">MWF 12:00-1:40pm<br></div>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                            <td>
-                                                <ul id="Summer14" class="connectedSortable">
-                                                    <li class="ui-state-default">Summer Session Stuff</li>
-                                                    <li class="ui-state-default">PHYSC 5C/L</li>
-                                                    <li class="ui-state-default">AMS 20</li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall13B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter14B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring14B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer14B" href="#" >Add Course</a></th>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-
-                    </div>
+{#                                                </ul>#}
+{#                                            </td>#}
+{#                                            <td>#}
+{#                                                <ul id="Spring14" class="connectedSortable">#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">PHYSC 5C <span class="classUnits badge badge-success">5</span><br></div>#}
+{#                                                        <div class="classInstructor">Namme<br></div>#}
+{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-highlight">#}
+{#                                                        <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><br></div>#}
+{#                                                        <div class="classInstructor">J. Parker<br></div>#}
+{#                                                        <div class="classTime">TBA<br></div>#}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">PHYSC 5L <span class="classUnits badge badge-success">1</span><br></div>#}
+{#                                                        <div class="classInstructor">Lab Instructor Namme<br></div>#}
+{#                                                        <div class="classTime">TH 8:00am-6:45pm<br></div>#}
+{#                                                    </li>#}
+{#                                                    <li class="ui-state-default">#}
+{#                                                        <div class="classHeader">AMS <span class="classUnits badge badge-success">5</span> </div>#}
+{#                                                        <div class="classInstructor">MeowNelson<br></div>#}
+{#                                                        <div class="classTime">MWF 12:00-1:40pm<br></div>#}
+{#                                                    </li>#}
+{#                                                </ul>#}
+{#                                            </td>#}
+{#                                            <td>#}
+{#                                                <ul id="Summer14" class="connectedSortable">#}
+{#                                                    <li class="ui-state-default">Summer Session Stuff</li>#}
+{#                                                    <li class="ui-state-default">PHYSC 5C/L</li>#}
+{#                                                    <li class="ui-state-default">AMS 20</li>#}
+{#                                                </ul>#}
+{#                                            </td>#}
+{#                                        </tr>#}
+{#                                        </tbody>#}
+{#                                        <tfoot>#}
+{#                                        <tr>#}
+{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall13B" href="#" >Add Course</a></th>#}
+{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter14B" href="#" >Add Course</a></th>#}
+{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring14B" href="#" >Add Course</a></th>#}
+{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer14B" href="#" >Add Course</a></th>#}
+{#                                        </tr>#}
+{#                                        </tfoot>#}
+{#                                    </table>#}
+{#                                </div>#}
+{##}
+{##}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
                 </div>
 
 
