@@ -211,22 +211,16 @@ class MajorProgress(webapp2.RequestHandler):
         self.response.write(template.render(path, output))
 
     def post(self):
+        from models import Course, Progress
         user = users.get_current_user()
-        userQuery = User.gql("WHERE name='{}'".format(user.nickname())).get()
-
-        courses = (self.request.get('courses',  allow_multiple=True))
-        self.response.write("Courses!: " + str(courses))
-
-        #Add course to db for the user
-        #
-
+        course_numbers = (self.request.get('courses',  allow_multiple=True))
+        current_user = User.all().filter('email =', user.email()).get()
+        for course_number in course_numbers:
+            course = Course.all().filter('number =',course_number).get()
+            progress = Progress(user=current_user, course=course, completed=True)
+            progress.put()
         return redirect('/dashboard')
-        # userQuery.major2 = cgi.escape(self.request.get('m2'))
-        # userQuery.major3 = cgi.escape(self.request.get('m3'))
-        # userQuery.minor1 = cgi.escape(self.request.get('mi1'))
-        # userQuery.minor2 = cgi.escape(self.request.get('mi2'))
-        # userQuery.minor3 = cgi.escape(self.request.get('mi3'))
-        # userQuery.put()
+
 
 
 class ListCourses(webapp2.RequestHandler):
