@@ -139,9 +139,22 @@
                 connectWith: ".connectedSortable"
             }).disableSelection();
         });
+
+{#        window.onbeforeunload = function(){#}
+{#            var check = checkExit();#}
+            {#        initialclassload != classlist#}
+{#            if(check){#}
+{#                return "Are you sure you want to leave?  You haven't saved your changes."#}
+{#            }#}
+{#        }#}
     </script>
     {#    Code For Hiding Elements#}
     <script>
+
+
+        var initialclassload;
+
+
         $(document).on('click', ".courseRemove", function(){
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
@@ -158,6 +171,28 @@
 
 
         $(document).ready(function() {
+
+{##}
+{#            var initialclassload = [];#}
+{##}
+{#            $('.connectedSortable').each(function(){#}
+{#                // inner scope#}
+{#                var classname = '';#}
+{#                $(this).find('li').each(function(){#}
+{#                    // cache jquery object#}
+{#                    var current = $(this);#}
+{#                    var currentQuarter = current.parent().attr('id');#}
+{#                    //alert(currentID);#}
+{#                    var currentHeader = $(this).children('.classHeader');#}
+{#                    currentHeader = currentHeader.text();#}
+{#                    currentHeader = currentHeader.substring(0, currentHeader.length - 2);#}
+{##}
+{#                    classname += currentQuarter+','+currentHeader +',';#}
+{#                });#}
+{#                initialclassload.push(classname);#}
+{#            });#}
+{#            #}
+// note the comma to separate multiple phrases
 
 
             $("#extrabutton").click(function () {
@@ -302,7 +337,9 @@
 {#                alert(currentID);#}
                 var classNumber = $('#classSearch').val();
 
-                classAdder(currentID, classNumber);
+                var classname = classNumber.split(/\s*\-\s*/g);
+
+                classAdder(currentID, classname[0]);
                 {#                alert(currentID);#}
 
 
@@ -325,7 +362,7 @@
                 //alert(numEle)
                 $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
-                        + course +
+                        + course +' ' +
                         '<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span> <br>' +
                         '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +
                         ' <div class="classTime">MWF 12-2pm<br></div>' +
@@ -360,49 +397,34 @@
                 $printSection.appendChild(domClone);
             }
 
+
             $("#saveChanges").click( function() {
-                {#                $('.connectedSortable').#}
-
-
-                var phrases = [];
-
+                var classlist = [];
                 $('.connectedSortable').each(function(){
                     // inner scope
-                    var phrase = '';
+                    var classname = '';
                     $(this).find('li').each(function(){
-                        // cache jquery object
                         var current = $(this);
                         var currentQuarter = current.parent().attr('id');
-                        //alert(currentID);
                         var currentHeader = $(this).children('.classHeader');
                         currentHeader = currentHeader.text();
                         currentHeader = currentHeader.substring(0, currentHeader.length - 2);
-                        //alert(currentHeader.text());
-                        //alert(current);
-                        //.substring(0, currentHeader.length - 1);
-
-                        // check for sub levels
-{#                        if(current.children().size() > 0) {#}
-{#                            // check is sublevel is just empty UL#}
-{#                            var emptyULtest = current.children().eq(0);#}
-{#                            if(emptyULtest.is('ul') && $.trim(emptyULtest.text())==""){#}
-{#                                phrase += ' -BLANK- '; //custom blank text#}
-{#                                return true;#}
-{#                            } else {#}
-{#                                // else it is an actual sublevel with li's#}
-{#                                return true;#}
-{#                            }#}
-{#                        }#}
-{#                        // if it gets to here it is actual li#}
-                        phrase += currentQuarter+','+currentHeader +',';
+                        classname += currentQuarter+','+currentHeader +',';
                     });
-                    phrases.push(phrase);
+                    classlist.push(classname);
                 });
-// note the comma to separate multiple phrases
-                alert(phrases);
+                alert(classlist);
+                $.post("/dashboard", { 'courses' : classlist } )
+                            .done(function(data) {
+                                alert("Data Loaded: " + data);
+{#                                window.location.href = "/majorprogress";#}
 
-
+                });
             });
+{##}
+{#            function checkExit(){#}
+{#                return (initialclassload != classlist);#}
+{#            }#}
         });
 {#       #}
 
@@ -630,6 +652,7 @@
                         <button type="button" id="ViewUnits" class="btn  btn-small"><span class="ui-button-text">View Units</span> </button>
 {#                        <button type="button" id="ViewMinus" class="btn  btn-small"><span class="ui-button-text">View Remove Buttons</span> </button>#}
                         <button type="button" id="toggleView" class="btn  btn-small"><span class="ui-button-text">Toggle View</span> </button>
+
                     </div>
 
                 </div>
@@ -665,31 +688,31 @@
 
                                                 <ul id="Fall12" class="connectedSortable">
                                                     <li class="ui-state-default" id="Fall12Class0">
-                                                        <div class="classHeader"> PHYS 5A <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classHeader">PHYS 5A<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
 
                                                     </li>
                                                     <li class="ui-state-default" id="Fall12Class1">
-                                                        <div class="classHeader">PHYS 5L <span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> <br></div>
-                                                        <div class="classInstructor">Lab Instructor Name<br></div>
-                                                        <div class="classTime">TH 8:30am-10am<br></div>
+                                                        <div class="classHeader">PHYS 5L<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classInstructor">Instructor Name<br></div>
+                                                        <div class="classTime">MWF 12-2pm<br></div>
 
                                                     </li>
                                                     <li class="ui-state-default" id="Fall12Class2">
-                                                        <div class="classHeader">CMPS 12B <span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classHeader">CMPS 12B<span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
 
                                                     </li>
                                                     <li class="ui-state-default" id="Fall12Class3">
-                                                        <div class="classHeader">CMPS 12L <span class="classUnits badge badge-success">2</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classHeader">CMPS 12L<span class="classUnits badge badge-success">2</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">TBA<br></div>
 
                                                     </li>
                                                     <li class="ui-state-default" id="Fall12Class4">
-                                                        <div class="classHeader">CMPE 16 <span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span></div>
+                                                        <div class="classHeader">CMPE 16<span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span></div>
                                                         <div class="classInstructor">T. Larabee<br></div>
                                                         <div class="classTime">MWF 9:30-10:40am<br></div>
                                                     </li>
@@ -702,14 +725,15 @@
                                                 {#                                <li class="ui-state-highlight">Math 21</li>#}
                                                 <ul id="Winter13" class="connectedSortable">
                                                     <li class="ui-state-default" id="Winter13Class1">
-                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
-                                                        <div class="classInstructor">Instructor Name<br></div>
-                                                        <div class="classTime">MWF 12-2pm<br></div>
-                                                    </li>
-                                                    <li class="ui-state-default">
-                                                        <div class="classHeader" id="Winter13Class2">CMPS 101 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
-                                                        <div class="classInstructor">M. Warmuth<br></div>
+                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classInstructor">W. Mackey<br></div>
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
+
+                                                    </li>
+                                                    <li class="ui-state-default" id="Winter13Class2">
+                                                        <div class="classHeader">CMPS 101 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>
+                                                        <div class="classInstructor">W. Mackey<br></div>
+                                                        <div class="classTime">TBA<br></div>
                                                     </li>
                                                     <li class="ui-state-default" id="Winter13Class3">
                                                         <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>
@@ -736,7 +760,7 @@
                                                         <div class="classTime">TH 8:00am-6:45pm<br></div>
                                                     </li>
                                                     <li class="ui-state-default" id="Spring13Class4">
-                                                        <div class="classHeader">AMS <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>
+                                                        <div class="classHeader">AMS 131<span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>
                                                         <div class="classInstructor">MeowNelson<br></div>
                                                         <div class="classTime">MWF 12:00-1:40pm<br></div>
                                                     </li>
@@ -750,7 +774,7 @@
                                                         <div class="classTime">T/TH 5-6:45pm<br></div>
                                                     </li>
                                                     <li class="ui-state-default" id="Summer13Class2">
-                                                        <div class="classHeader">Math 24<span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classHeader">Math 24 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Tamanoi<br></div>
                                                         <div class="classTime">TBA<br></div>
                                                     </li>

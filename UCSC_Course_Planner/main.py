@@ -142,6 +142,18 @@ class Dashboard(webapp2.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/dashboard.html')
         self.response.write(template.render(path, output))
 
+    def post(self):
+        from models import Course, Progress
+        user = users.get_current_user()
+        course_numbers = (self.request.get('courses[]',  allow_multiple=True))
+        current_user = User.all().filter('email =', user.email()).get()
+        self.response.write("test" + str(course_numbers));
+        # for course_number in course_numbers:
+        #     course = Course.all().filter('number =',course_number).get()
+        #     progress = Progress(user=current_user, course=course, completed=True)
+        #     progress.put()
+        #return redirect('/dashboard')
+
 class Homepage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
