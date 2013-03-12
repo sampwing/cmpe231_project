@@ -142,6 +142,21 @@
     </script>
     {#    Code For Hiding Elements#}
     <script>
+        $(document).on('click', ".courseRemove", function(){
+                objA = $(this).parent();
+                currentId = $(objA).parent().attr('id');
+                {#                alert(currentId);#}
+                coursename = objA.text();
+                coursename = coursename.substring(0, coursename.length - 3);
+                {#                alert(coursename);#}
+                $('#classToRemove').empty();
+                $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
+                $('#confirmRemoveModal').removeAttr('courseID');
+                $('#confirmRemoveModal').attr('courseID', currentId);
+                $('#confirmRemoveModal').modal('show');
+            });
+
+
         $(document).ready(function() {
 
             $("#extrabutton").click(function () {
@@ -191,8 +206,10 @@
                 else $("span", this).text("Edit");
                 return false;
             });
-
             $(".courseRemove").click( function() {
+                alert("Works!");
+            });
+                    $(".courseRemove").click( function() {
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
 {#                alert(currentId);#}
@@ -299,12 +316,13 @@
                 else {
                     $("#edit").click();
                 }
-                alert(id);
-                alert(course);
+                //alert(id);
+                //alert(course);
                 classID = Fall12Class0        ;
                 //need to figure out the size of the list so we can add it
-                numEle = $('#'+ id ).parent().size()
-                alert(numEle)
+                //alert('#'+ id);
+                numEle = $('#'+ id + " li").size();
+                //alert(numEle)
                 $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
                         + course +
