@@ -107,6 +107,12 @@ class Dashboard(webapp2.RequestHandler):
         minor1 = userQuery.minor1
         minor2 = userQuery.minor2
         minor3 = userQuery.minor3
+        m1prog = "10";
+        m2prog = "20";
+        m3prog = "30";
+        mi1prog = "10";
+        mi2prog = "15";
+        mi3prog = "50";
 
         output = {
             'major1': major1,
@@ -115,6 +121,12 @@ class Dashboard(webapp2.RequestHandler):
             'minor1': minor1,
             'minor2': minor2,
             'minor3': minor3,
+            'm1prog': m1prog,
+            'm2prog': m2prog,
+            'm3prog': m3prog,
+            'mi1prog': mi1prog,
+            'mi2prog': mi2prog,
+            'mi3prog': mi3prog,
             'logURL': logURL,
             'is_logged_in': is_logged_in,
             'name': name

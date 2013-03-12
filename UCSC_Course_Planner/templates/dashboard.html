@@ -147,7 +147,7 @@
                 currentId = $(objA).parent().attr('id');
                 {#                alert(currentId);#}
                 coursename = objA.text();
-                coursename = coursename.substring(0, coursename.length - 3);
+                coursename = coursename.substring(0, coursename.length - 2);
                 {#                alert(coursename);#}
                 $('#classToRemove').empty();
                 $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
@@ -206,9 +206,7 @@
                 else $("span", this).text("Edit");
                 return false;
             });
-            $(".courseRemove").click( function() {
-                alert("Works!");
-            });
+
                     $(".courseRemove").click( function() {
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
@@ -508,18 +506,18 @@
 
                 <h4>{{ major1 }} </h4>
                 <div class="progress progress-striped" style="width:95%">
-                    <div class="bar" style="width: 20%;"></div>
+                    <div class="bar" style="width: {{m1prog}}%;"></div>
                 </div>
                 {% if major2 %}
                     <h4>{{ major2 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{m2prog}}%;"></div>
                     </div>
                 {%  endif %}
                 {% if major3 %}
                     <h4>{{ major3 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{m3prog}}%;"></div>
                     </div>
                 {%  endif %}
             <hr>
@@ -545,19 +543,19 @@
                 {% if minor1 %}
                     <h4>{{ minor1 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{mi1prog}}%;"></div>
                     </div>
                 {%  endif %}
                 {% if minor2 %}
                     <h4>{{ minor2 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{mi2prog}}%;"></div>
                     </div>
                 {%  endif %}
                 {% if minor3 %}
                     <h4>{{ minor3 }} </h4>
                     <div class="progress progress-striped" style="width:95%" >
-                        <div class="bar" style="width: 20%;"></div>
+                        <div class="bar" style="width: {{mi3prog}}%;"></div>
                     </div>
                 {%  endif %}
                 <hr>
