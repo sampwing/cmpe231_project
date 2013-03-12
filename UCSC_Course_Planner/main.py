@@ -113,7 +113,7 @@ class Dashboard(webapp2.RequestHandler):
         requirements = [course.course for course in requirements]
         completed = Progress.all().filter('user =', userQuery).fetch(limit=100)
         completed = [course.course for course in completed]
-        available = [course for course in requirements if course not in completed]
+        available = ['{}-{}'.format(course.number, course.name) for course in requirements if course not in completed]
         output = {
             'major1': major1,
             'major2': major2,

@@ -109,11 +109,7 @@
 <div class="container">
 
     <!-- Main hero unit for a primary marketing message or call to action -->
-{#    <div class="hero-unit">#}
-{#        <h3>Select your Major, Minor, etc.</h3>#}
-{#        <p>Start planning the rest of your college career today!</p>#}
-{##}
-{#    </div>#}
+
     <!-- Example row of columns -->
     <div class="row">
         <div class="span2"></div>
@@ -124,26 +120,13 @@
                 <br><br>
             </p>
 
-{#            <div class="course" id="{{coursename}}">#}
-{#                <div class="btn-group" data-toggle="buttons-radio" >#}
-{#                    <button type="button" class="btn ">I've Taken this.</button>#}
-{#                    <button type="button" class="btn ">I want to take this.</button>#}
-{#                </div>#}
-{#                <span class="{{coursename}}" >{{coursename}}</span>#}
-{#            </div>#}
-{#            #}
             <hr>
             <h3>{{ major1 }}</h3>
             <form name="input" action="/majorprogress" method="post">
-            {% for coursename in courses %}
+            {% for course in courses %}
                 <label class="checkbox">
-                    <input type="checkbox" style="font-size:150%;" name="courses" value="class{{forloop.counter}}">  {{coursename}}
+                    <input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }} {{ course.name }}
                 </label>
-{#            <div class="course" id="c{{coursename}}">#}
-{#                <button type="button" id="b{{coursename}}" data-toggle="button" class="btn cbutton"><i class='icon-remove' style="opacity: 0"></i></button>#}
-{#                {{coursename}}#}
-{##}
-{#            </div>#}
             {% endfor %}
 
             <button type="submit" class="btn btn-primary ">
@@ -161,7 +144,6 @@
 
             </div>
             <hr>
-{#            <a class="btn btn-primary" style=" float: right;" href="#">Next Step »</a>#}
 
 
     </div> <!-- /container -->
