@@ -1,0 +1,23 @@
+CE Project
+
+   * Is the add class screen populating the right courses???
+   * 
+      * make it select from minor majors
+      * get ride of duplicates
+      * save classes to profile as classes you've taken.
+      * figure out edit button styling when dynamically adding class
+   * add edit buttons to major selection- classes i've taken pages
+   * Add correct courseID when you dynamically add a class (correct quarter+class+quarterlength)
+   * Figure out Auto Fill the rest of the schedule 
+
+   * No logic to stop adding a duplicate major - it should be removed from the other lists once selected
+   * Figure out calculation for percentage of major done
+   * Editing major/minor selection 
+   * 
+      * create a duplicate of selection page, w/ django 
+   * Help Page/tutorial 
+   * when we remove a class it needs to add that class to the type ahead source
+   * change overview button so it changes text when you click it… show current year 
+   * figure out why removing classes isn't working everytime…
+   * figure out post method for submitting classes you've saved.
+
