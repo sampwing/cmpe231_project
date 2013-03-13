@@ -14,6 +14,18 @@
             padding-top: 60px;
             padding-bottom: 40px;
         }
+        
+        .fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+  -moz-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+.fade.in {
+  opacity: 1;
+}
+        
     </style>
     <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -31,7 +43,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
     <style type="text/css"></style>
 
 
@@ -50,13 +62,16 @@
                 mi2 = document.getElementById("minorList2").options[minorList2.selectedIndex].text;
                 mi3 = document.getElementById("minorList3").options[minorList3.selectedIndex].text;
                 name = "{{name}}"
-
-                $.post("/MajorSelected", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
-                        .done(function() {
-{#                            alert("Data Loaded: " + data);#}
-                            window.location.href = "/majorprogress";
-                        });
-{#                window.location.href = "/majorprogress";#}
+                if (m1 == "") {
+                    alert("Gotta select a major bub.");                  
+                } else {
+                    $.post("/MajorSelected", { m1: m1, m2: m2, m3:m3, mi1:mi1, mi2:mi2, mi3:mi3 } )
+                            .done(function() {
+    {#                            alert("Data Loaded: " + data);#}
+                                window.location.href = "/majorprogress";
+                            });
+    {#                window.location.href = "/majorprogress";#}
+                }
             });
 
 {#            subpar redirect method. this should happen before page load, from the calling button#}
@@ -188,22 +203,14 @@
             </button>
             <a class="brand" href="/">UCSC Course Planner</a>
             <div class="nav-collapse collapse">
-                <ul class="nav">
+                               <ul class="nav">
+                    {% if is_logged_in %}
+                    <li class="active"><a href="/dashboard">Home</a></li>
+                    {% else %}
                     <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="nav-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
+                    {% endif %}
+                    <li><a href="/About">About</a></li>
+                    <li><a href="/Contact">Contact</a></li>
                 </ul>
                 <form class="navbar-form pull-right">
 {#                    <input class="span2" type="text" placeholder="Email">#}
@@ -374,23 +381,19 @@
                             <button id="removeMinorButton3" class="btn"><i class="icon-minus-sign icon-blacks"></i> Remove Minor</button>
                         </form>
                     </div>
-
-
                 </div>
-
-
             </div>
             <hr>
             <a class="btn btn-primary" id="finalSubmit" style=" float: right;" href="#">Next Step »</a>
         </div>
 
         <hr>
-
-        <footer>
-            <p>© Company 2013</p>
-        </footer>
-
     </div> <!-- /container -->
+    <footer align="center">
+        <p>© HCI 2013</p>
+    </footer>
+
+     
 
 <!-- Le javascript
 ================================================== -->
