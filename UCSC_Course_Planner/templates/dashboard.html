@@ -399,6 +399,7 @@
 
 
             $("#saveChanges").click( function() {
+                $('#saveChanges').button('loading');
                 var classlist = [];
                 $('.connectedSortable').each(function(){
                     // inner scope
@@ -416,6 +417,7 @@
                 alert(classlist);
                 $.post("/dashboard", { 'courses' : classlist } )
                             .done(function(data) {
+                            $('#saveChanges').button('complete');
                                 alert("Data Loaded: " + data);
 {#                                window.location.href = "/majorprogress";#}
 
@@ -479,8 +481,12 @@
     </div>
     <div class="modal-body">
         <p>Type a course name or number to add it.</p>
+        <div class="input-prepend">
+            <span class="add-on"><i class="icon-search"></i></span>
+            <input type="text" id="classSearch" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" placeholder="AMS20, CMPS12B, etc.">
 
-        <input type="text" id="classSearch" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" placeholder="AMS20, CMPS12B, etc.">
+        </div>
+
 {#        <span class="help-block">Enter a class name or number to select it.</span>#}
         <br>
         <br>
@@ -645,7 +651,7 @@
                         <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span> <i class="icon-pencil"></i></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
                     </div>
-                    <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" ><span class="ui-button-text">Save Changes </span><i class="icon-file"></i> </button>
+                    <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-complete-text="Saved"><span class="ui-button-text">Save Changes </span><i class="icon-file"></i> </button>
                     <div class="btn-group" id="extras" data-toggle="buttons-checkbox" style="display: none">
                         <button type="button" id="ViewInstructor" class="btn  btn-small"><span class="ui-button-text">View Instructor</span> </button>
                         <button type="button" id="ViewTime" class="btn  btn-small"><span class="ui-button-text">View Time</span> </button>
@@ -657,6 +663,7 @@
 
                 </div>
                 </div>
+        <div class="row"><br></div>
                 <div class="accordion" id="accordion2">
                     <div class="accordion-group">
                         <div class="accordion-heading">
