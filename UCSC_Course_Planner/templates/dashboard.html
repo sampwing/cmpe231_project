@@ -427,6 +427,7 @@
                 $.post("/dashboard", { 'courses' : classlist } )
                             .done(function(data) {
                               updateChanges(false);
+                            $(window).unbind('beforeunload');
 {#                            $('#saveChanges').button('reset');#}
                                 alert("Data Loaded: " + data);
 {#                                window.location.href = "/majorprogress";#}
@@ -446,6 +447,9 @@
             });
 
             function updateChanges(toggle){
+                $(window).bind('beforeunload', function (event) {
+                    return "You've made changes that haven't been saved!";
+                });
                 if (toggle){
                     $('#saveChanges').button('changes')
                 {#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
@@ -456,6 +460,16 @@
                     $('#saveChanges').attr('class', 'btn  btn-small btn-primary pull-right')
                 }
             }
+
+{#            $(window).bind('beforeunload', function (event) {#}
+{#                return "Are you sure you want to leave without saving?";#}
+{#            });#}
+{#            function handleWindowLeaving(message, form) {#}
+
+{#                $(form).bind('submit', function () {#}
+{#                   $(window).unbind('beforeunload'); #}
+{#                });#}
+{#            };#}
 {##}
 {#            function checkExit(){#}
 {#                return (initialclassload != classlist);#}
