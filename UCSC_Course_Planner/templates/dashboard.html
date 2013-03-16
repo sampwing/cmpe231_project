@@ -137,7 +137,12 @@
         $(function() {
             $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
                 connectWith: ".connectedSortable"
+
             }).disableSelection();
+
+
+
+
         });
 
 {#        window.onbeforeunload = function(){#}
@@ -171,6 +176,7 @@
 
 
         $(document).ready(function() {
+
 
 {##}
 {#            var initialclassload = [];#}
@@ -262,6 +268,7 @@
                 courseID = $('#confirmRemoveModal').attr('courseID');
                 $('#'+courseID).remove();
                 $('#confirmRemoveModal').modal('hide');
+                updateChanges(true);
 
             })
 
@@ -360,6 +367,7 @@
                 //alert('#'+ id);
                 numEle = $('#'+ id + " li").size();
                 //alert(numEle)
+                updateChanges(true);
                 $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
                         + course +' ' +
@@ -397,9 +405,10 @@
                 $printSection.appendChild(domClone);
             }
 
-
+{#            $('#saveChanges').button('loading');#}
             $("#saveChanges").click( function() {
                 $('#saveChanges').button('loading');
+
                 var classlist = [];
                 $('.connectedSortable').each(function(){
                     // inner scope
@@ -417,12 +426,36 @@
                 alert(classlist);
                 $.post("/dashboard", { 'courses' : classlist } )
                             .done(function(data) {
-                            $('#saveChanges').button('complete');
+                              updateChanges(false);
+{#                            $('#saveChanges').button('reset');#}
                                 alert("Data Loaded: " + data);
 {#                                window.location.href = "/majorprogress";#}
 
                 });
             });
+
+
+            // Updates the change button when you mess with the sortable
+            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
+                change: function(event, ui) {
+                      updateChanges(true);
+{#                    $('#saveChanges').button('changes')#}
+{#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
+{#                    $('#saveChanges').attr('class', 'btn  btn-small btn-warning pull-right')#}
+                }
+            });
+
+            function updateChanges(toggle){
+                if (toggle){
+                    $('#saveChanges').button('changes')
+                {#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
+                    $('#saveChanges').attr('class', 'btn  btn-small btn-warning pull-right')
+                    }
+                else {
+                    $('#saveChanges').button('reset')
+                    $('#saveChanges').attr('class', 'btn  btn-small btn-primary pull-right')
+                }
+            }
 {##}
 {#            function checkExit(){#}
 {#                return (initialclassload != classlist);#}
@@ -651,7 +684,7 @@
                         <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span> <i class="icon-pencil"></i></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
                     </div>
-                    <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-complete-text="Saved"><span class="ui-button-text">Save Changes </span><i class="icon-file"></i> </button>
+                    <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving <i class='icon-file'></i>" data-changes-text="Save Changes <i class='icon-file'></i>"><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>
                     <div class="btn-group" id="extras" data-toggle="buttons-checkbox" style="display: none">
                         <button type="button" id="ViewInstructor" class="btn  btn-small"><span class="ui-button-text">View Instructor</span> </button>
                         <button type="button" id="ViewTime" class="btn  btn-small"><span class="ui-button-text">View Time</span> </button>
