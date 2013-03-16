@@ -153,7 +153,7 @@ class Dashboard(webapp2.RequestHandler):
             test = [x.strip() for x in classy.split(',')]
             myclasses.append(test)
         for classy in myclasses:
-            coursename = classy[0]
+            coursename = classy[0].replace(" ", "")
             coursetime = classy[1]
             myclasses2.append((coursename,coursetime))
 
@@ -165,9 +165,13 @@ class Dashboard(webapp2.RequestHandler):
         # test = [x.strip() for x in myclasses[0].split(',')]
 
         for course_number in myclasses:
-            course = Course.all().filter('number =',course_number[0]).get()
-            progress = Progress(user=current_user, course=course, completed=True)
-            progress.put()
+            course = Course.all().filter('number =',course_number[0].replace(" ", "")).get()
+            if (course != None):
+                progress = Progress(user=current_user, course=course, completed=True)
+                progCheck = Progress.all().filter('user =', current_user).filter('course =', course).get()
+                if (progCheck == None):
+                    progress.put()
+                # progress.put()
         self.response.write("test" + str(myclasses2));
 
         # self.response.write("test" + str(course_numbers));

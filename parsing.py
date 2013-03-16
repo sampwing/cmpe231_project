@@ -5,5 +5,10 @@ test2 = [u'PHYS 5A-Fall12,PHYS 5L-Fall12,CMPS 12B-Fall12,CMPS 12L-Fall12,CMPE 16
 print test2
 
 #if class isn't in database add it
+	#change progress to require class.
+	
 #don't add class to progress if it's already been added
+
 #restoring these classes and years to database
+
+#figure out if we want to have space between class and number CMPE16 vs CMPE 16

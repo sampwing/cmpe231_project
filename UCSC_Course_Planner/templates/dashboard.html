@@ -408,7 +408,10 @@
                         var currentQuarter = current.parent().attr('id');
                         var currentHeader = $(this).children('.classHeader');
                         currentHeader = currentHeader.text();
-                        currentHeader = currentHeader.substring(0, currentHeader.length - 2);
+                        currentHeader = currentHeader.replace(/\s+/g, '');
+                        currentHeader = currentHeader.substring(0,currentHeader.length - 1);
+{#                        var lastIndex = currentHeader.lastIndexOf(" ");#}
+{#                        currentHeader = currentHeader.substring(0, lastIndex-2);#}
 {#                        classname += "(" + currentHeader + '-'+ currentQuarter + ")" + ',';#}
 {#                         classname += currentHeader + ','+ currentQuarter + ',';#}
                         classlist.push(currentHeader + ',' + currentQuarter)
