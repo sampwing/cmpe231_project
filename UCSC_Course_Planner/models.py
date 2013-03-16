@@ -40,7 +40,7 @@ class MajorRequirements(db.Model):
 #User Information
 class Progress(db.Model):
     user = db.ReferenceProperty(User, required=True)
-    course = db.ReferenceProperty(Course, required=True)
+    course = db.ReferenceProperty(Course, required=False)
     year = int()
     quarter = db.StringProperty()
     completed = bool()

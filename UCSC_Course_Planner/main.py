@@ -108,9 +108,9 @@ class Dashboard(webapp2.RequestHandler):
         minor1 = userQuery.minor1
         minor2 = userQuery.minor2
         minor3 = userQuery.minor3
-        m1prog = "10";
+        m1prog = "30";
         m2prog = "20";
-        m3prog = "30";
+        m3prog = "10";
         mi1prog = "10";
         mi2prog = "15";
         mi3prog = "50";
@@ -145,13 +145,32 @@ class Dashboard(webapp2.RequestHandler):
     def post(self):
         from models import Course, Progress
         user = users.get_current_user()
-        course_numbers = (self.request.get('courses[]',  allow_multiple=True))
+        course_numbers = (self.request.get_all('courses[]'))
         current_user = User.all().filter('email =', user.email()).get()
-        self.response.write("test" + str(course_numbers));
-        # for course_number in course_numbers:
-        #     course = Course.all().filter('number =',course_number).get()
-        #     progress = Progress(user=current_user, course=course, completed=True)
-        #     progress.put()
+        myclasses = []
+        myclasses2 = []
+        for classy in course_numbers:
+            test = [x.strip() for x in classy.split(',')]
+            myclasses.append(test)
+        for classy in myclasses:
+            coursename = classy[0]
+            coursetime = classy[1]
+            myclasses2.append((coursename,coursetime))
+
+        # [u'Fall12,PHYS 5A,Fall12,PHYS 5L,Fall12,CMPS 12B,Fall12,CMPS 12L,Fall12,CMPE 16,',
+        #  u'Winter13,HCI 131 ,Winter13,CMPS 101 ,Winter13,DANM 250,Winter13,Math 21 ,',
+        #  u'Spring13,PHYSC 5C,Spring13,PHYSC 5L,Spring13,AMS 131,',
+        #  u'Summer13,CMPS109,Summer13,Math 24,']
+        # myclasses = filter(None, myclasses)
+        # test = [x.strip() for x in myclasses[0].split(',')]
+
+        for course_number in myclasses:
+            course = Course.all().filter('number =',course_number[0]).get()
+            progress = Progress(user=current_user, course=course, completed=True)
+            progress.put()
+        self.response.write("test" + str(myclasses2));
+
+        # self.response.write("test" + str(course_numbers));
         #return redirect('/dashboard')
 
 class Homepage(webapp2.RequestHandler):

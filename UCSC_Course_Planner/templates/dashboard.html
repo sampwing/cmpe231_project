@@ -130,9 +130,6 @@
     <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="/favicon.ico">
 
-
-
-    <!-- for top dragable ui lists -->
     <script>
         $(function() {
             $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
@@ -145,15 +142,8 @@
 
         });
 
-{#        window.onbeforeunload = function(){#}
-{#            var check = checkExit();#}
-            {#        initialclassload != classlist#}
-{#            if(check){#}
-{#                return "Are you sure you want to leave?  You haven't saved your changes."#}
-{#            }#}
-{#        }#}
+
     </script>
-    {#    Code For Hiding Elements#}
     <script>
 
 
@@ -419,9 +409,12 @@
                         var currentHeader = $(this).children('.classHeader');
                         currentHeader = currentHeader.text();
                         currentHeader = currentHeader.substring(0, currentHeader.length - 2);
-                        classname += currentQuarter+','+currentHeader +',';
+{#                        classname += "(" + currentHeader + '-'+ currentQuarter + ")" + ',';#}
+{#                         classname += currentHeader + ','+ currentQuarter + ',';#}
+                        classlist.push(currentHeader + ',' + currentQuarter)
+
                     });
-                    classlist.push(classname);
+{#                    classlist.push(classname);#}
                 });
                 alert(classlist);
                 $.post("/dashboard", { 'courses' : classlist } )
@@ -461,22 +454,8 @@
                 }
             }
 
-{#            $(window).bind('beforeunload', function (event) {#}
-{#                return "Are you sure you want to leave without saving?";#}
-{#            });#}
-{#            function handleWindowLeaving(message, form) {#}
 
-{#                $(form).bind('submit', function () {#}
-{#                   $(window).unbind('beforeunload'); #}
-{#                });#}
-{#            };#}
-{##}
-{#            function checkExit(){#}
-{#                return (initialclassload != classlist);#}
-{#            }#}
         });
-{#       #}
-
 
     </script>
 
