@@ -30,3 +30,14 @@ indexes:
   properties:
   - name: major
   - name: department
+
+- kind: Progress
+  properties:
+  - name: user
+  - name: year
+
+- kind: Progress
+  properties:
+  - name: user
+  - name: year
+  - name: quarter

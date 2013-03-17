@@ -121,26 +121,44 @@ class Dashboard(webapp2.RequestHandler):
 
         requirements = MajorRequirements.all().filter('major =', 'CMPS').fetch(limit=100)
         requirements = [course.course for course in requirements]
-        completed1 = Progress.all().filter('user =', userQuery).fetch(limit=100)
+        completed1 = Progress.all().filter('user =', userQuery).order('year').order('quarter').fetch(limit=100)
         completed = [course.course for course in completed1]
+
+        #  any(quarter == chances.quarter for chances in progCheck):
         available = ['{}-{}'.format(course.number, course.name) for course in requirements if course not in completed]
         maxyear = date.today().year + 5
         # years = tuple((str(n-1), str(n)) for n in range(date.today().year, date.today().year + 5))
         years = list((str(n-1) + " - " + str(n)) for n in range(date.today().year, date.today().year + 5))
         # shortyears = list(years)
         shortyears = list(("Fall" + str(n-1)[2:], "Winter" + str(n)[2:], "Spring" + str(n)[2:], "Summer" + str(n)[2:]) for n in range(date.today().year, date.today().year + 5))
+        shortyears2 = list((str(n-1)[2:]) for n in range(date.today().year, date.today().year + 5))
 
+        quarterlist = [ "Fall", "Winter", "Spring", "Summer"]
+        # prog2 = Progress.all().filter('user =', userQuery).fetch(limit=10)
+        allyears = []
+        for year in shortyears2:
+            allClasse = []
+            for quarter in quarterlist:
+                prog2 = Progress.all().filter('user =', userQuery)
+                prog2 = prog2.filter('quarter =', quarter)
+                prog2 = prog2.filter('year =', int(year))
+                prog2 = prog2.fetch(limit=10)
+                prog2 = [course1.course for course1 in prog2]
+                classes = [quarter+str(year), prog2]
+                allClasse.append(classes)
+            yearform = "20" + str(year)
+            allyears.append([yearform,allClasse])
         # completed1 = Progress.all().filter('user =', userQuery).fetch(limit=100)
 
         # for course in completed1:
         #     course.quarter
         # curr = tuple('{}{}-{}'.format(course1.quarter, course1.year, course1.course.number) for course1 in completed1)
-        curr = list((course1.quarter, course1.year, course1.course.number) for course1 in completed1)
-        curr2 = list()
-        for key,group in itertools.groupby(curr,operator.itemgetter(0)):
-            curr2.append((list(group)))
+        # curr = list((course1.quarter, course1.year, course1.course.number) for course1 in completed1)
+        # curr2 = list()
+        # for key,group in itertools.groupby(curr,operator.itemgetter(0)):
+        #     curr2.append((list(group)))
 
-        curr =curr2
+        # curr =curr2
         # curr3 = []
         # for listy in curr2:
         #     list1 = []
@@ -150,24 +168,15 @@ class Dashboard(webapp2.RequestHandler):
         # curr = curr3
         Fall12Classes   = tuple(("AMS20", "CMPS101","CMPE100"))
         Winter13Classes = tuple(("AMS20", "CMPS101","CMPE100"))
-        # Spring13Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Summer13Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Fall13Classes   = tuple("AMS20", "CMPS101","CMPE100")
-        # Winter14Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Spring14Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Summer14Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Fall14Classes   = tuple("AMS20", "CMPS101","CMPE100")
-        # Winter15Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Spring15Classes = tuple("AMS20", "CMPS101","CMPE100")
-        # Summer15Classes = tuple("AMS20", "CMPS101","CMPE100")
-        shortyears = zip(shortyears,curr)
+        # shortyears = zip(shortyears,curr)
         # shortyears = zip(years,shortyears)
         # year = curr
-
+        logging = str(allyears)
         # maxyear = max(maxyear, maxyear2)
-        logging.debug(maxyear)
+        # logging.debug(maxyear)
         output = {
-            'curr': curr,
+            'logging': logging,
+            'allyears': allyears,
             'major1': major1,
             'major2': major2,
             'major3': major3,
