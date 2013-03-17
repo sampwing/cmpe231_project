@@ -11,9 +11,31 @@ print test2
 
 #restoring these classes and years to database
 
-#figure out if we want to have space between class and number CMPE16 vs CMPE 16
 
 #need to figure out deleting progress for a given user...
 #maybe we query for a user, delete all their progress, then post all their new progress.
 
 #taking the same class twice in the same year vs. moving a class around
+
+
+templates for dashboard
+
+All quarters like
+Fall12, Winter12
+
+Year Header
+2012-2013
+
+For actual schedule
+
+do it by year
+   year1
+   header 2012-2013
+   Fall 12 Winter 13 Spring 13 Summer 13
+   
+   Fall 12 Classes
+   
+   
+   
+then give list of 
+Winter13Class1

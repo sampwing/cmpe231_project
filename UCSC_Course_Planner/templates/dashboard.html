@@ -166,7 +166,15 @@
 
 
         $(document).ready(function() {
-
+            // Updates the change button when you mess with the sortable
+            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
+                change: function(event, ui) {
+                    updateChanges(true);
+                    {#                    $('#saveChanges').button('changes')#}
+                    {#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
+                    {#                    $('#saveChanges').attr('class', 'btn  btn-small btn-warning pull-right')#}
+                }
+            });
 
 {##}
 {#            var initialclassload = [];#}
@@ -432,15 +440,7 @@
             });
 
 
-            // Updates the change button when you mess with the sortable
-            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
-                change: function(event, ui) {
-                      updateChanges(true);
-{#                    $('#saveChanges').button('changes')#}
-{#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
-{#                    $('#saveChanges').attr('class', 'btn  btn-small btn-warning pull-right')#}
-                }
-            });
+
 
             function updateChanges(toggle){
                 $(window).bind('beforeunload', function (event) {
