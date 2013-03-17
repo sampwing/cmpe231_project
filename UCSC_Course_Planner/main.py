@@ -143,11 +143,11 @@ class Dashboard(webapp2.RequestHandler):
                 prog2 = prog2.filter('quarter =', quarter)
                 prog2 = prog2.filter('year =', int(year))
                 prog2 = prog2.fetch(limit=10)
-                prog2 = [course1.course for course1 in prog2]
+                prog2 = [course1.course.number for course1 in prog2]
                 classes = [quarter+str(year), prog2]
                 allClasse.append(classes)
-            yearform = "20" + str(year)
-            allyears.append([yearform,allClasse])
+            # year = "20" + str(year)
+            allyears.append([year,allClasse])
         # completed1 = Progress.all().filter('user =', userQuery).fetch(limit=100)
 
         # for course in completed1:
@@ -175,6 +175,7 @@ class Dashboard(webapp2.RequestHandler):
         # maxyear = max(maxyear, maxyear2)
         # logging.debug(maxyear)
         output = {
+            'quarterlist': quarterlist,
             'logging': logging,
             'allyears': allyears,
             'major1': major1,

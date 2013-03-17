@@ -132,7 +132,9 @@
 
     <script>
         $(function() {
-            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
+            $(".connectedSortable" ).sortable({
+
+                {#            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
                 connectWith: ".connectedSortable"
 
             }).disableSelection();
@@ -158,7 +160,9 @@
 
         $(document).ready(function() {
             // Updates the change button when you mess with the sortable
-            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
+            $( ".connectedSortable" ).sortable({
+
+                {#            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
                 change: function(event, ui) {
                     updateChanges(true);
                 }
@@ -271,6 +275,7 @@
                 var currentID = $('#myModal').attr('coursenum');
                 var classNumber = $('#classSearch').val();
                 var classname = classNumber.split(/\s*\-\s*/g);
+                alert(currentID);
                 classAdder(currentID, classname[0]);
             });
             function classAdder(id, course){
@@ -717,14 +722,14 @@
         {% for year, quarters in allyears %}
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse"  href="#collapseTwo">
+                            <a class="accordion-toggle" data-toggle="collapse"  href="#collapse{{ year }}">
                             <div class="row">
                             <h3 style="text-align:center;" >{{ year }}</h3>
                             </div>
                             </a>
                         </div>
 
-                        <div id="collapseTwo" class="accordion-body collapse">
+                        <div id="collapse{{ year }}" class="accordion-body collapse">
                             <div class="accordion-inner">
 
                                 <div class="">
@@ -757,10 +762,10 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall13B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter14B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring14B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer14B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter{{ year }}B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring{{ year }}B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer{{ year }}B" href="#" >Add Course</a></th>
                                         </tr>
                                         </tfoot>
                                     </table>
