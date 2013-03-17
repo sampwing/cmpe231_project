@@ -134,8 +134,9 @@
         $(function() {
             $(".connectedSortable" ).sortable({
 
-                {#            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
-                connectWith: ".connectedSortable"
+{#                            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
+                connectWith: ".connectedSortable",
+                dropOnEmpty: true
 
             }).disableSelection();
 
@@ -161,11 +162,12 @@
         $(document).ready(function() {
             // Updates the change button when you mess with the sortable
             $( ".connectedSortable" ).sortable({
-
+                droponEmpty: true,
                 {#            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
                 change: function(event, ui) {
                     updateChanges(true);
                 }
+
             });
             $("#extrabutton").click(function () {
                 $("#extras").toggle('show');
@@ -748,7 +750,7 @@
                                                 <ul id="{{ quarter }}" class="connectedSortable">
                                                     {% for class in classes %}
 
-
+                                                    <li></li>
                                                     <li class="ui-state-default">
                                                         <div class="classHeader">{{ class }} <span class="classUnits badge badge-success">1</span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
