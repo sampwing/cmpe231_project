@@ -801,7 +801,18 @@
 <row class="span12 text-center">
     <footer >
         <p >&copy; HCI 2013</p>
-
+        <p> {%  for year in years %}
+            {{ year }}<br>
+            {%  endfor %}
+            <br><br>
+            {%  for q1, q2, q3, q4 in shortyears %}
+                {{ q1 }} {{ q2 }} {{ q3 }} {{ q4 }}<br>
+            {%  endfor %}
+<br><br>
+            {%  for cur in curr %}
+                {{ cur }}<br>
+            {%  endfor %}
+        </p>
     </footer>
 
 </div> <!-- /container -->

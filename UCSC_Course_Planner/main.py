@@ -89,6 +89,10 @@ class Login(webapp2.RequestHandler):
 class Dashboard(webapp2.RequestHandler):
     def get(self):
         from models import MajorRequirements, Progress, Course
+        from datetime import date
+        import itertools
+        import operator
+
         user = users.get_current_user()
         name = "none"
         if user:
@@ -115,16 +119,55 @@ class Dashboard(webapp2.RequestHandler):
         mi2prog = "15";
         mi3prog = "50";
 
-
         requirements = MajorRequirements.all().filter('major =', 'CMPS').fetch(limit=100)
         requirements = [course.course for course in requirements]
         completed1 = Progress.all().filter('user =', userQuery).fetch(limit=100)
         completed = [course.course for course in completed1]
         available = ['{}-{}'.format(course.number, course.name) for course in requirements if course not in completed]
-        maxyear = max([course.year for course in completed1])
+        maxyear = date.today().year + 5
+        # years = tuple((str(n-1), str(n)) for n in range(date.today().year, date.today().year + 5))
+        years = list((str(n-1) + " - " + str(n)) for n in range(date.today().year, date.today().year + 5))
+        # shortyears = list(years)
+        shortyears = list(("Fall" + str(n-1)[2:], "Winter" + str(n)[2:], "Spring" + str(n)[2:], "Summer" + str(n)[2:]) for n in range(date.today().year, date.today().year + 5))
 
+        # completed1 = Progress.all().filter('user =', userQuery).fetch(limit=100)
+
+        # for course in completed1:
+        #     course.quarter
+        # curr = tuple('{}{}-{}'.format(course1.quarter, course1.year, course1.course.number) for course1 in completed1)
+        curr = list((course1.quarter, course1.year, course1.course.number) for course1 in completed1)
+        curr2 = list()
+        for key,group in itertools.groupby(curr,operator.itemgetter(0)):
+            curr2.append((list(group)))
+
+        curr =curr2
+        # curr3 = []
+        # for listy in curr2:
+        #     list1 = []
+        #     for tup in listy:
+        #         list1.append(listy[0])
+        #     curr3.append(list1)
+        # curr = curr3
+        Fall12Classes   = tuple(("AMS20", "CMPS101","CMPE100"))
+        Winter13Classes = tuple(("AMS20", "CMPS101","CMPE100"))
+        # Spring13Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Summer13Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Fall13Classes   = tuple("AMS20", "CMPS101","CMPE100")
+        # Winter14Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Spring14Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Summer14Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Fall14Classes   = tuple("AMS20", "CMPS101","CMPE100")
+        # Winter15Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Spring15Classes = tuple("AMS20", "CMPS101","CMPE100")
+        # Summer15Classes = tuple("AMS20", "CMPS101","CMPE100")
+        shortyears = zip(shortyears,curr)
+        # shortyears = zip(years,shortyears)
+        # year = curr
+
+        # maxyear = max(maxyear, maxyear2)
         logging.debug(maxyear)
         output = {
+            'curr': curr,
             'major1': major1,
             'major2': major2,
             'major3': major3,
@@ -137,6 +180,8 @@ class Dashboard(webapp2.RequestHandler):
             'mi1prog': mi1prog,
             'mi2prog': mi2prog,
             'mi3prog': mi3prog,
+            'years': years,
+            'shortyears': shortyears,
             'logURL': logURL,
             'is_logged_in': is_logged_in,
             'name': name,
