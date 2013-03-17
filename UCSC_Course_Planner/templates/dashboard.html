@@ -141,15 +141,7 @@
 
 
         });
-
-
-    </script>
-    <script>
-
-
         var initialclassload;
-
-
         $(document).on('click', ".courseRemove", function(){
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
@@ -164,45 +156,15 @@
                 $('#confirmRemoveModal').modal('show');
             });
 
-
         $(document).ready(function() {
             // Updates the change button when you mess with the sortable
             $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({
                 change: function(event, ui) {
                     updateChanges(true);
-                    {#                    $('#saveChanges').button('changes')#}
-                    {#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
-                    {#                    $('#saveChanges').attr('class', 'btn  btn-small btn-warning pull-right')#}
                 }
             });
-
-{##}
-{#            var initialclassload = [];#}
-{##}
-{#            $('.connectedSortable').each(function(){#}
-{#                // inner scope#}
-{#                var classname = '';#}
-{#                $(this).find('li').each(function(){#}
-{#                    // cache jquery object#}
-{#                    var current = $(this);#}
-{#                    var currentQuarter = current.parent().attr('id');#}
-{#                    //alert(currentID);#}
-{#                    var currentHeader = $(this).children('.classHeader');#}
-{#                    currentHeader = currentHeader.text();#}
-{#                    currentHeader = currentHeader.substring(0, currentHeader.length - 2);#}
-{##}
-{#                    classname += currentQuarter+','+currentHeader +',';#}
-{#                });#}
-{#                initialclassload.push(classname);#}
-{#            });#}
-{#            #}
-// note the comma to separate multiple phrases
-
-
             $("#extrabutton").click(function () {
-
                 $("#extras").toggle('show');
-
                 return false;
             });
 
@@ -214,7 +176,6 @@
                 else $("span", this).text("View Instructor");
                 return false;
             });
-
             $("#ViewTime").click(function () {
                 $(".classTime").toggle();
                 if ( $("span", this).text() == "View Time"){
@@ -223,7 +184,6 @@
                 else $("span", this).text("View Time");
                 return false;
             });
-
             $("#ViewUnits").click(function () {
                 $(".classUnits").toggle();
                 if ( $("span", this).text() == "View Units"){
@@ -232,11 +192,9 @@
                 else $("span", this).text("View Units");
                 return false;
             });
-
 {#            when you click the specific edit button...#}
             $("#edit").click(function () {
                 $("#changeMajor").toggle();
-
                 $(".courseRemove").toggle();     // this actually changes the display
                 // the rest updates the text on the button
                 if ( $("span", this).text() == "Edit"){
@@ -246,13 +204,11 @@
                 return false;
             });
 
-                    $(".courseRemove").click( function() {
+            $(".courseRemove").click( function() {
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
-{#                alert(currentId);#}
                 coursename = objA.text();
                 coursename = coursename.substring(0, coursename.length - 3);
-{#                alert(coursename);#}
                 $('#classToRemove').empty();
                 $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
                 $('#confirmRemoveModal').removeAttr('courseID');
@@ -260,17 +216,13 @@
                 $('#confirmRemoveModal').modal('show');
             });
 
-
-
             $("#removeClassSerious").click(function (){
                 courseID = $('#confirmRemoveModal').attr('courseID');
                 $('#'+courseID).remove();
                 $('#confirmRemoveModal').modal('hide');
                 updateChanges(true);
-
             })
-
-
+{#            Should figure out what we want to do with this stuff... like how the view settings will work#}
 {#            do we still use toggleView? #}
             $("#toggleView").click(function (){
                 $('.accordion-body').each(function(){
@@ -279,11 +231,7 @@
                     }
                     else $(this).collapse('toggle');
                 });
-
             })
-
-
-            
             firstToggle = true;
             function viewAll(){
                 if (firstToggle){
@@ -295,76 +243,42 @@
                     else $(this).collapse('toggle');
                 });
                     firstToggle = false;
-
                 }
             }
-
             $("#overView").click(function (){
                 viewAll();
-
                 $('.accordion-body').each(function(){
                     if ($(this).hasClass('in')) {
                     }
                     else $(this).collapse('toggle');
                 });
-
             })
-            var subjects = {{ available|safe }};//['AMS291', 'AMS2', 'AMS299', 'AMS297', 'AMS296', 'AMS297F', 'AMS290B', 'AMS285', 'AMS280D', 'AMS290A', 'AMS280B', 'AMS280C', 'AMS280A', 'AMS274', 'AMS263', 'AMS256', 'AMS245', 'AMS261', 'AMS232', 'AMS241', 'AMS231', 'AMS236', 'AMS225', 'AMS223', 'AMS221', 'AMS218', 'AMS217', 'AMS216', 'AMS213', 'AMS214', 'AMS215', 'AMS211', 'AMS210', 'AMS212A', 'AMS212B', 'AMS206', 'AMS207', 'AMS205B', 'AMS205A', 'AMS202', 'AMS205', 'AMS203', 'AMS206B', 'AMS200', 'AMS162', 'AMS147', 'AMS156', 'AMS198F', 'AMS198', 'AMS146', 'AMS132', 'AMS131', 'AMS115', 'AMS107', 'AMS114', 'AMS100', 'AMS118', 'AMS80B', 'AMS113', 'AMS80A', 'AMS27L', 'AMS20A', 'AMS27', 'AMS20', 'AMS20B', 'AMS15B', 'AMS15A', 'AMS11B', 'AMS11A', 'AMS10A', 'AMS10B', 'AMS10', 'AMS7L', 'AMS7', 'AMS5', 'AMS3', 'BME60', 'BME5', 'BME299', 'BME297F', 'BME293', 'BME296', 'BME297', 'BME281S', 'BME281L', 'BME281E', 'BME281F', 'BME281K', 'BME281G', 'BME281H', 'BME281C', 'BME281P', 'BME280B', 'BME281B', 'BME281A', 'BME268B', 'BME268A', 'BME270', 'BME250L', 'BME255', 'BME247', 'BME250', 'BME235', 'BME237', 'BME225', 'BME222', 'BME215', 'BME220L', 'BME220', 'BME230L', 'BME211', 'BME230', 'BME210', 'BME198F', 'BME205', 'BME207', 'BME198', 'BME195F', 'BME199', 'BME200', 'BME195', 'BME170', 'BME193', 'BME194F', 'BME160', 'BME194', 'BME178', 'BME193F', 'BME160L', 'BME155', 'BME150L', 'BME150', 'BME128', 'BME130', 'BME140', 'BME123B', 'BME123T', 'BME123A', 'BME94F', 'BME99', 'BME122', 'BME109', 'BME110', 'BME99F', 'BME94', 'BME83', 'BME80H', 'BME60L', 'BME80G', 'CMPE299F', 'CMPE299', 'CMPE293', 'CMPE297', 'CMPE290V', 'CMPE290L', 'CMPE290M', 'CMPE290N', 'CMPE285', 'CMPE280T', 'CMPE280P', 'CMPE280N', 'CMPE280V', 'CMPE280G', 'CMPE280B', 'CMPE278', 'CMPE277', 'CMPE280C', 'CMPE259', 'CMPE263', 'CMPE276', 'CMPE264', 'CMPE258', 'CMPE257', 'CMPE254', 'CMPE256', 'CMPE252B', 'CMPE253', 'CMPE251', 'CMPE252A', 'CMPE250', 'CMPE248', 'CMPE241', 'CMPE243', 'CMPE242', 'CMPE233', 'CMPE235', 'CMPE240', 'CMPE230', 'CMPE232', 'CMPE231', 'CMPE226', 'CMPE225', 'CMPE229', 'CMPE224', 'CMPE223', 'CMPE221L', 'CMPE222', 'CMPE221', 'CMPE220', 'CMPE218L', 'CMPE218', 'CMPE202', 'CMPE200', 'CMPE216', 'CMPE215', 'CMPE198', 'CMPE198F', 'CMPE199', 'CMPE199F', 'CMPE195F', 'CMPE195', 'CMPE193', 'CMPE194F', 'CMPE193F', 'CMPE185', 'CMPE174', 'CMPE177', 'CMPE173L', 'CMPE194', 'CMPE167L', 'CMPE156L', 'CMPE156', 'CMPE167', 'CMPE158', 'CMPE173', 'CMPE161', 'CMPE153', 'CMPE152', 'CMPE150', 'CMPE151L', 'CMPE141', 'CMPE150L', 'CMPE151', 'CMPE129C', 'CMPE129B', 'CMPE131', 'CMPE129A', 'CMPE126L', 'CMPE125L', 'CMPE126', 'CMPE125', 'CMPE123A', 'CMPE123B', 'CMPE122', 'CMPE121L', 'CMPE121', 'CMPE118L', 'CMPE118', 'CMPE117L', 'CMPE117', 'CMPE112', 'CMPE113', 'CMPE115', 'CMPE110', 'CMPE108', 'CMPE100L', 'CMPE107', 'CMPE94F', 'CMPE100', 'CMPE99', 'CMPE94', 'CMPE80U', 'CMPE99F', 'CMPE80H', 'CMPE80N', 'CMPE80A', 'CMPE80E', 'CMPE13L', 'CMPE12L', 'CMPE13', 'CMPE16', 'CMPE12', 'CMPE9', 'CMPE8', 'CMPE1', 'CMPE3', 'CMPS299', 'CMPS297F', 'CMPS290Y', 'CMPS297', 'CMPS296', 'CMPS290T', 'CMPS290X', 'CMPS290J', 'CMPS290S', 'CMPS290P', 'CMPS290H', 'CMPS290I', 'CMPS290G', 'CMPS290B', 'CMPS290D', 'CMPS280Z', 'CMPS290E', 'CMPS290F', 'CMPS290A', 'CMPS290C', 'CMPS280X', 'CMPS280J', 'CMPS280W', 'CMPS280H', 'CMPS280S', 'CMPS280G', 'CMPS280D', 'CMPS280A', 'CMPS279', 'CMPS272', 'CMPS278', 'CMPS277', 'CMPS261', 'CMPS253', 'CMPS250', 'CMPS262', 'CMPS260', 'CMPS247', 'CMPS248', 'CMPS245', 'CMPS242', 'CMPS232', 'CMPS240', 'CMPS244', 'CMPS241', 'CMPS223', 'CMPS229', 'CMPS217', 'CMPS221', 'CMPS204', 'CMPS211', 'CMPS201', 'CMPS210', 'CMPS203', 'CMPS200', 'CMPS199F', 'CMPS195', 'CMPS199', 'CMPS194', 'CMPS194F', 'CMPS198F', 'CMPS195F', 'CMPS193F', 'CMPS198', 'CMPS192', 'CMPS191', 'CMPS192F', 'CMPS182', 'CMPS190X', 'CMPS193', 'CMPS183', 'CMPS181', 'CMPS180W', 'CMPS171', 'CMPS179', 'CMPS180', 'CMPS172', 'CMPS166B', 'CMPS170', 'CMPS166A', 'CMPS164L', 'CMPS162L', 'CMPS164', 'CMPS161', 'CMPS162', 'CMPS160L', 'CMPS161L', 'CMPS160', 'CMPS148', 'CMPS146', 'CMPS142', 'CMPS132W', 'CMPS140', 'CMPS130', 'CMPS132', 'CMPS122', 'CMPS128', 'CMPS121', 'CMPS129', 'CMPS116', 'CMPS119', 'CMPS117', 'CMPS115', 'CMPS112', 'CMPS105', 'CMPS104B', 'CMPS111', 'CMPS109', 'CMPS104A', 'CMPS102', 'CMPS99F', 'CMPS99', 'CMPS101', 'CMPS94F', 'CMPS80V', 'CMPS80S', 'CMPS94', 'CMPS80K', 'CMPS60N', 'CMPS80G', 'CMPS80B', 'CMPS80J', 'CMPS60G', 'CMPS26', 'CMPS80C', 'CMPS60M', 'CMPS13L', 'CMPS17', 'CMPS13H', 'CMPS20', 'CMPS25', 'CMPS12B', 'CMPS12M', 'CMPS12L', 'CMPS10', 'CMPS11', 'CMPS5J', 'CMPS5P', 'CMPS5C', 'CMPS2', 'CMPS12A', 'EE293', 'EE297', 'EE291', 'EE283', 'EE281', 'EE290', 'EE299', 'EE280Q', 'EE280O', 'EE270', 'EE280B', 'EE280I', 'EE265', 'EE264', 'EE280M', 'EE263', 'EE262', 'EE261', 'EE253', 'EE255', 'EE256', 'EE254', 'EE251', 'EE252', 'EE250', 'EE242', 'EE241', 'EE236', 'EE233', 'EE235', 'EE234', 'EE230', 'EE231', 'EE232', 'EE226', 'EE224', 'EE222', 'EE225', 'EE223', 'EE213', 'EE221', 'EE215', 'EE211', 'EE216', 'EE200', 'EE212', 'EE199F', 'EE198F', 'EE199', 'EE198', 'EE195', 'EE195F', 'EE193F', 'EE192', 'EE193', 'EE178', 'EE180J', 'EE181J', 'EE183', 'EE177L', 'EE176L', 'EE177', 'EE176', 'EE175L', 'EE172', 'EE175', 'EE171L', 'EE171', 'EE154', 'EE152', 'EE151', 'EE157', 'EE157L', 'EE153', 'EE145L', 'EE145', 'EE130L', 'EE136', 'EE129B', 'EE130', 'EE135', 'EE129A', 'EE129C', 'EE135L', 'EE122', 'EE123B', 'EE115', 'EE123A', 'EE103', 'EE101L', 'EE104', 'EE103L', 'EE94F', 'EE101', 'EE99', 'EE99F', 'EE81C', 'EE80S', 'EE80T', 'EE94', 'EE80J', 'EE70L', 'EE70', 'ISM293', 'ISM299', 'ISM280S', 'ISM297', 'ISM280M', 'ISM280A', 'ISM260', 'ISM280I', 'ISM250', 'ISM251', 'ISM245', 'ISM270', 'ISM230', 'ISM240', 'ISM225', 'ISM215', 'ISM210', 'ISM208', 'ISM211', 'ISM209', 'ISM207', 'ISM198', 'ISM195F', 'ISM205', 'ISM206', 'ISM198F', 'ISM204', 'ISM199', 'ISM194F', 'ISM195', 'ISM158', 'ISM193F', 'ISM194', 'ISM125', 'ISM130', 'ISM193', 'ISM105', 'ISM101', 'ISM99', 'ISM80C', 'ISM99F', 'ISM94F', 'ISM94', 'ISM58', 'ISM80A', 'ISM80B', 'ISM50', 'TIM299', 'TIM297', 'TIM293', 'TIM280S', 'TIM280A', 'TIM280M', 'TIM280I', 'TIM270', 'TIM260', 'TIM251', 'TIM250', 'TIM245', 'TIM230', 'TIM225', 'TIM240', 'TIM215', 'TIM211', 'TIM210', 'TIM209', 'TIM207', 'TIM205', 'TIM208', 'TIM206', 'TIM198F', 'TIM199', 'TIM198', 'TIM204', 'TIM195', 'TIM194F', 'TIM193', 'TIM195F', 'TIM194', 'TIM193F', 'TIM158', 'TIM130', 'TIM99F', 'TIM94F', 'TIM94', 'TIM125', 'TIM99', 'TIM101', 'TIM105', 'TIM80C', 'TIM80B', 'TIM80A', 'TIM50', 'TIM58'];
+
+            var subjects = {{ available|safe }};
             $('#classSearch').typeahead({source: subjects});
 
-           $("#btnPrint").click( function() {
-{#                $('#accordion2').clone(true).appendTo('#printHere');#}
-                printElement(document.getElementById("accordion2"));
-                {#                printElement(document.getElementById("printThisToo"), true, "<hr />");#}
-                window.print();
-            });
-
             $(".addClass").click( function() {
-
-{#                currentId = $(this).attr('id');#}
                 var currentID = ($(this).attr('id'));
-{#                alert(currentID);#}
                 currentID = currentID.substring(0, currentID.length - 1);
                 $('#myModal').removeAttr('coursenum');
                 $('#myModal').attr('coursenum', currentID);
                 $('#myModal').modal('show');
-
-{#                alert(currentID);#}
-
             });
 
             $("#theAdder").click( function() {
-
-
                 $('#myModal').modal('hide');
-
                 var currentID = $('#myModal').attr('coursenum');
-{#                alert(currentID);#}
                 var classNumber = $('#classSearch').val();
-
                 var classname = classNumber.split(/\s*\-\s*/g);
-
                 classAdder(currentID, classname[0]);
-                {#                alert(currentID);#}
-
-
             });
-
-
-
             function classAdder(id, course){
                 if ( $("span", $('#edit')).text() == "Edit"){
                 }
                 else {
                     $("#edit").click();
                 }
-                //alert(id);
-                //alert(course);
-{#                classID = Fall12Class0        ;#}
-                //need to figure out the size of the list so we can add it
-                //alert('#'+ id);
                 numEle = $('#'+ id + " li").size();
-                //alert(numEle)
                 updateChanges(true);
                 $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
@@ -375,22 +289,24 @@
                         '</li>');
             };
 
+            $("#btnPrint").click( function() {
+                {#                $('#accordion2').clone(true).appendTo('#printHere');#}
+                printElement(document.getElementById("accordion2"));
+                {#                printElement(document.getElementById("printThisToo"), true, "<hr />");#}
+                window.print();
+            });
 
             function printElement(elem, append, delimiter) {
                 var domClone = elem.cloneNode(true);
-
                 var $printSection = document.getElementById("printSection");
-
                 if (!$printSection) {
                     var $printSection = document.createElement("div");
                     $printSection.id = "printSection";
                     document.body.appendChild($printSection);
                 }
-
                 if (append !== true) {
                     $printSection.innerHTML = "";
                 }
-
                 else if (append === true) {
                     if (typeof (delimiter) === "string") {
                         $printSection.innerHTML += delimiter;
@@ -399,17 +315,14 @@
                         $printSection.appendChlid(delimiter);
                     }
                 }
-
                 $printSection.appendChild(domClone);
             }
 
-{#            $('#saveChanges').button('loading');#}
+
             $("#saveChanges").click( function() {
                 $('#saveChanges').button('loading');
-
                 var classlist = [];
                 $('.connectedSortable').each(function(){
-                    // inner scope
                     var classname = '';
                     $(this).find('li').each(function(){
                         var current = $(this);
@@ -418,29 +331,19 @@
                         currentHeader = currentHeader.text();
                         currentHeader = currentHeader.replace(/\s+/g, '');
                         currentHeader = currentHeader.substring(0,currentHeader.length - 1);
-{#                        var lastIndex = currentHeader.lastIndexOf(" ");#}
-{#                        currentHeader = currentHeader.substring(0, lastIndex-2);#}
-{#                        classname += "(" + currentHeader + '-'+ currentQuarter + ")" + ',';#}
-{#                         classname += currentHeader + ','+ currentQuarter + ',';#}
                         classlist.push(currentHeader + ',' + currentQuarter)
-
                     });
-{#                    classlist.push(classname);#}
                 });
+                {#                Going to want to get rid of this eventually #}
                 alert(classlist);
                 $.post("/dashboard", { 'courses' : classlist } )
-                            .done(function(data) {
-                              updateChanges(false);
+                        .done(function(data) {
+                            updateChanges(false);
                             $(window).unbind('beforeunload');
-{#                            $('#saveChanges').button('reset');#}
-                                alert("Data Loaded: " + data);
-{#                                window.location.href = "/majorprogress";#}
-
-                });
+{#                            Going to want to get ride of this alert eventually too#}
+                            alert("Data Loaded: " + data);
+                        });
             });
-
-
-
 
             function updateChanges(toggle){
                 $(window).bind('beforeunload', function (event) {
@@ -448,7 +351,6 @@
                 });
                 if (toggle){
                     $('#saveChanges').button('changes')
-                {#                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving" data-changes-text="Save Changes "><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>#}
                     $('#saveChanges').attr('class', 'btn  btn-small btn-warning pull-right')
                     }
                 else {
@@ -456,8 +358,6 @@
                     $('#saveChanges').attr('class', 'btn  btn-small btn-primary pull-right')
                 }
             }
-
-
         });
 
     </script>
@@ -565,29 +465,6 @@
 
 </div>
 
-
-{#<div id="printModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
-{##}
-{#    <div class="modal-header">#}
-{#        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>#}
-{#        <h3 id="printModalLabel">Print View</h3>#}
-{#    </div>#}
-{#    <div class="modal-body">#}
-{#        <div id="printThis">#}
-{#            This should BE printed!#}
-{#            <div id="printhere">#}
-{##}
-{#            </div>#}
-{##}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="modal-footer">#}
-{#        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>#}
-{#        <button class="btn btn-primary" id="btnPrint">Print</button>#}
-{#    </div>#}
-{##}
-{#</div>#}
-
 <div class="container">
 
     <div class="row">
@@ -632,17 +509,6 @@
                     <h3> Minor :</h3>
                         {% endif %}
                 {%  endif %}
-{#                {% if minor %}#}
-{#                    <h3> Minor(s) :</h3>#}
-{#                {%  endif %}#}
-
-                {#                {% if minor2 %}#}
-{#                    <h3> Minors</h3>#}
-{#                {% elif minor1 %}#}
-{#                    <h3> Minor</h3>#}
-{##}
-{#                {% endif %}#}
-
 
                 {% if minor1 %}
                     <h4>{{ minor1 }} </h4>
@@ -837,144 +703,92 @@
                         </div>
 
                     </div>
-{#                    <div class="accordion-group">#}
-{#                        <div class="accordion-heading">#}
-{#                            <a class="accordion-toggle" data-toggle="collapse"  href="#collapseTwo">#}
-{#                            <div class="row">#}
-{#                            <h3 style="text-align:center;" >2013 - 2014</h3>#}
-{#                            </div>#}
-{#                            </a>#}
-{#                        </div>#}
-{##}
-{#                        <div id="collapseTwo" class="accordion-body collapse">#}
-{#                            <div class="accordion-inner">#}
-{##}
-{#                                <div class="">#}
-{#                                    <table class="table table-bordeed">#}
-{#                                        <thead>#}
-{#                                        <tr>#}
-{#                                            <th>Fall</th>#}
-{#                                            <th>Winter</th>#}
-{#                                            <th>Spring</th>#}
-{#                                            <th>Summer</th>#}
-{#                                        </tr>#}
-{#                                        </thead>#}
-{#                                        <tbody>#}
-{#                                        <tr>#}
-{#                                            <td>#}
-{##}
-{#                                                <ul id="Fall13" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>#}
-{#                                                        <div class="classInstructor">Instructor Name<br></div>#}
-{#                                                        <div class="classTime">MWF 12-2pm<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">PHYS 5L <span class="classUnits badge badge-success">1</span><br></div>#}
-{#                                                        <div class="classInstructor">Lab Instructor Name<br></div>#}
-{#                                                        <div class="classTime">TH 8:30am-10am<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">CMPS 12B <span class="classUnits badge badge-success">5</span><br></div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">CMPS 12L <span class="classUnits badge badge-success">2</span> </div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">CMPE 16 <span class="classUnits badge badge-success">5</span><br></div>#}
-{#                                                        <div class="classInstructor">T. Larabee<br></div>#}
-{#                                                        <div class="classTime">MWF 9:30-10:40am<br></div>#}
-{#                                                    </li>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                            <td>#}
-                                                {#                                <ul id="sortable2" class="connectedSortable">#}
-                                                {#                                <li class="ui-state-highlight" style>HCI 131</li>#}
-                                                {#                                <li class="ui-state-highlight">CMPS101</li>#}
-                                                {#                                <li class="ui-state-highlight">Math 21</li>#}
-{#                                                <ul id="Winter14" class="connectedSortable">#}
-{#                                                    <li class="ui-state-highlight">#}
-{#                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">1</span><br></div>#}
-{#                                                        <div class="classInstructor">Instructor Name<br></div>#}
-{#                                                        <div class="classTime">MWF 12-2pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">CMPS 101 <span class="classUnits badge badge-success">5</span><br></div>#}
-{#                                                        <div class="classInstructor">M. Warmuth<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span> </div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{#                                                    </li>#}
-                                                    {#                                    </ul>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                            <td>#}
-{#                                                <ul id="Spring14" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">PHYSC 5C <span class="classUnits badge badge-success">5</span><br></div>#}
-{#                                                        <div class="classInstructor">Namme<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-highlight">#}
-{#                                                        <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><br></div>#}
-{#                                                        <div class="classInstructor">J. Parker<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">PHYSC 5L <span class="classUnits badge badge-success">1</span><br></div>#}
-{#                                                        <div class="classInstructor">Lab Instructor Namme<br></div>#}
-{#                                                        <div class="classTime">TH 8:00am-6:45pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default">#}
-{#                                                        <div class="classHeader">AMS <span class="classUnits badge badge-success">5</span> </div>#}
-{#                                                        <div class="classInstructor">MeowNelson<br></div>#}
-{#                                                        <div class="classTime">MWF 12:00-1:40pm<br></div>#}
-{#                                                    </li>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                            <td>#}
-{#                                                <ul id="Summer14" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default">Summer Session Stuff</li>#}
-{#                                                    <li class="ui-state-default">PHYSC 5C/L</li>#}
-{#                                                    <li class="ui-state-default">AMS 20</li>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                        </tr>#}
-{#                                        </tbody>#}
-{#                                        <tfoot>#}
-{#                                        <tr>#}
-{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall13B" href="#" >Add Course</a></th>#}
-{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter14B" href="#" >Add Course</a></th>#}
-{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring14B" href="#" >Add Course</a></th>#}
-{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer14B" href="#" >Add Course</a></th>#}
-{#                                        </tr>#}
-{#                                        </tfoot>#}
-{#                                    </table>#}
-{#                                </div>#}
-{##}
-{##}
-{##}
-{#                            </div>#}
-{#                        </div>#}
-{##}
-{#                    </div>#}
+
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse"  href="#collapseTwo">
+                            <div class="row">
+                            <h3 style="text-align:center;" >2013 - 2014</h3>
+                            </div>
+                            </a>
+                        </div>
+
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+
+                                <div class="">
+                                    <table class="table table-bordeed">
+                                        <thead>
+                                        <tr>
+                                            <th>Fall</th>
+                                            <th>Winter</th>
+                                            <th>Spring</th>
+                                            <th>Summer</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <ul id="Fall13" class="connectedSortable">
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
+                                                        <div class="classInstructor">Instructor Name<br></div>
+                                                        <div class="classTime">MWF 12-2pm<br></div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul id="Winter14" class="connectedSortable">
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
+                                                        <div class="classInstructor">Instructor Name<br></div>
+                                                        <div class="classTime">MWF 12-2pm<br></div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul id="Spring14" class="connectedSortable">
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
+                                                        <div class="classInstructor">Instructor Name<br></div>
+                                                        <div class="classTime">MWF 12-2pm<br></div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul id="Summer14" class="connectedSortable">
+                                                    <li class="ui-state-default">
+                                                        <div class="classHeader">PHYS 5A <span class="classUnits badge badge-success">1</span><br></div>
+                                                        <div class="classInstructor">Instructor Name<br></div>
+                                                        <div class="classTime">MWF 12-2pm<br></div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall13B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter14B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring14B" href="#" >Add Course</a></th>
+                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer14B" href="#" >Add Course</a></th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+{#                        //last repeated value#}
+
+                    </div>
+
                 </div>
 
 
-{#                <div class="row">#}
-{#                    <h3 class="schedule" style="text-align:center;" > 2012 - 2013 </h3>#}
-{#                </div>#}
 
 
 

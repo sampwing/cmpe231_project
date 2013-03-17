@@ -17,6 +17,8 @@ print test2
 
 #taking the same class twice in the same year vs. moving a class around
 
+#Figure out available classes field... it should be all classes but classes for major 
+#should be highlighted or something
 
 templates for dashboard
 

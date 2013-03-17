@@ -27,7 +27,7 @@ from google.appengine.ext import db
 from collections import defaultdict
 
 import webapp2
-from google.appengine.ext.webapp import template
+from google.appengine.ext.webapp import template, logging
 
 
 class User(db.Model):
@@ -115,11 +115,15 @@ class Dashboard(webapp2.RequestHandler):
         mi2prog = "15";
         mi3prog = "50";
 
+
         requirements = MajorRequirements.all().filter('major =', 'CMPS').fetch(limit=100)
         requirements = [course.course for course in requirements]
-        completed = Progress.all().filter('user =', userQuery).fetch(limit=100)
-        completed = [course.course for course in completed]
+        completed1 = Progress.all().filter('user =', userQuery).fetch(limit=100)
+        completed = [course.course for course in completed1]
         available = ['{}-{}'.format(course.number, course.name) for course in requirements if course not in completed]
+        maxyear = max([course.year for course in completed1])
+
+        logging.debug(maxyear)
         output = {
             'major1': major1,
             'major2': major2,
