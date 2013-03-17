@@ -163,16 +163,44 @@ class Dashboard(webapp2.RequestHandler):
         #  u'Summer13,CMPS109,Summer13,Math 24,']
         # myclasses = filter(None, myclasses)
         # test = [x.strip() for x in myclasses[0].split(',')]
+        progCheck = Progress.all().filter('user =', current_user).fetch(limit=1000)
+        db.delete(progCheck)
 
         for course_number in myclasses:
-            course = Course.all().filter('number =',course_number[0].replace(" ", "")).get()
+
+            coursename = course_number[0].replace(" ", "")
+            quarter = course_number[1][:-2]
+            year = int(course_number[1][-2:])
+            course = Course.all().filter('number =',coursename).get()
+            progress = Progress(user=current_user, course=course, completed=True, quarter=quarter, year=year)
             if (course != None):
-                progress = Progress(user=current_user, course=course, completed=True)
-                progCheck = Progress.all().filter('user =', current_user).filter('course =', course).get()
-                if (progCheck == None):
-                    progress.put()
+                progress.put()
+
+
+            # if (course != None):
+            #     quarter = course_number[1][:-2]
+            #     year = int(course_number[1][-2:])
+            #     # need to figure out how to query for specific course
+            #     # so that we can remove it if neccessary
+            #     progress = Progress(user=current_user, course=course, completed=True, quarter=quarter, year=year)
+            #     progCheck = Progress.all().filter('user =', current_user).filter('course =', course).fetch(limit=20)
+            #     # if (progCheck.quarter != quarter):
+            #     #     progress.put()
+            #     #     #then remove the old class here too....
+                log = ""
+            #     if not progCheck:
+            #         progress.put()
+            #         log = "progCheck==None , " + str(course_number)
+            #     else:
+            #         if not any(quarter == chances.quarter for chances in progCheck):
+            #             progress.put()
+            #         # for chances in progCheck:
+            #         #     if (chances.quarter != quarter):
+            #         #         itsHere
+
+
                 # progress.put()
-        self.response.write("test" + str(myclasses2));
+        self.response.write(log + str(myclasses2));
 
         # self.response.write("test" + str(course_numbers));
         #return redirect('/dashboard')
