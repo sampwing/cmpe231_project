@@ -60,7 +60,7 @@
 {#            min-height: 100px;#}
         }
         .ui-state-default {
-            height: 40px;
+            min-height: 30px;
             margin: 0 5px 5px 5px;
             padding: 5px;
             font-size: 1.2em;
@@ -98,14 +98,15 @@
         .ui-state-highlight2 {
             visibility: hidden;
             display: hidden;
-            margin: 0 0px 0px 0px;
-            padding: 0px;
-            font-size: 1em;
+            margin: 0 0px 5px 5px;
+            padding: 5px;
+            font-size: 0em;
             width: 120px;
             background-color: black;
             text-align: left;
             vertical-align: top;
             color: white;
+            min-width: 142.22222900390625px;;
 
         }
 
@@ -155,7 +156,16 @@
     <link rel="shortcut icon" href="/favicon.ico">
 
     <script>
+    $(function() {
+        $(".connectedSortable" ).sortable({
 
+            {#                            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
+            connectWith: ".connectedSortable",
+            dropOnEmpty: true
+
+        }).disableSelection();
+
+    });
         var initialclassload;
         $(document).on('click', ".courseRemove", function(){
                 objA = $(this).parent();
@@ -181,16 +191,7 @@
                 }
 
             });
-            $(function() {
-                $(".connectedSortable" ).sortable({
 
-                    {#                            $( "#Fall12, #Fall13, #Winter13, #Winter14, #Spring13, #Spring14, #Summer13, #Summer14, #sortable2, #sortable3, #sortable4" ).sortable({#}
-                    connectWith: ".connectedSortable",
-                    dropOnEmpty: true
-
-                }).disableSelection();
-
-            });
 
             $( ".connectedSortable" ).sortable( "option", "dropOnEmpty", true );
             $("#extrabutton").click(function () {
@@ -301,7 +302,7 @@
                 var currentID = $('#myModal').attr('coursenum');
                 var classNumber = $('#classSearch').val();
                 var classname = classNumber.split(/\s*\-\s*/g);
-                alert(currentID);
+{#                alert(currentID);#}
                 classAdder(currentID, classname[0]);
             });
             function classAdder(id, course){
@@ -312,7 +313,7 @@
                 }
                 numEle = $('#'+ id + " li").size();
                 updateChanges(true);
-                $('#'+ id).append('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
+                $('#'+ id).prepend('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
                         + course +' ' +
                         '<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span> <br>' +
@@ -367,13 +368,13 @@
                     });
                 });
                 {#                Going to want to get rid of this eventually #}
-                alert(classlist);
+{#                alert(classlist);#}
                 $.post("/dashboard", { 'courses' : classlist } )
                         .done(function(data) {
                             updateChanges(false);
                             $(window).unbind('beforeunload');
 {#                            Going to want to get ride of this alert eventually too#}
-                            alert("Data Loaded: " + data);
+{#                            alert("Data Loaded: " + data);#}
                         });
             });
 
@@ -750,7 +751,7 @@
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse"  href="#collapse{{ year }}">
                             <div class="row">
-                            <h3 style="text-align:center;" >{{ year }}</h3>
+                            <h3 style="text-align:center;" >20{{ year }}</h3>
                             </div>
                             </a>
                         </div>
@@ -759,7 +760,7 @@
                             <div class="accordion-inner">
 
                                 <div class="">
-                                    <table class="table table-bordeed">
+                                    <table class="table table-bordered">
                                         <thead>
                                         <tr>
                                             <th>Fall</th>
@@ -771,13 +772,13 @@
                                         <tbody>
                                         <tr>{% for quarter, classes in quarters %}
                                             <td>
-                                                <ul id="{{ quarter }}" class="connectedSortable droptrue zlist">
+                                                <ul id="{{ quarter }}" class="connectedSortable zlist">
 
                                                     {% for class in classes %}
 
 
                                                     <li class="ui-state-default">
-                                                        <div class="classHeader">{{ class }} <span class="classUnits badge badge-success">1</span><br></div>
+                                                        <div class="classHeader">{{ class }} <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
                                                     </li>
@@ -836,18 +837,18 @@
 {#            {%  endfor %}#}
 {#<br><br>#}    <p>
 
-        {% for year, quarters in allyears %}
-            Year: {{ year }} <br>
-            {% for quarter, classes in quarters %}
-                Quarter: {{ quarter }} <br>
-                    Classes:
-                    {% for class in classes %}
-                         {{ class }} <br>
-                    {% endfor %}
-
-
-            {% endfor %}
-        {% endfor %}
+{#        {% for year, quarters in allyears %}#}
+{#            Year: {{ year }} <br>#}
+{#            {% for quarter, classes in quarters %}#}
+{#                Quarter: {{ quarter }} <br>#}
+{#                    Classes:#}
+{#                    {% for class in classes %}#}
+{#                         {{ class }} <br>#}
+{#                    {% endfor %}#}
+{##}
+{##}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
 {#              {% for year, quarter in allyears %}#}
 {#                    {{ year }} <br>#}
 {#                        {% for classes in quarter %}#}
@@ -869,7 +870,7 @@
 {#                {% endfor %}#}
 {#            {%  endfor %}#}
 <br><br><br>
-            {{ logging }}
+{#            {{ logging }}#}
         </p>
     </footer>
 

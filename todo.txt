@@ -1,23 +1,40 @@
 CE Project
 
-   * Is the add class screen populating the right courses???
-   * 
-      * make it select from minor majors
-      * get ride of duplicates
-      * save classes to profile as classes you've taken.
-      * figure out edit button styling when dynamically adding class
-   * add edit buttons to major selection- classes i've taken pages
-   * Add correct courseID when you dynamically add a class (correct quarter+class+quarterlength)
-   * Figure out Auto Fill the rest of the schedule 
+   * get rid of duplicate selections minor/majors
 
-   * No logic to stop adding a duplicate major - it should be removed from the other lists once selected
+   * save classes to profile as classes you've taken.
+   		maybe change dialog so that you select the quarter and year you've taken them?
+     
+class search 
+	change it so that it populates all classes.
+	star classes that you need to take? 
+	change the dialog box so you can naviagate for other courses
+	get course description, other info right in the class search dialog box
+		ajax stuff...
+	when you remove a course that you need to add that class to classes you need to take page	   
+
+   * fix spacing for the UI... it doesn't look right in the table right now. 
+	figure out if we want a border on the table, lines on items, thickness for those, etc.
+
+   * figure out editing major/minor page... if we want to make a new page or just populate the
+	pull down menus with previously determined major/minors.
+   
+   * change overview button so it changes text when you click it… show current year/quarter etc.
+
+
    * Figure out calculation for percentage of major done
-   * Editing major/minor selection 
-   * 
-      * create a duplicate of selection page, w/ django 
-   * Help Page/tutorial 
-   * when we remove a class it needs to add that class to the type ahead source
-   * change overview button so it changes text when you click it… show current year 
-   * figure out why removing classes isn't working everytime…
-   * figure out post method for submitting classes you've saved.
+      
+   ***** Figure out populating years correctly... so 
+      
+                  2012-2013
+       Fall12  Winter13  Spring13  Summer13
 
+
+Because right now the django script isn't doing it right. This might be tricky...
+May want to use django's cycle template tag for quarters or something, idk.
+
+	
+   * Help Page/tutorial 
+   
+   
+   poster? paper? Presentation??? User studies?
