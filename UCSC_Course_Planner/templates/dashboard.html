@@ -52,7 +52,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             line-height: 20px;
             font-size: small;
-            min-height: 30;
+{#            min-height: 30;#}
 
 
         }
@@ -107,7 +107,7 @@
             vertical-align: top;
             color: white;
             min-width: 142.22222900390625px;;
-
+{#            max-width: 100px;;#}
         }
 
 
@@ -170,7 +170,7 @@
         $(document).on('click', ".courseRemove", function(){
                 objA = $(this).parent();
                 currentId = $(objA).parent().attr('id');
-                {#                alert(currentId);#}
+{#                                alert(currentId);#}
                 coursename = objA.text();
                 coursename = coursename.substring(0, coursename.length - 2);
                 {#                alert(coursename);#}
@@ -235,17 +235,22 @@
                 return false;
             });
 
-            $(".courseRemove").click( function() {
-                objA = $(this).parent();
-                currentId = $(objA).parent().attr('id');
-                coursename = objA.text();
-                coursename = coursename.substring(0, coursename.length - 3);
-                $('#classToRemove').empty();
-                $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");
-                $('#confirmRemoveModal').removeAttr('courseID');
-                $('#confirmRemoveModal').attr('courseID', currentId);
-                $('#confirmRemoveModal').modal('show');
-            });
+{#            $(".courseRemove").click( function() {#}
+{#                alert("hi");#}
+{#                objA = $(this).parent();#}
+{#                currentId = $(objA).parent().attr('id');#}
+{#                coursename = objA.text();#}
+{##}
+{#                alert(coursename);#}
+{#                coursename = coursename.substring(0, coursename.length - 2);#}
+{#                alert(coursename);#}
+{##}
+{#                $('#classToRemove').empty();#}
+{#                $("#classToRemove").html("Are you sure you want to remove " + coursename + " ?");#}
+{#                $('#confirmRemoveModal').removeAttr('courseID');#}
+{#                $('#confirmRemoveModal').attr('courseID', currentId);#}
+{#                $('#confirmRemoveModal').modal('show');#}
+{#            });#}
 
             $("#removeClassSerious").click(function (){
                 courseID = $('#confirmRemoveModal').attr('courseID');
@@ -316,7 +321,7 @@
                 $('#'+ id).prepend('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
                         '<div class="classHeader">'
                         + course +' ' +
-                        '<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span> <br>' +
+                        '<span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span> <br>' +
                         '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +
                         ' <div class="classTime">MWF 12-2pm<br></div>' +
                         '</li>');
@@ -493,7 +498,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-danger" id="removeClassSerious">Remove Class</button>
+        <button class="btn btn-danger" id="removeClassSerious"><i class="icon-trash icon-white"></i> Remove Class</button>
     </div>
 
 </div>
@@ -592,6 +597,9 @@
                 </div>
                 </div>
         <div class="row"><br></div>
+        <p> <small><i>Note: Adding classes via the modal to the top left box (Fall12) doesn't working right now because the target link the is Fall 2011, instead of Fall 2012...
+            This is how we will have it in the final version, however currently we are displaying the Fall 2012, Winter 2012, Spring 2012, Summer 2012 which isn't the correct
+            order. </i></small></p>
                 <div class="accordion" id="accordion2">
 {#                    <div class="accordion-group">#}
 {#                        <div class="accordion-heading">#}
@@ -777,7 +785,7 @@
                                                     {% for class in classes %}
 
 
-                                                    <li class="ui-state-default">
+                                                    <li class="ui-state-default" id="{{ class }}{{ quarter }}{{ year }}">
                                                         <div class="classHeader">{{ class }} <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
@@ -794,10 +802,11 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Winter{{ year }}B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Spring{{ year }}B" href="#" >Add Course</a></th>
-                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Summer{{ year }}B" href="#" >Add Course</a></th>
+{#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" >Add Course</a></th>#}
+                                            <th><a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
+                                            <th><a class="addClass" id="Winter{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
+                                            <th><a class="addClass" id="Spring{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
+                                            <th><a class="addClass" id="Summer{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                         </tr>
                                         </tfoot>
                                     </table>

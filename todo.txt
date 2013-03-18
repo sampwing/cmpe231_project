@@ -15,7 +15,8 @@ class search
 
    * fix spacing for the UI... it doesn't look right in the table right now. 
 	figure out if we want a border on the table, lines on items, thickness for those, etc.
-
+	fix css for the individual li and max-width, min-width
+	
    * figure out editing major/minor page... if we want to make a new page or just populate the
 	pull down menus with previously determined major/minors.
    
