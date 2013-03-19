@@ -37,5 +37,6 @@ May want to use django's cycle template tag for quarters or something, idk.
 	
    * Help Page/tutorial 
    
+   *Decide on table condensed or not for major progress page
    
    poster? paper? Presentation??? User studies?

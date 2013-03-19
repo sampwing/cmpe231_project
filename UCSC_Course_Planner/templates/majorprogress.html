@@ -123,11 +123,46 @@
             <hr>
             <h3>{{ major1 }}</h3>
             <form name="input" action="/majorprogress" method="post">
+                <table class="table table-condensedd table-hover">
+
+                    <caption>Caption...</caption>
+                    <thead>
+                    <tr><th></th>
+                        <th>Course Number</th>
+                        <th>Course Name</th>
+                        <th>Quarter</th>
+                    </tr>
+                    </thead>
+                    <tbody>
             {% for course in courses %}
-                <label class="checkbox">
-                    <input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }} {{ course.name }}
-                </label>
+
+{#                <dl class="dl-horizontal">#}
+
+                    <tr>
+                        <td><input type="checkbox" style="font-size:150%; vertical-align: top; top: -1px; position: relative; margin:2px;" name="courses" value="{{ course.number }}"></td>
+                        <td>{{ course.number }}</td>
+                        <td>{{ course.name }}</td>
+                    <td><div class="btn-group" data-toggle="buttons-radio">
+                        <button type="button" class="btn">Left</button>
+                        <button type="button" class="btn">Middle</button>
+                        <button type="button" class="btn">Right</button>
+                    </div></td>
+                    </tr>
+
+
+{#                    <div class="controls controls-row">#}
+{#                        <span class="span2"><input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }}</span>#}
+{#                        <span class="span5">{{ course.name }}</span>#}
+{##}
+{#                    </div>#}
+{#                <label class="checkbox">#}
+{#                    <dt><input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }}</dt>#}
+{#                    <dd>{{ course.name }}</dd>#}
+{#                </label>#}
+{#                </dl>#}
             {% endfor %}
+                    </tbody>
+                </table>
 
             <button type="submit" class="btn btn-primary ">
                 <i class="icon-user icon-white"></i> Add Classes to Profile
@@ -138,6 +173,29 @@
             <br>
 
 
+{#            <h2>Select Classes you've taken already</h2>#}
+{##}
+{#            <p>Check the check box if you've already taken the class.#}
+{#                <br><br>#}
+{#            </p>#}
+{##}
+{#            <hr>#}
+{#            <h3>{{ major1 }}</h3>#}
+{#            <form name="input" action="/majorprogress" method="post">#}
+{#                {% for course in courses %}#}
+{#                    <label class="checkbox">#}
+{#                        <input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }} {{ course.name }}#}
+{#                    </label>#}
+{#                {% endfor %}#}
+{#                <button type="submit" class="btn btn-primary ">#}
+{#                    <i class="icon-user icon-white"></i> Add Classes to Profile#}
+{#                </button>#}
+{#            </form>#}
+{##}
+{#            <hr>#}
+{#            <br>#}
+{##}
+{##}
 
         </div>
                 
