@@ -378,7 +378,7 @@ class MajorProgress(webapp2.RequestHandler):
             quarteryear = [x.strip() for x in quarteryear.split(',')]
             if len(quarteryear) == 2:
                 quarter=quarteryear[0]
-                year=int(quarteryear[1][-2:])
+                year=int(quarteryear[1])
                 if quarter == "Fall":
                     year = year + 1
                 course = Course.all().filter('number =',number).get()
@@ -392,6 +392,32 @@ class MajorProgress(webapp2.RequestHandler):
         # self.response.write(" <br> <br> course numbers: " + str(course_numbers));
 
 
+class Search(webapp2.RequestHandler):
+    def get(self):
+        from models import Prerequisites
+        Prereqs = Prerequisites.all().fetch(limit=200)
+        self.response.out.write('<br><br>'.join(map(repr, Prereqs)))
+
+    def post(self):
+        from models import Prerequisites, Course
+        import ast
+        # course = Course.gql("WHERE number='{}'".format(self.request.get('course'))).get()
+        # prereq = Course.gql("WHERE number='{}'".format(self.request.get('prerequisite'))).get()
+        # p = Prerequisites(course=course, prereq=prereq)
+        # p.put()
+        # print("HI")
+        course = self.request.get('s')
+        number = course.split("-")
+        number = number[0]
+        course = Course.all().filter('number =',number).get()
+        if course == None:
+            self.response.write('<br> Sorry no course of that name found.<br>')
+        # if len(number) != 2:
+        else:
+            name = course.name
+            descp = course.description[3:]
+            self.response.write('<span class="classHeader1">' + number + '<br>' + name + '</span> <br>' + str(descp) + '<br>')
+        # self.response.write('<br>' + number + '<br>')
 
 
 class ListCourses(webapp2.RequestHandler):
@@ -578,6 +604,7 @@ app = webapp2.WSGIApplication([
     ('/prereqs', Prerequisites),
     ('/recordprereq', RecordPrereq),
     ('/populate', PopulateCourses),
+    ('/search', Search),
     ('/.*', NotFoundPageHandler)
 
 ], debug=True)

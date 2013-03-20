@@ -345,6 +345,10 @@
                         '</div>' + '<div class="classInstructor">Instructor Name<br></div>' +
                         ' <div class="classTime">MWF 12-2pm<br></div>' +
                         '</li>');
+                content = "<br><br><br><br><br><br><br><br><br><br><br><br><br>"
+                $("#classInfo").empty().append(content);
+                $('#classSearch').val('')
+
             };
 
             $("#btnPrint").click( function() {
@@ -416,6 +420,25 @@
                     $('#saveChanges').attr('class', 'btn  btn-small btn-primary pull-right')
                 }
             }
+
+            $("#searchForm").submit(function(event) {
+
+                /* stop form from submitting normally */
+                event.preventDefault();
+
+                var $form = $( this ),
+                        term = $form.find( 'input[name="classSearcher"]' ).val(),
+                        url = $form.attr( 'action' );
+
+                /* Send the data using post */
+                var posting = $.post( url, { s: term } );
+
+                /* Put the results in a div */
+                posting.done(function( data ) {
+                    var content = $( data )
+                    $("#classInfo").empty().append(content);
+                });
+            });
         });
 
     </script>
@@ -468,27 +491,35 @@
     </div>
     <div class="modal-body">
         <p>Type a course name or number to add it.</p>
-        <div class="input-prepend">
-            <span class="add-on"><i class="icon-search"></i></span>
-            <input type="text" id="classSearch" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" placeholder="AMS20, CMPS12B, etc.">
+{#        <div class="input-prepend">#}
+{#            <span class="add-on"><i class="icon-search"></i></span>#}
+{#            <input type="text" id="classSearch" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" placeholder="AMS20, CMPS12B, etc.">#}
+{##}
+{#        </div>#}
+{#        #}
+        <form class="form-search"  id="searchForm" action="/search">
+            <div class="input-append">
+                <input type="text" name="classSearcher" id="classSearch" class="span3 search-query" style="margin: 0 auto;" data-provide="typeahead" data-items="4" placeholder="AMS20, CMPS12B, etc.">
+                <button type="submit" class="btn"><i class="icon-search"></i> Search</button>
+            </div>
+        </form>
+        <div id="classInfo">
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         </div>
-
-{#        <span class="help-block">Enter a class name or number to select it.</span>#}
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
