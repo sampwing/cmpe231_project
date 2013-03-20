@@ -13,12 +13,16 @@
     <!-- Used for portlets
     <link href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" rel="stylesheet">
 -->
+
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/jquery-ui.js"></script>
     <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/intro.js"></script>
+
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/introjs.css" rel="stylesheet">
 
     <style type="text/css">
         .classHeader{
@@ -358,6 +362,12 @@
                 window.print();
             });
 
+
+            $("#demo").click( function() {
+                introJs().start();
+            });
+
+
             function printElement(elem, append, delimiter) {
                 var domClone = elem.cloneNode(true);
                 var $printSection = document.getElementById("printSection");
@@ -379,7 +389,6 @@
                 }
                 $printSection.appendChild(domClone);
             }
-
 
             $("#saveChanges").click( function() {
                 $('#saveChanges').button('loading');
@@ -633,8 +642,8 @@
                 <div class="row offset1">
 
                     <div class="btn-group">
+                        <button href="#" class="btn  btn-small" id="demo"><span class="ui-button-text">Demo! &raquo;</span></button>
                         <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview &raquo;</span></button>
-
                         <button href="#" class="btn  btn-small" id="btnPrint" ><span class="ui-button-text">Print </span><i class="icon-print"></i> </button>
                         <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span> <i class="icon-pencil"></i></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
