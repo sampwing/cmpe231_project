@@ -38,6 +38,7 @@
 
         $(document).ready(function() {
 
+
                 $(".dropdown-menu li a").click(function(){
                     currObj = $(this).parent().parent().parent();
                     currID = currObj.attr('id');
@@ -45,48 +46,78 @@
                     $(".btn:nth-child(5)").val($(this).text());
                 });
 
-{#                $('#subButton').click(function (event) {#}
+                $('#subButton').click(function (event) {
 {#                        classes = $("#alignment").val($(this).text());#}
 {#                        alert($('form').serialize());#}
-{#                        classes = $('form').serialize();#}
-{#                        $.post("/majorprogress", { 'courses' : classes } )#}
-{#                                .done(function(data) {#}
+                        classes = $('form').serialize();
+                        $.post("/majorprogress", { 'courses' : classes } )
+                                .done(function(data) {
 {#                                    alert(data);#}
 {#                                    updateChanges(false);#}
 {#                                    $(window).unbind('beforeunload');#}
 {#                                                                Going to want to get ride of this alert eventually too#}
-{#                                alert("Data Loaded: " + data);#}
-{#                                });#}
-{##}
-{#                    $.post("/majorprogress", { name: "John", time: "2pm" })#}
-{#                            .done(function(data) {#}
-{#                                alert("Data Loaded: " + data);#}
-{#                            });#}
-{#                        return false;#}
-{#                    });#}
-{#                    $('#yeahRight').text("HI");#}
-{#                    $.post('/majorprogress', function(data) {#}
-{#                        $('#yeahRight').html(data);#}
-{#                    });#}
+                                alert("Data Loaded: " + data);
+                                });
+                    });
 
 
             $(".sneaky").click(function() {
                 // whenever a button is clicked, set the hidden helper
-                currentyear = $(this).parent().text()
-                {#                    alert($(this).parent().parent().parent().parent().parent().attr('id'))#}
+                currentyear = $(this).parent().text();
+
                 quarter = $(this).text();
+{#                alert("Quarter::: "+ quarter);#}
                 currID = $(this).parent().attr('id');
-                alert(currID);
+{#                alert("CurrID: "+ currID);#}
                 year = $('#' + currID + '> .dropdown-toggle').text();
-                alert(year);
+{#                alert("Curr Year: " + year);#}
+{#                alert(year);#}
                 if (isNaN(year)) {
-                    alert ("Please select a year for " + currID + " in " + quarter + "quarter.");
+                    if (year != "None"){
+{#                    alert ("Please select a year for " + currID + " in " + quarter + "quarter.");#}
+                    $('#'+currID +'> .dropdown-toggle').append('<a data-toggle="tooltip" title="You have to select a year!" id="' + currID + 'Tip"></a>');
+                    $('#'+currID +'Tip').tooltip({ placement : 'right' });
+                    $('#'+currID +'Tip').tooltip('show');
+                    }
+
                 }
-                {#                    alert($(this).parent().hasClass('active'));#}
-                {#                    $(this).parent().hasClass('foo')#}
-                currentClass = currID
+                else{
+
+                currentClass = currID;
                 $("#Hidden" + currentClass).val("");
                 $("#Hidden" + currentClass).val(quarter+","+year);
+                $('#'+currID +'Tip').tooltip('destroy');
+
+                }
+            });
+
+            $(".lessSneaky").click(function() {
+                currentyear = $(this).parent().text()
+{#                alert($(this).parent().children('.active').text()) ;#}
+                quarter =($(this).parent().children('.active').text());
+                currID = $(this).parent().attr('id');
+{#                                alert("CurrID: " + currID);#}
+                year = $('#' + currID + '> .dropdown-toggle').text();
+{#                                alert("Year: " + year);#}
+                if (isNaN(year)) {
+                    if (year != "None"){
+{#                                        alert ("Please select a year for " + currID + " in " + quarter + "quarter.");#}
+                    $('#'+currID +'> .dropdown-toggle').append('<a data-toggle="tooltip" title="You have to select a year!" id="' + currID + 'Tip"></a>');
+                    $('#'+currID +'Tip').tooltip({ placement : 'right' });
+                    $('#'+currID +'Tip').tooltip('show');
+{#                    return false;#}
+                    }
+                }
+                else  {
+                $('#'+currID +'Tip').tooltip('destroy');
+                currentClass = currID;
+                $("#Hidden" + currentClass).val("");
+{#                alert("Quarter:" + quarter);#}
+{#                alert("Year: " + year);#}
+                $("#Hidden" + currentClass).val(quarter+","+year);
+                }
+
+
             });
 
                 });
@@ -102,7 +133,6 @@
         .coursename{
             padding: 8px;
             font-size: 18px;
-
         }
 
     </style>
@@ -142,7 +172,6 @@
 {#                    <input class="span2" type="password" placeholder="Password">#}
                     <button class="btn btn-primary" type="button" onclick="self.location='{{   logURL|safe}}'"> {% if is_logged_in %}
                         Logout of {{name}}     {% else %} Login  <img src="/static/img/cruzid_blue60.png" style="zoom: 100%;" > {% endif %}</button>
-
                 </form>
             </div><!--/.nav-collapse -->
         </div>
@@ -155,26 +184,30 @@
 
     <!-- Example row of columns -->
     <div class="row">
-        <div class="span2"></div>
-        <div class="span8">
+{#        <div class="span2"></div>#}
+{#        <div class="span8">#}
+          <div class="span9 offset1">
+
             <h2>Select Classes you've taken already</h2>
 
-            <p>Select the Quarter and year for any classes you've already taken and passed.
+            <p>Select the quarter and year for any classes you've already taken and passed.
                 <br><br>
             </p>
 
             <hr>
             <h3>{{ major1 }}</h3>
-            <form name="theForm" action="/majorprogress" method="post">
+            <form id="theForm">
+{#            <form name="theForm" action="/majorprogress" method="post">#}
                 <table class="table table-condensedd table-hover">
 
 {#                    <caption>Use the buttons on the left to indicate which classes you've taken.</caption>#}
                     <thead>
                     <tr>
 {#                        <th></th>#}
-                        <th>Course Number</th>
-                        <th>Course Name</th>
-                        <th>Quarter</th>
+                        <th>Course #</th>
+                        <th>Course Title</th>
+{#                        //style="width: 40%"#}
+                        <th >Quarter</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -184,25 +217,31 @@
                         <td>{{ course.number }}</td>
                         <td>{{ course.name }}</td>
                         <td>
-                            <input type="hidden" class="" id="Hidden{{ course.number }}" name="{{ course.number }}" />
+                                <input type="hidden" class="" id="Hidden{{ course.number }}" name="{{ course.number }}" />
                             <div class="btn-group" data-toggle="buttons" id="{{ course.number }}">
                                 <button type="button" class="btn sneaky">Fall</button>
                                 <button type="button" class="btn sneaky">Winter</button>
                                 <button type="button" class="btn sneaky">Spring</button>
                                 <button type="button" class="btn sneaky">Summer</button>
-{#
 
-                                <a class="btn dropdown-toggle sneaky" data-toggle="dropdown">
+
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" title="You have to select a year!">
                                     Year <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu pull-right">
-                                <li><a>2011</a></li>
-                                <li><a>2012</a></li>
-                                <li><a>2013</a></li>
+                                <ul class="dropdown-menu pull-right lessSneaky">
+                                <li><a style="white-space: nowrap;">2011</a></li>
+                                <li><a style="white-space: nowrap;">2012</a></li>
+                                <li><a style="white-space: nowrap;">2013</a></li>
+                                <li><a style="white-space: nowrap;">None</a></li>
 
                                 </ul>
 
+
+{#                                <span class="help-inline">Something may have gone wrong</span>#}
+{#                                    <input type="text" id="inputWarning">#}
+
                             </div>
+
                         </td>
                     </tr>
             {% endfor %}
@@ -210,8 +249,8 @@
                 </table>
             <br>
 
-{#                <button id="subButton" class="btn btn-primary pull-right">#}
-                <button type="submit" class="btn btn-primary pull-right">
+                <button id="subButton" type="button" class="btn btn-primary pull-right">
+{#                <button type="submit" class="btn btn-primary pull-right">#}
                 <i class="icon-user icon-white"></i> Add Classes to Profile
             </button>
             </form>
