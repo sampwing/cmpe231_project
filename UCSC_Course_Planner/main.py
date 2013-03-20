@@ -361,13 +361,13 @@ class MajorProgress(webapp2.RequestHandler):
             course.insert(0, arg)
             course_numbers.append(course)
         current_user = User.all().filter('email =', user.email()).get()
-        # for course_number, quarter, year in course_numbers:
-        #     course = Course.all().filter('number =',course_number).get()
-        #     progress = Progress(user=current_user, course=course, quarter=quarter, year=year, completed=True)
-        #     progress.put()
+        for number, quarter, year, in course_numbers:
+            course = Course.all().filter('number =',number).get()
+            progress = Progress(user=current_user, course=course, quarter=quarter, year=year, completed=True)
+            progress.put()
         # self.response.write("yooo")
-        self.response.write(str(args) + " <br> <br> course numbers: " + str(course_numbers));
-        # return redirect('/dashboard')
+        self.response.write( " <br> <br> course numbers: " + str(course_numbers));
+        return redirect('/dashboard')
 
 
 
