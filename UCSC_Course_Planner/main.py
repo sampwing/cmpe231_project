@@ -125,7 +125,7 @@ class Dashboard(webapp2.RequestHandler):
         completed = [course.course for course in completed1]
 
         #  any(quarter == chances.quarter for chances in progCheck):
-        available = ['{}-{}'.format(course.number, course.name) for course in requirements if course not in completed]
+        available = ['{}-{}'.format(course.number, course.name[:40]) for course in requirements if course not in completed]
         maxyear = date.today().year + 5
         # years = tuple((str(n-1), str(n)) for n in range(date.today().year, date.today().year + 5))
         years = list((str(n-1) + " - " + str(n)) for n in range(date.today().year, date.today().year + 5))
