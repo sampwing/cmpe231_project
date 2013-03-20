@@ -194,6 +194,13 @@
             });
 
         $(document).ready(function() {
+{#            $("#demo").toggle('hide');#}
+{##}
+{#            introJs().oncomplete(function() {#}
+{#                alert('hi');#}
+{#                $("#demo").toggle('hide');#}
+{#            });#}
+
             // Updates the change button when you mess with the sortable
             $( ".connectedSortable" ).sortable({
                 droponEmpty: true,
@@ -448,6 +455,7 @@
                     $("#classInfo").empty().append(content);
                 });
             });
+
         });
 
     </script>
@@ -562,12 +570,15 @@
 
 </div>
 
-<div class="container">
+<div class="container" >
 
+{#                                >#}
     <div class="row">
         <div class="span3">
             <div>
 {#            <div style="background-color: beige">#}
+{#                <h1  class="">Intro<span style="font-weight: normal;">.js</span></h1>#}
+                <div data-step="1" data-intro="Get the latest information about enrollement here!" data-position="bottom">
                 <h2>News + Info</h2>
 
                 <p><small>Last Day to drop a class: April 5th
@@ -575,6 +586,8 @@
                    Spring Enrollement Opens: March 1st
                 <br></small>
                 </p>
+                </div>
+                <div data-step="2" data-intro="Your current progress for your major or minor can be seen here!" >
                 <hr>
                 {% if major2 %}
                     <h3> Majors:</h3> <a class="btn btn-small"  href="/selectMajor" id="changeMajor">Edit Major & Minor Selection <i class="icon-edit"></i></a>
@@ -626,6 +639,8 @@
                     </div>
                 {%  endif %}
                 <hr>
+                </div>
+                <div data-step="3" data-intro="Other useful links:" data-position="right">
                 <h3>Additional Notes:</h3>
                 <p>Other relevant information to students...</p>
                 <ul>
@@ -633,22 +648,26 @@
                 <li><a href="http://registrar.ucsc.edu/soc/">Registrar </a></li>
                 <li><a href="ecommons.ucsc.edu">ECommons</a><br></li>
                 </ul>
+                    </div>
             </div>
         </div>
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="span9">
         <div>
 {#            <div> style="background-color: beige">#}
-                <div class="row offset1">
+                <div class="row offset1" data-step="6" data-intro="And that's the gist of things. Thanks for giving UCSC planner a try!" data-position="bottom">
+{#                    <div>#}
 
-                    <div class="btn-group">
-                        <button href="#" class="btn  btn-small" id="demo"><span class="ui-button-text">Demo! &raquo;</span></button>
-                        <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview &raquo;</span></button>
+                    <div class="btn-group"  data-step="4" data-intro="Toolbar: Click the overview button to expand all quarters. The edit button allows you to remove courses and change your major or minor. "  >
+                        <button href="#" class="btn btn-success btn-small pull-left" id="demo">Demo! </button>
+                        <button href="#" class="btn  btn-small" id="overView"><span class="ui-button-text">Overview </span></button>
                         <button href="#" class="btn  btn-small" id="btnPrint" ><span class="ui-button-text">Print </span><i class="icon-print"></i> </button>
                         <button href="#" class="btn  btn-small" id="edit"><span class="ui-button-text">Edit</span> <i class="icon-pencil"></i></button>
                         <button href="#" id="extrabutton" class="btn btn-small"><span class="ui-button-text">Experimental Extras &raquo;</span></button>
                     </div>
+
                     <button href="#" class="btn  btn-small btn-primary pull-right" id="saveChanges" data-loading-text="Saving <i class='icon-file'></i>" data-changes-text="Save Changes <i class='icon-file'></i>"><span class="ui-button-text">Saved</span><i class="icon-file"></i> </button>
+
                     <div class="btn-group" id="extras" data-toggle="buttons-checkbox" style="display: none">
                         <button type="button" id="ViewInstructor" class="btn  btn-small"><span class="ui-button-text">View Instructor</span> </button>
                         <button type="button" id="ViewTime" class="btn  btn-small"><span class="ui-button-text">View Time</span> </button>
@@ -712,10 +731,11 @@
                                             {% endfor %}
                                         </tr>
                                         </tbody>
-                                        <tfoot>
+                                        <tfoot >
                                         <tr>
 {#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" >Add Course</a></th>#}
-                                            <th ><a class="addClass" id="Fall{{ year}}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
+                                            <th {% if forloop.counter == 1 %} data-step="5" data-intro="Click here to add a course to this quarter, Fall 2011" data-position="left"{% endif %}
+                                                    ><a class="addClass" id="Fall{{ year}}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                             <th><a class="addClass" id="Winter{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                             <th><a class="addClass" id="Spring{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                             <th><a class="addClass" id="Summer{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
