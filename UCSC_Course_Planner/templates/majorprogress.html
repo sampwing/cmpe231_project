@@ -47,8 +47,27 @@
                     $("i", this).css({ opacity: 1 })
                 }
             });
-        });
 
+            $(function(){
+
+                $(".dropdown-menu li a").click(function(){
+                    curButton = $(this);
+                    currObj = $(this).parent().parent().parent();
+{#                    alert(currID);#}
+                    currID = currObj.attr('id');
+{#                    $(".btn:nth-child(5)").text($(this).text() + ' ');#}
+{#                    $('#'+currID + ':last-child').text($(this).text() + ' Test');#}
+                    $('#' + currID + '> .dropdown-toggle').text($(this).text() + ' ').append('<span class="caret"> </span>');
+{#                    btn dropdown-toggle#}
+{#                    alert(curButton.attr('span'));#}
+{#                    $(curButton).parent().parent().parent().text('HI');#}
+{#                    $(".btn:nth-child(5)").append('<span class="caret"> </span>')#}
+                    $(".btn:nth-child(5)").val($(this).text());
+
+                });
+
+            });
+        });
 
     </script>
 
@@ -142,11 +161,39 @@
                         <td><input type="checkbox" style="font-size:150%; vertical-align: top; top: -1px; position: relative; margin:2px;" name="courses" value="{{ course.number }}"></td>
                         <td>{{ course.number }}</td>
                         <td>{{ course.name }}</td>
-                    <td><div class="btn-group" data-toggle="buttons-radio">
-                        <button type="button" class="btn">Left</button>
-                        <button type="button" class="btn">Middle</button>
-                        <button type="button" class="btn">Right</button>
-                    </div></td>
+                    <td><div class="btn-group" data-toggle="buttons" id="{{ course.number }}">
+                        <button type="button" class="btn">Fall</button>
+                        <button type="button" class="btn">Winter</button>
+                        <button type="button" class="btn">Spring</button>
+                        <button type="button" class="btn">Summer</button>
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            Year
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#">2011</a></li>
+                            <li><a href="#">2012</a></li>
+                            <li><a href="#">2013</a></li>
+                        </ul>
+                    </div>
+{#                        <div class="btn-group">#}
+{#                            <button class="btn">Fall</button>#}
+{#                            <button class="btn">Winter</button>#}
+{#                            <button class="btn">Spring</button>#}
+{#                            <button class="btn">Summer</button>#}
+{#                            <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">#}
+{#                                <span class="caret"></span>#}
+{#                            </button>#}
+{#                            <ul class="dropdown-menu pull-right">#}
+{#                                <li><a href="#">Action</a></li>#}
+{#                                <li><a href="#">Another action</a></li>#}
+{#                                <li><a href="#">Something else here</a></li>#}
+{#                                <li class="divider"></li>#}
+{#                                <li><a href="#">Separated link</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+
+                    </td>
                     </tr>
 
 
