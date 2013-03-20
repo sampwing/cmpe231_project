@@ -333,7 +333,6 @@ class MajorProgress(webapp2.RequestHandler):
         courses = [course.course for course in courses]
         # courses.order("-department")
 
-
         output = {
                 'courses': courses,
                 'major1': major1,
@@ -352,22 +351,44 @@ class MajorProgress(webapp2.RequestHandler):
         self.response.write(template.render(path, output))
 
     def post(self):
+        import logging
         from models import Course, Progress
         user = users.get_current_user()
         args = self.request.arguments()
         course_numbers = []
+        # logging.debug("test")
+        idx = 0
+        # courses = self.request.get_all(args[0])
+        # for course in courses:
+        #     for c2 in course:
+        #         course_numbers.append(course)
         for arg in args:
             course = self.request.get_all(arg)
+
             course.insert(0, arg)
+            # course = str(course))
             course_numbers.append(course)
+            # idx= idx+1
         current_user = User.all().filter('email =', user.email()).get()
-        for number, quarter, year, in course_numbers:
-            course = Course.all().filter('number =',number).get()
-            progress = Progress(user=current_user, course=course, quarter=quarter, year=year, completed=True)
-            progress.put()
-        # self.response.write("yooo")
-        self.response.write( " <br> <br> course numbers: " + str(course_numbers));
+        # for course in course_numbers:
+        # course_numbers = args
+        for coursevals in course_numbers:
+            number = coursevals[0]
+            quarteryear = coursevals[1]
+            quarteryear = [x.strip() for x in quarteryear.split(',')]
+            if len(quarteryear) == 2:
+                quarter=quarteryear[0]
+                year=int(quarteryear[1][-2:])
+                course = Course.all().filter('number =',number).get()
+                progress = Progress(user=current_user, course=course, quarter=quarter, year=year, completed=True)
+                progress.put()
+
+            # self.response.write("<br>")
+        # print (str(course_numbers))
         return redirect('/dashboard')
+    # self.response.write("yooo")
+        # self.response.write(" <br> <br> course numbers: " + str(course_numbers));
+
 
 
 

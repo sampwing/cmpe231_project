@@ -48,11 +48,13 @@
 
                 $('#subButton').click(function (event) {
 {#                        classes = $("#alignment").val($(this).text());#}
-                        alert($('form').serialize());
+{#                        alert($('form').serialize());#}
                         classes = $('form').serialize();
-                        $.post("/majorprogress", { 'courses' : classes } )
+{#                        classes = ["test","hi"]#}
+                        $.post("/majorprogress",  $('form').serialize() )
                                 .done(function(data) {
-                                    alert(data);
+                                    window.location = "/dashboard";
+                                    {#                                    alert(data);#}
 {#                                    updateChanges(false);#}
 {#                                    $(window).unbind('beforeunload');#}
 {#                                                                Going to want to get ride of this alert eventually too#}
