@@ -64,7 +64,7 @@
             margin: 0 5px 5px 5px;
             padding: 5px;
             font-size: 1.2em;
-            width: 120px;
+            width: 100px;
             background-color: white;
             border-color: black;
             border-bottom-color: rgb(221, 221, 221);
@@ -81,6 +81,8 @@
             border-top-width: 1px;
             text-align: left;
             vertical-align: top;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
 
         }
 
@@ -144,6 +146,12 @@
                 left:0;
                 top:0;
             }
+        }
+        td{
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
     </style>
@@ -316,6 +324,7 @@
                 else {
                     $("#edit").click();
                 }
+                course = course.toUpperCase();
                 numEle = $('#'+ id + " li").size();
                 updateChanges(true);
                 $('#'+ id).prepend('<li class="ui-state-default" id="' + id + 'Class' + numEle + '">' +
@@ -597,169 +606,17 @@
                 </div>
                 </div>
         <div class="row"><br></div>
-        <p> <small><i>Note: Adding classes via the modal to the top left box (Fall12) doesn't working right now because the target link the is Fall 2011, instead of Fall 2012...
-            This is how we will have it in the final version, however currently we are displaying the Fall 2012, Winter 2012, Spring 2012, Summer 2012 which isn't the correct
-            order. </i></small></p>
+
+        <p> <small><i> </i></small></p>
                 <div class="accordion" id="accordion2">
-{#                    <div class="accordion-group">#}
-{#                        <div class="accordion-heading">#}
-{#                            <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">#}
-{#                                <div class="row">#}
-{#                                    <h3 style="text-align:center;" >2012 - 2013</h3>#}
-{#                                </div>#}
-{##}
-{#                            </a>#}
-{#                        </div>#}
-{##}
-{#                        <div id="collapseOne" class="accordion-body collapse in">#}
-{#                            <div class="accordion-inner">#}
-{##}
-{##}
-{#                                <div class="year1">#}
-{#                                    <table class="table table-bordeed">#}
-{#                                        <thead>#}
-{#                                        <tr>#}
-{#                                            <th>Fall</th>#}
-{#                                            <th>Winter</th>#}
-{#                                            <th>Spring</th>#}
-{#                                            <th>Summer</th>#}
-{#                                        </tr>#}
-{#                                        </thead>#}
-{#                                        <tbody>#}
-{#                                        <tr>#}
-{#                                            <td>#}
-{##}
-{#                                                <ul id="Fall12" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default" id="Fall12Class0">#}
-{#                                                        <div class="classHeader">PHYS 5A<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">Instructor Name<br></div>#}
-{#                                                        <div class="classTime">MWF 12-2pm<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Fall12Class1">#}
-{#                                                        <div class="classHeader">PHYS 5L<span class="classUnits badge badge-success">1</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">Instructor Name<br></div>#}
-{#                                                        <div class="classTime">MWF 12-2pm<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Fall12Class2">#}
-{#                                                        <div class="classHeader">CMPS 12B<span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Fall12Class3">#}
-{#                                                        <div class="classHeader">CMPS 12L<span class="classUnits badge badge-success">2</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Fall12Class4">#}
-{#                                                        <div class="classHeader">CMPE 16<span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span></div>#}
-{#                                                        <div class="classInstructor">T. Larabee<br></div>#}
-{#                                                        <div class="classTime">MWF 9:30-10:40am<br></div>#}
-{#                                                    </li>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                            <td>#}
-{#                                                                                <ul id="sortable2" class="connectedSortable">#}
-{#                                                                                <li class="ui-state-highlight" style>HCI 131</li>#}
-{#                                                                                <li class="ui-state-highlight">CMPS101</li>#}
-{#                                                                                <li class="ui-state-highlight">Math 21</li>#}
-{#                                                <ul id="Winter13" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default" id="Winter13Class1">#}
-{#                                                        <div class="classHeader">HCI 131 <span class="classUnits badge badge-success">5</span> <span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{##}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Winter13Class2">#}
-{#                                                        <div class="classHeader">CMPS 101 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Winter13Class3">#}
-{#                                                        <div class="classHeader">Math 21 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{#                                                    </li>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                            <td>#}
-{#                                                <ul id="Spring13" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default" id="Spring13Class1">#}
-{#                                                        <div class="classHeader">PHYSC 5C <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">Namme<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Spring13Class2">#}
-{#                                                        <div class="classHeader">DANM 250C<span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">J. Parker<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Spring13Class3">#}
-{#                                                        <div class="classHeader">PHYSC 5L <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">Lab Instructor Namme<br></div>#}
-{#                                                        <div class="classTime">TH 8:00am-6:45pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Spring13Class4">#}
-{#                                                        <div class="classHeader">AMS 131<span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span> </div>#}
-{#                                                        <div class="classInstructor">MeowNelson<br></div>#}
-{#                                                        <div class="classTime">MWF 12:00-1:40pm<br></div>#}
-{#                                                    </li>#}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                            <td>#}
-{#                                                <ul id="Summer13" class="connectedSortable">#}
-{#                                                    <li class="ui-state-default" id="Summer13Class1">#}
-{#                                                        <div class="classHeader">CMPS109 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">W. Mackey<br></div>#}
-{#                                                        <div class="classTime">T/TH 5-6:45pm<br></div>#}
-{#                                                    </li>#}
-{#                                                    <li class="ui-state-default" id="Summer13Class2">#}
-{#                                                        <div class="classHeader">Math 24 <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right"><i class="icon-minus-sign"></i></span><br></div>#}
-{#                                                        <div class="classInstructor">Tamanoi<br></div>#}
-{#                                                        <div class="classTime">TBA<br></div>#}
-{#                                                    </li>#}
-{##}
-{#                                                </ul>#}
-{#                                            </td>#}
-{#                                        </tr>#}
-{#                                        </tbody>#}
-{#                                        <tfoot>#}
-{#                                        <tr>#}
-{#                                            <th><a class="addClass" id="Fall12B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>#}
-{#                                            <th><a class="addClass" id="Winter13B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>#}
-{#                                            <th><a class="addClass" id="Spring13B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>#}
-{#                                            <th><a class="addClass" id="Summer13B" href="#" ><i class="icon-plus-sign"></i>&nbsp;Add Course</a></th>#}
-{#                                            </th>#}
-{#                                        </tr>#}
-{#                                        </tfoot>#}
-{#                                    </table>#}
-{#                                </div>#}
-{##}
-{##}
-{##}
-{#                            </div>#}
-{#                        </div>#}
-
-                    </div>
-
-{#            Year:  <br>#}
-
-{#                Quarter:  <br>#}
-{#                Classes:#}
-
-
-
-
 
         {% for year, quarters in allyears %}
+
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse"  href="#collapse{{ year }}">
                             <div class="row">
-                            <h3 style="text-align:center;" >20{{ year }}</h3>
+                            <h3 style="text-align:center;" >20{{ year|add:"-1" }} - 20{{ year }}</h3>
                             </div>
                             </a>
                         </div>
@@ -768,13 +625,13 @@
                             <div class="accordion-inner">
 
                                 <div class="">
-                                    <table class="table table-bordered">
-                                        <thead>
+                                    <table class="table table-bordered" style='width: 100px;'>
+                                        <thead >
                                         <tr>
-                                            <th>Fall</th>
-                                            <th>Winter</th>
-                                            <th>Spring</th>
-                                            <th>Summer</th>
+                                            <th >Fall '{{ year|add:"-1" }}</th>
+                                            <th >Winter '{{ year }}</th>
+                                            <th >Spring '{{ year }}</th>
+                                            <th >Summer '{{ year }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -803,7 +660,7 @@
                                         <tfoot>
                                         <tr>
 {#                                            <th><i class="icon-plus-sign"></i>&nbsp;<a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" >Add Course</a></th>#}
-                                            <th><a class="addClass" id="Fall{{ year|add:"-1" }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
+                                            <th ><a class="addClass" id="Fall{{ year}}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                             <th><a class="addClass" id="Winter{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                             <th><a class="addClass" id="Spring{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
                                             <th><a class="addClass" id="Summer{{ year }}B" href="#" ><i class="icon-plus-sign"></i> Add Course</a></th>
@@ -816,13 +673,13 @@
 
                             </div>
                         </div>
+                    </div>
         {% endfor %}
+
 
 {#                        //last repeated value#}
 
                     </div>
-
-                </div>
 
 
 

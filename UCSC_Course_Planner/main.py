@@ -379,6 +379,8 @@ class MajorProgress(webapp2.RequestHandler):
             if len(quarteryear) == 2:
                 quarter=quarteryear[0]
                 year=int(quarteryear[1][-2:])
+                if quarter == "Fall":
+                    year = year + 1
                 course = Course.all().filter('number =',number).get()
                 progress = Progress(user=current_user, course=course, quarter=quarter, year=year, completed=True)
                 progress.put()

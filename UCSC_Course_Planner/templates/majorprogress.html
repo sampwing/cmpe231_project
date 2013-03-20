@@ -47,17 +47,12 @@
                 });
 
                 $('#subButton').click(function (event) {
-{#                        classes = $("#alignment").val($(this).text());#}
-{#                        alert($('form').serialize());#}
                         classes = $('form').serialize();
-{#                        classes = ["test","hi"]#}
                         $.post("/majorprogress",  $('form').serialize() )
                                 .done(function(data) {
                                     window.location = "/dashboard";
-                                    {#                                    alert(data);#}
 {#                                    updateChanges(false);#}
 {#                                    $(window).unbind('beforeunload');#}
-{#                                                                Going to want to get ride of this alert eventually too#}
 {#                                alert("Data Loaded: " + data);#}
                                 });
                     });
