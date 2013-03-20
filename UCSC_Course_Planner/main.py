@@ -354,13 +354,20 @@ class MajorProgress(webapp2.RequestHandler):
     def post(self):
         from models import Course, Progress
         user = users.get_current_user()
-        course_numbers = (self.request.get('courses',  allow_multiple=True))
+        args = self.request.arguments()
+        course_numbers = []
+        for arg in args:
+            course = self.request.get_all(arg)
+            course.insert(0, arg)
+            course_numbers.append(course)
         current_user = User.all().filter('email =', user.email()).get()
-        for course_number in course_numbers:
-            course = Course.all().filter('number =',course_number).get()
-            progress = Progress(user=current_user, course=course, completed=True)
-            progress.put()
-        return redirect('/dashboard')
+        # for course_number, quarter, year in course_numbers:
+        #     course = Course.all().filter('number =',course_number).get()
+        #     progress = Progress(user=current_user, course=course, quarter=quarter, year=year, completed=True)
+        #     progress.put()
+        # self.response.write("yooo")
+        self.response.write(str(args) + " <br> <br> course numbers: " + str(course_numbers));
+        # return redirect('/dashboard')
 
 
 

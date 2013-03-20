@@ -38,36 +38,60 @@
 
         $(document).ready(function() {
 
-            $('.cbutton').click(function() {
-                if ($(this).hasClass('active') ){
-                    $("i", this ).css({ opacity: 0.0 })
-
-                }
-                else {
-                    $("i", this).css({ opacity: 1 })
-                }
-            });
-
-            $(function(){
-
                 $(".dropdown-menu li a").click(function(){
-                    curButton = $(this);
                     currObj = $(this).parent().parent().parent();
-{#                    alert(currID);#}
                     currID = currObj.attr('id');
-{#                    $(".btn:nth-child(5)").text($(this).text() + ' ');#}
-{#                    $('#'+currID + ':last-child').text($(this).text() + ' Test');#}
                     $('#' + currID + '> .dropdown-toggle').text($(this).text() + ' ').append('<span class="caret"> </span>');
-{#                    btn dropdown-toggle#}
-{#                    alert(curButton.attr('span'));#}
-{#                    $(curButton).parent().parent().parent().text('HI');#}
-{#                    $(".btn:nth-child(5)").append('<span class="caret"> </span>')#}
                     $(".btn:nth-child(5)").val($(this).text());
+                });
+
+{#                $('#subButton').click(function (event) {#}
+{#                        classes = $("#alignment").val($(this).text());#}
+{#                        alert($('form').serialize());#}
+{#                        classes = $('form').serialize();#}
+{#                        $.post("/majorprogress", { 'courses' : classes } )#}
+{#                                .done(function(data) {#}
+{#                                    alert(data);#}
+{#                                    updateChanges(false);#}
+{#                                    $(window).unbind('beforeunload');#}
+{#                                                                Going to want to get ride of this alert eventually too#}
+{#                                alert("Data Loaded: " + data);#}
+{#                                });#}
+{##}
+{#                    $.post("/majorprogress", { name: "John", time: "2pm" })#}
+{#                            .done(function(data) {#}
+{#                                alert("Data Loaded: " + data);#}
+{#                            });#}
+{#                        return false;#}
+{#                    });#}
+{#                    $('#yeahRight').text("HI");#}
+{#                    $.post('/majorprogress', function(data) {#}
+{#                        $('#yeahRight').html(data);#}
+{#                    });#}
+
+
+            $(".sneaky").click(function() {
+                // whenever a button is clicked, set the hidden helper
+                currentyear = $(this).parent().text()
+                {#                    alert($(this).parent().parent().parent().parent().parent().attr('id'))#}
+                quarter = $(this).text();
+                currID = $(this).parent().attr('id');
+                alert(currID);
+                year = $('#' + currID + '> .dropdown-toggle').text();
+                alert(year);
+                if (isNaN(year)) {
+                    alert ("Please select a year for " + currID + " in " + quarter + "quarter.");
+                }
+                {#                    alert($(this).parent().hasClass('active'));#}
+                {#                    $(this).parent().hasClass('foo')#}
+                currentClass = currID
+                $("#Hidden" + currentClass).val("");
+                $("#Hidden" + currentClass).val(quarter+","+year);
+            });
 
                 });
 
-            });
-        });
+
 
     </script>
 
@@ -135,18 +159,19 @@
         <div class="span8">
             <h2>Select Classes you've taken already</h2>
 
-            <p>Check the check box if you've already taken the class.
+            <p>Select the Quarter and year for any classes you've already taken and passed.
                 <br><br>
             </p>
 
             <hr>
             <h3>{{ major1 }}</h3>
-            <form name="input" action="/majorprogress" method="post">
+            <form name="theForm" action="/majorprogress" method="post">
                 <table class="table table-condensedd table-hover">
 
-                    <caption>Caption...</caption>
+{#                    <caption>Use the buttons on the left to indicate which classes you've taken.</caption>#}
                     <thead>
-                    <tr><th></th>
+                    <tr>
+{#                        <th></th>#}
                         <th>Course Number</th>
                         <th>Course Name</th>
                         <th>Quarter</th>
@@ -154,64 +179,39 @@
                     </thead>
                     <tbody>
             {% for course in courses %}
-
-{#                <dl class="dl-horizontal">#}
-
                     <tr>
-                        <td><input type="checkbox" style="font-size:150%; vertical-align: top; top: -1px; position: relative; margin:2px;" name="courses" value="{{ course.number }}"></td>
+{#                        <td><input type="checkbox" style="font-size:150%; vertical-align: top; top: -1px; position: relative; margin:2px;" name="courses" value="{{ course.number }}"></td>#}
                         <td>{{ course.number }}</td>
                         <td>{{ course.name }}</td>
-                    <td><div class="btn-group" data-toggle="buttons" id="{{ course.number }}">
-                        <button type="button" class="btn">Fall</button>
-                        <button type="button" class="btn">Winter</button>
-                        <button type="button" class="btn">Spring</button>
-                        <button type="button" class="btn">Summer</button>
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">
-                            Year
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">2011</a></li>
-                            <li><a href="#">2012</a></li>
-                            <li><a href="#">2013</a></li>
-                        </ul>
-                    </div>
-{#                        <div class="btn-group">#}
-{#                            <button class="btn">Fall</button>#}
-{#                            <button class="btn">Winter</button>#}
-{#                            <button class="btn">Spring</button>#}
-{#                            <button class="btn">Summer</button>#}
-{#                            <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">#}
-{#                                <span class="caret"></span>#}
-{#                            </button>#}
-{#                            <ul class="dropdown-menu pull-right">#}
-{#                                <li><a href="#">Action</a></li>#}
-{#                                <li><a href="#">Another action</a></li>#}
-{#                                <li><a href="#">Something else here</a></li>#}
-{#                                <li class="divider"></li>#}
-{#                                <li><a href="#">Separated link</a></li>#}
-{#                            </ul>#}
-{#                        </div>#}
+                        <td>
+                            <input type="hidden" class="" id="Hidden{{ course.number }}" name="{{ course.number }}" />
+                            <div class="btn-group" data-toggle="buttons" id="{{ course.number }}">
+                                <button type="button" class="btn sneaky">Fall</button>
+                                <button type="button" class="btn sneaky">Winter</button>
+                                <button type="button" class="btn sneaky">Spring</button>
+                                <button type="button" class="btn sneaky">Summer</button>
+{#
 
-                    </td>
+                                <a class="btn dropdown-toggle sneaky" data-toggle="dropdown">
+                                    Year <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                <li><a>2011</a></li>
+                                <li><a>2012</a></li>
+                                <li><a>2013</a></li>
+
+                                </ul>
+
+                            </div>
+                        </td>
                     </tr>
-
-
-{#                    <div class="controls controls-row">#}
-{#                        <span class="span2"><input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }}</span>#}
-{#                        <span class="span5">{{ course.name }}</span>#}
-{##}
-{#                    </div>#}
-{#                <label class="checkbox">#}
-{#                    <dt><input type="checkbox" style="font-size:150%;" name="courses" value="{{ course.number }}">  {{ course.number }}</dt>#}
-{#                    <dd>{{ course.name }}</dd>#}
-{#                </label>#}
-{#                </dl>#}
             {% endfor %}
                     </tbody>
                 </table>
+            <br>
 
-            <button type="submit" class="btn btn-primary ">
+{#                <button id="subButton" class="btn btn-primary pull-right">#}
+                <button type="submit" class="btn btn-primary pull-right">
                 <i class="icon-user icon-white"></i> Add Classes to Profile
             </button>
             </form>
