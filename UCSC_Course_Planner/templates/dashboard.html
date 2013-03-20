@@ -269,14 +269,25 @@
 {#            Should figure out what we want to do with this stuff... like how the view settings will work#}
 {#            do we still use toggleView? #}
             $("#toggleView").click(function (){
+                if (($(this)).hasClass('active')){
+
+                };
                 $('.accordion-body').each(function(){
                     if ($(this).hasClass('in')) {
                         $(this).collapse('toggle');
                     }
                     else $(this).collapse('toggle');
                 });
+                $('.accordion-body').first().collapse('show');
             })
-            firstToggle = true;
+
+
+            $('.accordion-body').each(function(){
+                   $(this).collapse('show');
+            });
+
+
+                            firstToggle = true;
             function viewAll(){
                 if (firstToggle){
 
@@ -643,7 +654,7 @@
 
 
                                                     <li class="ui-state-default" id="{{ class }}{{ quarter }}{{ year }}">
-                                                        <div class="classHeader">{{ class }} <span class="classUnits badge badge-success">1</span><span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span><br></div>
+                                                        <div class="classHeader">{{ class }} <span class="classUnits badge badge-success">5</span><span class="courseRemove pull-right" style="display:none;"><i class="icon-minus-sign"></i></span><br></div>
                                                         <div class="classInstructor">Instructor Name<br></div>
                                                         <div class="classTime">MWF 12-2pm<br></div>
                                                     </li>
