@@ -467,7 +467,29 @@ class Contact(webapp2.RequestHandler):
 
         path = os.path.join(os.path.dirname(__file__), 'templates/contact.html')
         self.response.write(template.render(path, output))
+
+
+class Helper(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        name = "none"
+        if user:
+            logURL = (users.create_logout_url("/"))
+            name = user.nickname()
+            is_logged_in = True
+        else:
+            logURL = (users.create_login_url("/"))
+            is_logged_in = False
+        output = {
+            'logURL': logURL,
+            'is_logged_in': is_logged_in,
+            'name': name
+        }
+
+        path = os.path.join(os.path.dirname(__file__), 'templates/help.html')
+        self.response.write(template.render(path, output))
         
+                
 class About(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -605,6 +627,7 @@ app = webapp2.WSGIApplication([
     ('/recordprereq', RecordPrereq),
     ('/populate', PopulateCourses),
     ('/search', Search),
+    ('/help', Helper),
     ('/.*', NotFoundPageHandler)
 
 ], debug=True)
