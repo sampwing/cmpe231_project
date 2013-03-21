@@ -65,7 +65,7 @@ class Login(webapp2.RequestHandler):
             else:
                 return redirect('/dashboard')
         else:
-            greeting = ("<a href=\"%s\">Sign in or register</a>." %
+            greeting = ("%s" %
                         users.create_login_url("/login"))
             is_logged_in = False
             logoutURL =  users.create_login_url("/")
@@ -378,7 +378,7 @@ class MajorProgress(webapp2.RequestHandler):
             quarteryear = [x.strip() for x in quarteryear.split(',')]
             if len(quarteryear) == 2:
                 quarter=quarteryear[0]
-                year=int(quarteryear[1])
+                year=int(quarteryear[1][2:])
                 if quarter == "Fall":
                     year = year + 1
                 course = Course.all().filter('number =',number).get()
